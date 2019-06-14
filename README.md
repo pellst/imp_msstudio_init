@@ -84,7 +84,7 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 ## Acknowledgments
 
 * MassSpecStudio Development Team
-* [IMP dataset source] https://integrativemodeling.org/tutorials/rnapolii_stalk/
+* [IMP dataset source] (https://integrativemodeling.org/tutorials/rnapolii_stalk/)
 * Inspiration
 * etc
 
