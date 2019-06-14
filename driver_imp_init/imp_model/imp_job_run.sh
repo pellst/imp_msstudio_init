@@ -4,7 +4,7 @@ import os, subprocess, platform, argparse
 
 # default paths to anaconda and data roots
 ANACONDA_DIR = os.path.join("C:\\", "Apps", "Anaconda3") if platform.system() == "Windows" else os.path.join("~", "anaconda3")
-DEFAULT_COUNT, DEFAULT_NAME, DEFAULT_CONFIG = 1, "Demo", "ExampleYaml_test_v2a.txt"
+DEFAULT_COUNT, DEFAULT_NAME, DEFAULT_CONFIG = 1, "DemoImpModel", "ConfigImp.yaml"
 
 # parse args for path replacements & args for the job start command execution
 parser = argparse.ArgumentParser()
