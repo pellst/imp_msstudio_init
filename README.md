@@ -14,7 +14,7 @@ imp_msstudio_init-master\driver_imp_init\imp_model>run_py_impjob.bat
 ```
 
 For linux platform there is a python script available:
-imp_job_run.sh
+imp_job_run.py
 
 
 ### Prerequisites
