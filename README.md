@@ -13,6 +13,10 @@ From the downloaded and extracted master branch. Run the following to execute th
 imp_msstudio_init-master\driver_imp_init\imp_model>run_py_impjob.bat
 ```
 
+For linux platform there is a python script available:
+imp_job_run.sh
+
+
 ### Prerequisites
 
 The driver script runs with python 3.x and depends on the Python Modeling Interface (PMI)
