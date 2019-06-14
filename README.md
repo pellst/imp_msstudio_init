@@ -8,6 +8,11 @@ Python script and example yaml configuration for running IMP modeling job
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. 
 See deployment for notes on how to deploy the project on a live system.
 
+From the downloaded and extracted master branch. Run the following to execute the example job:
+```
+imp_msstudio_init-master\driver_imp_init\imp_model>run_py_impjob.bat
+```
+
 ### Prerequisites
 
 The driver script runs with python 3.x and depends on the Python Modeling Interface (PMI)
