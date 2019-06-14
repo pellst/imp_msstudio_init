@@ -13,6 +13,28 @@ See deployment for notes on how to deploy the project on a live system.
 The driver script runs with python 3.x and depends on the Python Modeling Interface (PMI)
 
 ```
+initial setup for PMI
+Anaconda3\Library\bin\conda config --add channels salilab
+Anaconda3\Library\bin\conda install imp scikit-learn matplotlib
+
+https://integrativemodeling.org/tutorials/rnapolii_stalk/
+Anaconda3\Library\bin\conda install numpy scipy scikit-learn matplotlib
+
+Anaconda3\Library\bin\conda install -c conda-forge dataclasses
+
+
+bring up Anaconda Prompt and run : activate base
+you can see envs available with: conda info --envs
+this shows us that base is c:\apps\Anaconda3
+
+pip install dacite==1.0.0
+pip install dataclasses-json
+pip install dataclasses-jsonschema
+
+
+```
+
+```
 Give examples
 ```
 
