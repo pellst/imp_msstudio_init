@@ -1,0 +1,95 @@
+2019-06-16 17:20:16,216 - root - INFO - log filename: prep_hyperp_imp_v3.log!
+2019-06-16 17:20:16,216 - root - DEBUG - This is a debug message
+2019-06-16 17:20:16,216 - root - INFO - This is an info message
+2019-06-16 17:20:16,216 - root - WARNING - This is a warning message
+2019-06-16 17:20:16,216 - root - ERROR - This is an error message
+2019-06-16 17:20:16,216 - root - CRITICAL - This is a critical message
+2019-06-16 17:20:16,217 - root - INFO - prep_hyperparam DemoImpModel!
+2019-06-16 17:20:16,217 - root - INFO - config filename <_io.TextIOWrapper name='ConfigImp.yaml' mode='r' encoding='cp1252'>!
+2019-06-16 17:20:16,221 - root - INFO - config content {'title': 'C:\\dev\\mss_debug\\Integrative Modelling Platform Project9\\Integrative Modelling Platform Experiment', 'date': datetime.datetime(2019, 6, 16, 18, 44, 14, 550468), 'states': 1, 'sampling_frame': 100, 'output_dir': './imp_output', 'data_directory': '../', 'topology_file': 'Topology.txt', 'target_gmm_file': 'gmm_file_ouput.txt', 'crosslinkdb': [{'refid': 'PRC2_BS3.csv'}, {'refid': 'PRC2_DSS.csv'}], 'xl_groupA': [{'refid': 'PRC2_BS3.csv', 'length': 21.0, 'slope': 0.01, 'resolution': 1.0, 'label': 'PRC2_BS3', 'weight': 1.0, 'crosslink_distance': 30.0}, {'refid': 'PRC2_DSS.csv', 'length': 21.0, 'slope': 0.01, 'resolution': 1.0, 'label': 'PRC2_DSS', 'weight': 1.0, 'crosslink_distance': 30.0}], 'xl_dbA': [{'refid': 'PRC2_BS3.csv', 'set_protein1_key': 'Protein 1', 'set_protein2_key': 'Protein 2', 'set_site_pairs_key': 'Selected Sites', 'set_unique_id_key': 'Peptide ID'}, {'refid': 'PRC2_DSS.csv', 'set_protein1_key': 'Protein 1', 'set_protein2_key': 'Protein 2', 'set_site_pairs_key': 'Selected Sites', 'set_unique_id_key': 'Peptide ID'}], 'degree_of_freedom': {'max_rb_trans': 4.0, 'max_rb_rot': 0.3, 'max_bead_trans': 4.0, 'max_srb_trans': 4.0, 'max_srb_rot': 0.3}}!
+2019-06-16 17:20:16,222 - root - INFO - set title_id !
+2019-06-16 17:20:16,222 - root - INFO - set title C:\dev\mss_debug\Integrative Modelling Platform Project9\Integrative Modelling Platform Experiment!
+2019-06-16 17:20:16,222 - root - INFO - set states 1!
+2019-06-16 17:20:16,222 - root - INFO - set sampling_frame 100!
+2019-06-16 17:20:16,222 - root - INFO - set output_dir ./imp_output!
+2019-06-16 17:20:16,222 - root - INFO - set namespaces None!
+2019-06-16 17:20:16,222 - root - INFO - set data_directory ../!
+2019-06-16 17:20:16,222 - root - INFO - set xl_groupA [CrossLink_db(refid='PRC2_BS3.csv', length=21.0, slope=0.01, resolution=1.0, label='PRC2_BS3', weight=1.0, crosslink_distance=30.0), CrossLink_db(refid='PRC2_DSS.csv', length=21.0, slope=0.01, resolution=1.0, label='PRC2_DSS', weight=1.0, crosslink_distance=30.0)]!
+2019-06-16 17:20:16,222 - root - INFO - set topology_file Topology.txt!
+2019-06-16 17:20:16,222 - root - INFO - set target_gmm_file gmm_file_ouput.txt!
+2019-06-16 17:20:16,222 - root - INFO - set degree_of_freedom Degree_of_freedom(max_rb_trans=4.0, max_rb_rot=0.3, max_bead_trans=4.0, max_srb_trans=4.0, max_srb_rot=0.3)!
+2019-06-16 17:20:16,223 - root - INFO - set degree_of_freedom.max_rb_trans 4.0!
+2019-06-16 17:20:16,223 - root - INFO - set xl_dbA [XL_db(refid='PRC2_BS3.csv', set_protein1_key='Protein 1', set_protein2_key='Protein 2', set_residue1_key=None, set_residue2_key=None, set_site_pairs_key='Selected Sites', set_unique_id_key='Peptide ID'), XL_db(refid='PRC2_DSS.csv', set_protein1_key='Protein 1', set_protein2_key='Protein 2', set_residue1_key=None, set_residue2_key=None, set_site_pairs_key='Selected Sites', set_unique_id_key='Peptide ID')]!
+2019-06-16 17:20:16,223 - root - INFO - set xl_dbA first PRC2_BS3.csv!
+2019-06-16 17:20:16,223 - root - INFO - set xl_dbA second PRC2_DSS.csv!
+2019-06-16 17:20:16,223 - root - INFO - set xl_dbA count 2!
+2019-06-16 17:20:16,223 - root - INFO - XL_db(refid='PRC2_BS3.csv', set_protein1_key='Protein 1', set_protein2_key='Protein 2', set_residue1_key=None, set_residue2_key=None, set_site_pairs_key='Selected Sites', set_unique_id_key='Peptide ID')
+2019-06-16 17:20:16,223 - root - INFO - XL_db(refid='PRC2_DSS.csv', set_protein1_key='Protein 1', set_protein2_key='Protein 2', set_residue1_key=None, set_residue2_key=None, set_site_pairs_key='Selected Sites', set_unique_id_key='Peptide ID')
+2019-06-16 17:20:16,223 - root - INFO - CrossLink_db(refid='PRC2_BS3.csv', length=21.0, slope=0.01, resolution=1.0, label='PRC2_BS3', weight=1.0, crosslink_distance=30.0)
+2019-06-16 17:20:16,223 - root - INFO - PRC2_BS3.csv
+2019-06-16 17:20:16,223 - root - INFO - 21.0
+2019-06-16 17:20:16,223 - root - INFO - 0.01
+2019-06-16 17:20:16,223 - root - INFO - 1.0
+2019-06-16 17:20:16,223 - root - INFO - PRC2_BS3
+2019-06-16 17:20:16,223 - root - INFO - 1.0
+2019-06-16 17:20:16,223 - root - INFO - 30.0
+2019-06-16 17:20:16,223 - root - INFO - CrossLink_db(refid='PRC2_DSS.csv', length=21.0, slope=0.01, resolution=1.0, label='PRC2_DSS', weight=1.0, crosslink_distance=30.0)
+2019-06-16 17:20:16,223 - root - INFO - PRC2_DSS.csv
+2019-06-16 17:20:16,223 - root - INFO - 21.0
+2019-06-16 17:20:16,223 - root - INFO - 0.01
+2019-06-16 17:20:16,223 - root - INFO - 1.0
+2019-06-16 17:20:16,223 - root - INFO - PRC2_DSS
+2019-06-16 17:20:16,223 - root - INFO - 1.0
+2019-06-16 17:20:16,223 - root - INFO - 30.0
+2019-06-16 17:20:16,223 - root - INFO - model_pipeline title_id !
+2019-06-16 17:20:16,223 - root - INFO - config data_directory ../!
+2019-06-16 17:20:16,224 - root - INFO - this_path ../!
+2019-06-16 17:20:16,224 - root - INFO - pdb_dir .././data/xtal!
+2019-06-16 17:20:16,224 - root - INFO - fasta_dir .././data/fasta!
+2019-06-16 17:20:16,224 - root - INFO - gmm_dir .././data/em!
+2019-06-16 17:20:16,224 - root - INFO - xl_dir .././data/xl!
+2019-06-16 17:20:16,224 - root - INFO - topo_dir .././data/topo!
+2019-06-16 17:20:16,224 - root - INFO - model_pipeline topology_file .././data/topo/Topology.txt!
+2019-06-16 17:20:16,224 - root - INFO - target_gmm_file .././data/em/gmm_file_ouput.txt!
+2019-06-16 17:20:19,930 - root - INFO - 82706.5521495385
+2019-06-16 17:20:27,788 - root - INFO - 120.76920086536126
+2019-06-16 17:20:27,788 - root - INFO - CrossLink_db(refid='PRC2_BS3.csv', length=21.0, slope=0.01, resolution=1.0, label='PRC2_BS3', weight=1.0, crosslink_distance=30.0)
+2019-06-16 17:20:27,788 - root - INFO - PRC2_BS3.csv
+2019-06-16 17:20:27,788 - root - INFO - 21.0
+2019-06-16 17:20:27,788 - root - INFO - 0.01
+2019-06-16 17:20:27,789 - root - INFO - 1.0
+2019-06-16 17:20:27,789 - root - INFO - PRC2_BS3
+2019-06-16 17:20:27,789 - root - INFO - 1.0
+2019-06-16 17:20:27,789 - root - INFO - 30.0
+2019-06-16 17:20:28,519 - root - INFO - <IMP.pmi.restraints.crosslinking.CrossLinkingMassSpectrometryRestraint object at 0x000001942B3519B0>
+2019-06-16 17:20:28,519 - root - INFO - CrossLink_db(refid='PRC2_DSS.csv', length=21.0, slope=0.01, resolution=1.0, label='PRC2_DSS', weight=1.0, crosslink_distance=30.0)
+2019-06-16 17:20:28,519 - root - INFO - PRC2_DSS.csv
+2019-06-16 17:20:28,519 - root - INFO - 21.0
+2019-06-16 17:20:28,519 - root - INFO - 0.01
+2019-06-16 17:20:28,519 - root - INFO - 1.0
+2019-06-16 17:20:28,519 - root - INFO - PRC2_DSS
+2019-06-16 17:20:28,519 - root - INFO - 1.0
+2019-06-16 17:20:28,519 - root - INFO - 30.0
+2019-06-16 17:20:29,908 - root - INFO - <IMP.pmi.restraints.crosslinking.CrossLinkingMassSpectrometryRestraint object at 0x000001942B3672B0>
+2019-06-16 17:20:29,908 - root - INFO - <IMP.pmi.restraints.crosslinking.CrossLinkingMassSpectrometryRestraint object at 0x000001942B3519B0>
+2019-06-16 17:20:29,908 - root - INFO - <IMP.pmi.restraints.crosslinking.CrossLinkingMassSpectrometryRestraint object at 0x000001942B3672B0>
+2019-06-16 17:20:29,910 - root - INFO - set states 1!
+2019-06-16 17:20:29,910 - root - INFO - set sampling_frame 100!
+2019-06-16 17:20:29,910 - root - INFO - set num_frames 50!
+2019-06-16 17:20:29,910 - root - INFO - set output_dir ./imp_output!
+2019-06-16 17:20:29,910 - root - INFO - set num_mc_steps 10!
+2019-06-16 17:20:29,910 - root - INFO - set monte_carlo_temperature=1.0
+2019-06-16 17:20:29,910 - root - INFO - set simulated_annealing=True
+2019-06-16 17:20:29,910 - root - INFO - set simulated_annealing_minimum_temperature=1.0
+2019-06-16 17:20:29,910 - root - INFO - set simulated_annealing_maximum_temperature=2.5
+2019-06-16 17:20:29,910 - root - INFO - set simulated_annealing_minimum_temperature_nframes=200
+2019-06-16 17:20:29,910 - root - INFO - set simulated_annealing_maximum_temperature_nframes=20
+2019-06-16 17:20:29,910 - root - INFO - set replica_exchange_minimum_temperature=1.0
+2019-06-16 17:20:29,910 - root - INFO - set replica_exchange_maximum_temperature=2.5
+2019-06-16 17:20:29,910 - root - INFO - set number_of_best_scoring_models=0
+2019-06-16 17:20:29,910 - root - INFO - set monte_carlo_steps 10!
+2019-06-16 17:20:29,911 - root - INFO - set number_of_frames 50!
+2019-06-16 17:20:29,911 - root - INFO - set global_output_directory ./imp_output!
+2019-06-16 17:21:39,394 - root - INFO - 144.83418696977424
+2019-06-16 17:21:39,394 - root - INFO - 282.42715176632953
+2019-06-16 17:21:39,400 - root - INFO - given title DemoImpModel!
