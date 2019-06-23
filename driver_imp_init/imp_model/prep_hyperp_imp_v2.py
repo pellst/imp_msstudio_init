@@ -438,7 +438,6 @@ def model_pipeline(project):
             xldbkc.set_protein1_key("Protein 1")
             xldbkc.set_protein2_key("Protein 2")
             xldbkc.set_unique_id_key("Peptide ID")
-            #xldbkc.set_protein2_key("Protein 2")
             return xldbkc
 
         def parse_infile(self):
@@ -450,7 +449,39 @@ def model_pipeline(project):
             return self.xldb
 
  
+    class nonMSStudioCrosslinks:
+        # Class that converts an MS Studio crosslink file
+        # into a csv file and corresponding IMP CrossLinkDataBase object
+        def __init__(self, infile, indbA):
+            self.infile = infile
+            self.indbA = indbA
+            self.xldbkc = self.get_xldbkc()
+            self.xldb = IMP.pmi.io.crosslink.CrossLinkDataBase(self.xldbkc)
+            self.xldb.create_set_from_file(self.infile, self.xldbkc)
 
+        def get_xldbkc(self):
+            # Creates the keyword converter database to translate MS Studio column names
+            # into IMP XL database keywords
+            xldbkc = IMP.pmi.io.crosslink.CrossLinkDataBaseKeywordsConverter()
+            logging.info('set xl_dbA %s!' % self.indbA.refid)
+            logging.info('set xl_dbA set_protein1_key %s!' % self.indbA.set_protein1_key)
+            logging.info('set xl_dbA set_protein2_key %s!' % self.indbA.set_protein2_key)
+            logging.info('set xl_dbA set_residue1_key %s!' % self.indbA.set_residue1_key)
+            logging.info('set xl_dbA set_residue2_key %s!' % self.indbA.set_residue2_key)
+          
+            xldbkc.set_protein1_key(self.indbA.set_protein1_key)
+            xldbkc.set_protein2_key(self.indbA.set_protein2_key)
+            xldbkc.set_residue1_key(self.indbA.set_residue1_key)
+            xldbkc.set_residue2_key(self.indbA.set_residue2_key)
+            return xldbkc
+
+        def parse_infile(self):
+            # Returns a list of each crosslink's attributes as a dictionary.
+            import csv
+            return csv.DictReader(open(self.infile), delimiter=',', quotechar='"')
+
+        def get_database(self):
+            return self.xldb
 
 
 
@@ -577,54 +608,52 @@ def model_pipeline(project):
     outputobjects.append(ev)
 
 
-    # Crosslinks - dataset 1
-    #  To use this restraint we have to first define the data format
-    #  Here assuming that it's a CSV file with column names that may need to change
-    #  Other options include the linker length and the slope (for nudging components together)
-    xldbkwc = IMP.pmi.io.crosslink.CrossLinkDataBaseKeywordsConverter()
-    xldbkwc.set_protein1_key("pep1.accession")
-    xldbkwc.set_protein2_key("pep2.accession")
-    xldbkwc.set_residue1_key("pep1.xlinked_aa")
-    xldbkwc.set_residue2_key("pep2.xlinked_aa")
+    
+    
+    # Getting length of list 
+    length = len(project.xl_groupA) 
+    i = 0
+    
+    xlList=[]
 
-    xl1db = IMP.pmi.io.crosslink.CrossLinkDataBase(xldbkwc)
-    xl1db.create_set_from_file(xl_dir+'/'+'polii_xlinks.csv')
+    # Iterating using while loop 
+    while i < length: 
+        logging.info(project.xl_groupA[i])
+        #"refid","length","slope","resolution","label","weight","crosslink_distance"
 
-    xl1 = IMP.pmi.restraints.crosslinking.CrossLinkingMassSpectrometryRestraint(
-                                       root_hier=root_hier,
-                                       CrossLinkDataBase=xl1db,
-                                       length=21.0,
-                                       slope=0.01,
-                                       resolution=1.0,
-                                       label="Trnka",
-                                       weight=1.)
-
-    xl1.add_to_model()             # crosslink must be added to the model
-    outputobjects.append(xl1)
+        logging.info(project.xl_groupA[i].refid)
+        logging.info(project.xl_groupA[i].length)
+        logging.info(project.xl_groupA[i].slope)
+        logging.info(project.xl_groupA[i].resolution)
+        logging.info(project.xl_groupA[i].label)
+        logging.info(project.xl_groupA[i].weight)
+        logging.info(project.xl_groupA[i].crosslink_distance)
 
 
-    # Crosslinks - dataset 2
-    #  We can easily add a second set of crosslinks.
-    #  These have a different format and label, but other settings are the same
-    xldbkwc = IMP.pmi.io.crosslink.CrossLinkDataBaseKeywordsConverter()
-    xldbkwc.set_protein1_key("prot1")
-    xldbkwc.set_protein2_key("prot2")
-    xldbkwc.set_residue1_key("res1")
-    xldbkwc.set_residue2_key("res2")
+    
+        # Set up crosslinking restraint
+        xlA = XLRestraint(root_hier=root_hier, 
+                 CrossLinkDataBase=nonMSStudioCrosslinks(xl_dir + "/" + project.xl_groupA[i].refid, project.xl_dbA[i]).get_database(),
+                 length=project.xl_groupA[i].length, #midpoint? Double check with Daniel and excel function thing
+                 resolution=project.xl_groupA[i].resolution, #keep 1, lower limit
+                 slope=project.xl_groupA[i].slope, # 0.01 for longer XL and 0.03 for shorter, range - check by making sure midpoint is less than 0.5 e.g 30 * 0.01
+                 label=project.xl_groupA[i].label,
+                 filelabel=project.xl_groupA[i].label,
+                 weight=project.xl_groupA[i].weight) #ignore weight, calculated via IMP
+        logging.info(xlA)
+        xlList.append(xlA)
+        xlA.add_to_model()
+        outputobjects.append(xlA)
+        dof.get_nuisances_from_restraint(xlA)
+        i += 1     
+ 
+    for i in range(len(xlList) ): 
+        logging.info(xlList[i]) 
+        
+    xl_rests = xlList
 
-    xl2db = IMP.pmi.io.crosslink.CrossLinkDataBase(xldbkwc)
-    xl2db.create_set_from_file(xl_dir+'/'+'polii_juri.csv')
+    
 
-    xl2 = IMP.pmi.restraints.crosslinking.CrossLinkingMassSpectrometryRestraint(
-                                       root_hier=root_hier,
-                                       CrossLinkDataBase=xl2db,
-                                       length=21.0,
-                                       slope=0.01,
-                                       resolution=1.0,
-                                       label="Chen",
-                                       weight=1.)
-    xl2.add_to_model()
-    outputobjects.append(xl2)
 
     # Gaussian functions are widely used in statistics to describe the normal distributions, in signal processing to define Gaussian filters
     # , in image processing where two-dimensional Gaussians are used for Gaussian blurs, and in mathematics to solve heat equations and diffusion equations 
@@ -692,7 +721,7 @@ def model_pipeline(project):
                                         root_hier=root_hier,
                                         monte_carlo_sample_objects=dof.get_movers(),
                                         output_objects=outputobjects,
-                                        crosslink_restraints=[xl1,xl2],    # allows XLs to be drawn in the RMF files
+                                        crosslink_restraints=xl_rests, #[xl1,xl2],    # allows XLs to be drawn in the RMF files
                                         monte_carlo_temperature=1.0,
                                         simulated_annealing=True,
                                         simulated_annealing_minimum_temperature=1.0,
