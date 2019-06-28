@@ -433,11 +433,11 @@ def model_pipeline(project):
         def get_xldbkc(self):
             # Creates the keyword converter database to translate MS Studio column names
             # into IMP XL database keywords
-            xldbkc = IMP.pmi.io.crosslink.CrossLinkDataBaseKeywordsConverter(IMP.pmi.io.crosslink.ResiduePairListParser("MSSTUDIO"))
-            xldbkc.set_site_pairs_key("Selected Sites")
+            xldbkc = IMP.pmi.io.crosslink.CrossLinkDataBaseKeywordsConverter()
             xldbkc.set_protein1_key("Protein 1")
             xldbkc.set_protein2_key("Protein 2")
-            xldbkc.set_unique_id_key("Peptide ID")
+            xldbkc.set_residue1_key("Site 1")
+            xldbkc.set_residue2_key("Site 2")
             return xldbkc
 
         def parse_infile(self):
