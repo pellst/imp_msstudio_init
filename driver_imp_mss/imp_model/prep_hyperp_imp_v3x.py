@@ -18,10 +18,13 @@
 #     REVISION: ---
 #===============================================================================
 
-import optparse
+from typing import Optional, Set, List, Union, Dict, Any
+import click
 import logging
 import time
 import yaml
+from dataclasses import dataclass, field
+from dacite import from_dict
 
 import IMP
 import IMP.core
@@ -74,7 +77,146 @@ TopologyFile = str
 Target_gmm_file = str
 
 
+@dataclass
+class Degree_of_freedom():
+    """
+    Degree_of_freedom
+    """
+    #dof : Optional[List[float]] = None
+    """List of Degree_of_freedom"""
+    max_rb_trans: Optional[float]
+    #4.0
+    max_rb_rot: Optional[float]
+    #0.3
+    max_bead_trans: Optional[float]
+    #4.0
+    max_srb_trans: Optional[float]
+    #4.0
+    max_srb_rot: Optional[float]
+    #0.3
 
+
+
+@dataclass
+class XL_db():
+    """
+    XL_db
+    """
+    #xldb : Optional[List[str]] = None
+    ##"refid","set_protein1_key","set_protein2_key","set_residue1_key","set_residue2_key","set_site_pairs_key","set_unique_id_key"
+    
+    refid: str
+    #polii_xlinks.csv
+    set_protein1_key: str
+    #pep1.accession
+    set_protein2_key: str
+    #pep2.accession
+    set_residue1_key: Optional[str]
+    #pep1.xlinked_aa
+    set_residue2_key: Optional[str]
+    #pep2.xlinked_aa
+
+    #TODO add
+    set_site_pairs_key: Optional[str]
+    #("Selected Sites")
+    ##set_protein1_key: str
+    #("Protein 1")
+    ##set_protein2_key: str
+    #("Protein 2")
+    set_unique_id_key: Optional[str]
+    #("Peptide ID")
+    
+@dataclass
+class CrossLink_db():
+    """
+    CrossLink_db
+    """
+    
+    #xlfiles : Optional[List[CrossLinkFilename]] = None
+    #"""List of crosslink filenames"""
+    ##"refid","length","slope","resolution","label","weight","crosslink_distance"
+
+    refid: str
+    #polii_xlinks.csv
+    length: float
+    #21.0
+    slope: float
+    #0.01
+    resolution: float
+    #1.0
+    label: str
+    #Trnka
+    weight: float
+    #1.0
+    crosslink_distance : float
+
+
+
+
+
+
+
+
+
+
+@dataclass
+class ImpProject():
+    """
+    A configuration for an ontology project/repository
+
+    This is divided into project-wide settings, plus
+    groups of products. Products are grouped into 4
+    categories (more may be added)
+    """
+
+    #id : OntologyHandle = ""
+    #"""OBO id for this ontology. Must be lowecase Examples: uberon, go, cl, envo, chebi"""
+    title_id : int = ""
+    """proj identifier for this imp project"""
+
+    title : str = ""
+    """Concise descriptive text about this imp project"""
+
+    sampling_frame : int = ""
+    """Concise descriptive text about this imp project"""
+
+    states : int = ""
+    """Concise descriptive text about this imp project"""
+
+    output_dir : str = ""
+    """Concise descriptive text about this imp project"""
+
+    #crosslink_distance : float = ""
+    #"""Concise descriptive text about this imp project"""
+
+    # provide support for nested content
+    # crosslink filename and config settings ; for multiple csv files
+
+    namespaces : Optional[List[str]] = None
+    """A list of namespaces that are considered at home in this ontology. Used for certain filter commands."""
+
+    crosslinkdb : Optional[List[CrossLinkFilename]] = None
+    """List of crosslink filenames"""
+
+
+    #data_directory: Optional[List[Directory]] = field(default_factory=lambda: ['C:/dev/project/py_imp/py_imp/pmi_tut/rnapolii/data/', 'C:/dev/project/py_imp/py_imp/data/'])
+    data_directory: Optional[Directory] = None
+
+    xl_groupA : Optional[List[CrossLink_db]] = None
+    #xl_groupB : Optional[CrossLink_db] = None
+    #xl_groupC : Optional[CrossLink_db] = None
+
+    xl_dbA : Optional[List[XL_db]] = None
+    #xl_dbB : Optional[XL_db] = None
+    #xl_dbC : Optional[XL_db] = None
+    #xl_dbB : Optional[List[XL_db]] = None
+
+    topology_file : Optional[TopologyFile] = "Topology.txt"
+
+    target_gmm_file : Optional[Target_gmm_file] = None
+
+    degree_of_freedom : Optional[Degree_of_freedom] = None
+    #degree_of_freedom : Optional[float] = None
 
 
 
@@ -101,60 +243,112 @@ def load_config(config_file,
     https://hackersandslackers.com/simplify-your-python-projects-configuration/
 
     """
- 
     logging.info('config filename %s!' % config_file)
-    #obj = yaml.safe_load(config_file)
-    cfg = load_yaml_config(config_file)
-    for section in cfg:
-        logging.info(section + ' %s!' % cfg[section])
 
-        if section == "xl_groupA":
-            #
-            for i in cfg[section]:
-                logging.info(i)
-                for k, v in i.items():
-                    logging.info(k +': %s!' % v)
+    project = ImpProject()
 
-        if section == "xl_dbA":
-            #
-            for i in cfg[section]:
-                logging.info(i)
-                for k, v in i.items():
-                    logging.info(k +': %s!' % v)
+    if config_file is None:
+        logging.info('missing config content !' )
+    else:
+        #obj = yaml.load(config_file, Loader=yaml.FullLoader)
+        obj = yaml.safe_load(config_file)
+        
+        #obj = load_yaml_config(config_file)
+        
+        logging.info('config content %s!' % obj)
+        project = from_dict(data_class=ImpProject, data=obj)
+        logging.info('set title_id %s!' % project.title_id)
+        logging.info('set title %s!' % project.title)
+        logging.info('set states %s!' % project.states)
+        logging.info('set sampling_frame %s!' % project.sampling_frame)
+        logging.info('set output_dir %s!' % project.output_dir)
+        #logging.info('set crosslink_distance %s!' % project.crosslink_distance)
+        logging.info('set namespaces %s!' % project.namespaces)
+        # crosslinkdb
+        #logging.info('set crosslinkdb %s!' % project.crosslinkdb)
+        # export_formats
+        # logging.info('set export_fmts %s!' % project.export_formats)
+        # data_directory
+        logging.info('set data_directory %s!' % project.data_directory)
 
-        if section == "crosslinkdb":
-            #
-            for i in cfg[section]:
-                logging.info(i)
-                for k, v in i.items():
-                    logging.info(k +': %s!' % v)
+        logging.info('set xl_groupA %s!' % project.xl_groupA)
+       # logging.info('set xl_groupB %s!' % project.xl_groupB)
+       # logging.info('set xl_groupC %s!' % project.xl_groupC)
+
+        #topology_file
+        logging.info('set topology_file %s!' % project.topology_file)
+
+        #target_gmm_file
+        logging.info('set target_gmm_file %s!' % project.target_gmm_file)
+
+        #degree_of_freedom
+        logging.info('set degree_of_freedom %s!' % project.degree_of_freedom)
+        logging.info('set degree_of_freedom.max_rb_trans %s!' % project.degree_of_freedom.max_rb_trans)
+
+        #xl_db
+        #logging.info('set xl_db %s!' % project.xl_db)
+
+        #xl_dbA
+        logging.info('set xl_dbA %s!' % project.xl_dbA)
+        logging.info('set xl_dbA first %s!' % project.xl_dbA[0].refid)
+        logging.info('set xl_dbA second %s!' % project.xl_dbA[1].refid)
+        logging.info('set xl_dbA count %s!' % len(project.xl_dbA))
+
+        for i in range(len(project.xl_dbA) ): 
+            logging.info(project.xl_dbA[i]) 
+
+        #List[CrossLink_db]
+        # Using enumerate()  
+        #for i, val in enumerate(project.xl_groupA): 
+        #    logging.info(i, ",",val) 
+
+        # Getting length of list 
+        length = len(project.xl_groupA) 
+        i = 0
+   
+        # Iterating using while loop 
+        while i < length: 
+            logging.info(project.xl_groupA[i])
+            #"refid","length","slope","resolution","label","weight","crosslink_distance"
+
+            logging.info(project.xl_groupA[i].refid)
+            logging.info(project.xl_groupA[i].length)
+            logging.info(project.xl_groupA[i].slope)
+            logging.info(project.xl_groupA[i].resolution)
+            logging.info(project.xl_groupA[i].label)
+            logging.info(project.xl_groupA[i].weight)
+            logging.info(project.xl_groupA[i].crosslink_distance)
+            i += 1
+
+        #dir(project.xl_groupA[i])
+
+        #for i in range(len(project.xl_groupA) ): 
+        #    print(project.xl_groupA[i]) 
+
+        # logging.info('set xl_dbB %s!' % project.xl_dbB)
+        # logging.info('set xl_dbC %s!' % project.xl_dbC)
+
+        # perform pipeline setup
+        model_pipeline(project)
 
 
-        if section == "degree_of_freedom":
-            #logging.info( subxl_group + ' %s!' % cfg[section])
-            for i in cfg[section]:
-                logging.info(i +': %s!' % cfg[section][i])
 
-    #print(cfg['topology_file'])
-    #print(cfg['title'])
-    logging.info('given topology_file %s!' % cfg['topology_file'])
-    logging.info('given title %s!' % cfg['title'])
-    
-
-
-    # perform pipeline setup
-    model_pipeline(cfg)
-
+    if title:
+        #project.title = title
+        logging.info('given title %s!' % title)
     
 
 def seed(config, title):
     """
-    Seeds an imp project
+    Seeds an ontology project
     """
 
+    #mg = Generator()
+
+    #mg.
     load_config(config,
                    title=title)
-
+    #project = mg.context.project
 
 def mkdir(adddirname):
     if not os.path.exists(adddirname):
@@ -166,7 +360,7 @@ def model_pipeline(project):
     Model pipeline for IMP project
     """
 
-    logging.info('model_pipeline title %s!' % project["title"])
+    logging.info('model_pipeline title_id %s!' % project.title_id)
 
     #---------------------------
     # Define Input Files
@@ -174,7 +368,7 @@ def model_pipeline(project):
     # The topology file defines how the system components are structurally represented. 
     # target_gmm_file stores the EM map for the entire complex, which has already been converted into a Gaussian mixture model.
     #---------------------------
-    datadirectory = project["data_directory"] 
+    datadirectory = project.data_directory 
     #"C:/dev/project/py_imp/py_imp/pmi_tut/rnapolii/data/"
 
     # C:/Users/adminL/source/repos/py_imp/py_imp/pmi_tut/rnapolii/data/
@@ -186,7 +380,7 @@ def model_pipeline(project):
     # Start by getting directory paths
     #this_path = os.path.dirname(os.path.realpath(__file__)) + "/"
     #cwd = os.getcwd()
-    this_path = project["data_directory"]
+    this_path = project.data_directory
     mkdir(this_path)
  
     # these paths are relative to the topology file
@@ -219,8 +413,8 @@ def model_pipeline(project):
     #mkdir(xl_dir)
     #mkdir(topo_dir)
 
-    topology_file = topo_dir+'/'+project["topology_file"]
-    target_gmm_file = gmm_dir+'/'+project["target_gmm_file"]
+    topology_file = topo_dir+'/'+project.topology_file
+    target_gmm_file = gmm_dir+'/'+project.target_gmm_file
     
     #logging.info('data_directory %s!' % datadirectory)
 
@@ -373,34 +567,32 @@ def model_pipeline(project):
     #    logging.info(project.xl_dbA[i])
 
     # Getting length of list 
-    length = len(project["xl_groupA"]) 
+    length = len(project.xl_groupA) 
     i = 0
     
     xlList=[]
 
     # Iterating using while loop 
     while i < length: 
-        logging.info(project["xl_groupA"][i])
+        logging.info(project.xl_groupA[i])
         #"refid","length","slope","resolution","label","weight","crosslink_distance"
 
-        logging.info(project["xl_groupA"][i]["refid"])
-        logging.info(project["xl_groupA"][i]["length"])
-        logging.info(project["xl_groupA"][i]["slope"])
-        logging.info(project["xl_groupA"][i]["resolution"])
-        logging.info(project["xl_groupA"][i]["label"])
-        logging.info(project["xl_groupA"][i]["weight"])
-        logging.info(project["xl_groupA"][i]["crosslink_distance"])
-
-        
+        logging.info(project.xl_groupA[i].refid)
+        logging.info(project.xl_groupA[i].length)
+        logging.info(project.xl_groupA[i].slope)
+        logging.info(project.xl_groupA[i].resolution)
+        logging.info(project.xl_groupA[i].label)
+        logging.info(project.xl_groupA[i].weight)
+        logging.info(project.xl_groupA[i].crosslink_distance)
         # Set up crosslinking restraint
         xlA = XLRestraint(root_hier=root_hier, 
-                 CrossLinkDataBase=MSStudioCrosslinks(xl_dir + "/" + project["xl_groupA"][i]["refid"]).get_database(),
-                 length=project["xl_groupA"][i]["length"], #midpoint? Double check with Daniel and excel function thing
-                 resolution=project["xl_groupA"][i]["resolution"], #keep 1, lower limit
-                 slope=project["xl_groupA"][i]["slope"], # 0.01 for longer XL and 0.03 for shorter, range - check by making sure midpoint is less than 0.5 e.g 30 * 0.01
-                 label=project["xl_groupA"][i]["label"],
-                 filelabel=project["xl_groupA"][i]["label"],
-                 weight=project["xl_groupA"][i]["weight"]) #ignore weight, calculated via IMP
+                 CrossLinkDataBase=MSStudioCrosslinks(xl_dir + "/" + project.xl_groupA[i].refid).get_database(),
+                 length=project.xl_groupA[i].length, #midpoint? Double check with Daniel and excel function thing
+                 resolution=project.xl_groupA[i].resolution, #keep 1, lower limit
+                 slope=project.xl_groupA[i].slope, # 0.01 for longer XL and 0.03 for shorter, range - check by making sure midpoint is less than 0.5 e.g 30 * 0.01
+                 label=project.xl_groupA[i].label,
+                 filelabel=project.xl_groupA[i].label,
+                 weight=project.xl_groupA[i].weight) #ignore weight, calculated via IMP
         logging.info(xlA)
         xlList.append(xlA)
         xlA.add_to_model()
@@ -409,16 +601,9 @@ def model_pipeline(project):
         i += 1     
  
     for i in range(len(xlList) ): 
-        logging.info(xlList[i])       
-        
-        
-  
+        logging.info(xlList[i]) 
 
-
-
-        """
-
-    
+    """
     # Set up crosslinking restraint
     xl1 = XLRestraint(root_hier=root_hier, 
                      CrossLinkDataBase=xldb1,
@@ -480,33 +665,6 @@ def model_pipeline(project):
     """
 
 
-    # Gaussian functions are widely used in statistics to describe the normal distributions, in signal processing to define Gaussian filters
-    # , in image processing where two-dimensional Gaussians are used for Gaussian blurs, and in mathematics to solve heat equations and diffusion equations 
-    # and to define the Weierstrass transform.
-    # https://en.wikipedia.org/wiki/Gaussian_function
-
-    # Electron Microscopy Restraint
-    #  The GaussianEMRestraint uses a density overlap function to compare model to data
-    #   First the EM map is approximated with a Gaussian Mixture Model (done separately)
-    #   Second, the components of the model are represented with Gaussians (forming the model GMM)
-    #   Other options: scale_to_target_mass ensures the total mass of model and map are identical
-    #                  slope: nudge model closer to map when far away
-    #                  weight: experimental, needed becaues the EM restraint is quasi-Bayesian
-    #em_components = IMP.pmi.tools.get_densities(root_hier)
-    # substitute em_components with densities
-    """ 
-
-    gemt = IMP.pmi.restraints.em.GaussianEMRestraint(densities,
-                                                     target_gmm_file,
-                                                     scale_target_to_mass=True,
-                                                     slope=0.000001,
-                                                     weight=200.0)
-    #gemt.set_label("Ciferri_PRC2")
-    gemt.add_to_model()
-    outputobjects.append(gemt)  
-    
-    """
-
 
 
     #--------------------------
@@ -521,11 +679,11 @@ def model_pipeline(project):
     #if '--test' in sys.argv: num_frames=100
     num_mc_steps = 10
 
-    logging.info('set states %s!' % project["states"])
-    logging.info('set sampling_frame %s!' % project["sampling_frame"])
+    logging.info('set states %s!' % project.states)
+    logging.info('set sampling_frame %s!' % project.sampling_frame)
     logging.info('set num_frames %s!' % num_frames)
 
-    logging.info('set output_dir %s!' % project["output_dir"])
+    logging.info('set output_dir %s!' % project.output_dir)
     logging.info('set num_mc_steps %s!' % num_mc_steps)
 
 
@@ -542,7 +700,7 @@ def model_pipeline(project):
     logging.info('set number_of_best_scoring_models=0')
     logging.info('set monte_carlo_steps %s!' % num_mc_steps)
     logging.info('set number_of_frames %s!' % num_frames)
-    logging.info('set global_output_directory %s!' % project["output_dir"])
+    logging.info('set global_output_directory %s!' % project.output_dir)
 
 
 
@@ -565,7 +723,7 @@ def model_pipeline(project):
                                         number_of_best_scoring_models=0,
                                         monte_carlo_steps=num_mc_steps, #keep at 10
                                         number_of_frames=num_frames, 
-                                        global_output_directory=project["output_dir"],
+                                        global_output_directory=project.output_dir,
                                         test_mode=False)
 
     # start sampling
@@ -574,7 +732,7 @@ def model_pipeline(project):
     #logging.info("GEMT", gemt.evaluate());
     #logging.info("XL1", xl1.evaluate(), xl2.evaluate());
     for i in range(len(xlList) ): 
-        logging.info(xlList[i].evaluate())  
+        logging.info(xlList[i].evaluate()) 	
     logging.info("EV", ev.evaluate());
     logging.info("CR", cr.evaluate());  
 
@@ -605,24 +763,19 @@ def model_pipeline(project):
 
 
 
-
+@click.command()
+@click.option('--count', default=1, help='Not Used count.')
+@click.option('--name', prompt='Experiment name',
+              help='Experiment name.')
+@click.option('-C', '--config',       type=click.File('r'))
 def prep_hyperparam(count, name, config):
+    """Simple program that greets NAME for a total of COUNT times."""
+    #for x in range(count):
+    click.echo('prep_hyperparam %s!' % name)
     logging.info('prep_hyperparam %s!' % name)
+
+    #project = ImpProject()
     seed(config,name)
-
-
-parser = optparse.OptionParser()
-parser.add_option("--anaconda_dir", action="store", dest="anaconda_dir", help="path to the root directory of your Anaconda installation")
-parser.add_option("--count", action="store", dest="count", help="count variable for IMP", default="1")
-parser.add_option("--name", action="store", dest="name", help="Name of job", default="DemoImpModel")
-parser.add_option("--config", action="store", dest="config", help="config file name (within imp_model directory)", default="ConfigImp.yaml")
-parser.add_option("--output_file", action="store", dest="output_file", help="file to redirect imp script execution into, rather than stdout", default="trace.txt")
-
-options, args = parser.parse_args()
-
-print('count string:', options.count )
-print('name string:', options.name )
-print('config string:', options.config )
 
 
 if __name__ == '__main__':
@@ -642,5 +795,5 @@ if __name__ == '__main__':
     logging.warning('This is a warning message')
     logging.error('This is an error message')
     logging.critical('This is a critical message')
-    prep_hyperparam(options.count, options.name, options.config)
+    prep_hyperparam()
 
