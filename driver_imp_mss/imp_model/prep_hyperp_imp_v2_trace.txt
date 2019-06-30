@@ -1,5 +1,7 @@
-log filename: prep_hyperp_imp_v3.log!
-prep_hyperparam DemoImpModel!
+count string: 1
+name string: DemoImpModel
+config string: ConfigImp.yaml
+log filename: prep_hyperp_imp_v2.log!
 BuildSystem.add_state: setting up molecule RBBP4 copy number 0
 BuildSystem.add_state: molecule RBBP4 sequence has 426 residues
 BuildSystem.add_state: ---- setting up domain 0 of molecule RBBP4
@@ -239,14 +241,6 @@ Adding sequence connectivity restraint between 264-273_bead  and  274-283_bead o
 Adding sequence connectivity restraint between 274-283_bead  and  284-293_bead of distance 3.6
 Adding sequence connectivity restraint between 284-293_bead  and  294-297_bead of distance 3.6
 shuffling 7 rigid bodies
-shuffle_configuration: rigid body placed close to other 565 particles, trying again...
-shuffle_configuration: rigid body name: P32297
-shuffle_configuration: rigid body placed close to other 3 particles, trying again...
-shuffle_configuration: rigid body name: P32299
-shuffle_configuration: rigid body placed close to other 9 particles, trying again...
-shuffle_configuration: rigid body name: P32299
-shuffle_configuration: rigid body placed close to other 22 particles, trying again...
-shuffle_configuration: rigid body name: P32299
 shuffling 122 flexible beads
 optimize_flexible_beads: optimizing 122 flexible beads
 gathering copies
@@ -3864,7 +3858,12 @@ generating a new crosslink restraint
 CrossLinkingMassSpectrometryRestraint: generating cross-link restraint between
 CrossLinkingMassSpectrometryRestraint: residue 629 of chain EZH2 and residue 713 of chain EZH2
 CrossLinkingMassSpectrometryRestraint: with sigma1 SIGMA sigma2 SIGMA psi PSI
-CrossLinkingMassSpectrometryRestraint: between particles Residue_629 and Residue_713--- Logging error ---
+CrossLinkingMassSpectrometryRestraint: between particles Residue_629 and Residue_713
+==========================================
+
+--------------
+CrossLinkingMassSpectrometryRestraint: generating cross-link restraint between
+CrossLinkingMassSpectrometryRestraint: residue 634 of chain EZH2 and residue 713 of chain EZH2--- Logging error ---
 Traceback (most recent call last):
   File "C:\Apps\Anaconda3\lib\logging\__init__.py", line 1034, in emit
     msg = self.format(record)
@@ -3876,26 +3875,18 @@ Traceback (most recent call last):
     msg = msg % self.args
 TypeError: not all arguments converted during string formatting
 Call stack:
-  File "prep_hyperp_imp_v3.py", line 798, in <module>
-    prep_hyperparam()
-  File "C:\Apps\Anaconda3\lib\site-packages\click\core.py", line 764, in __call__
-    return self.main(*args, **kwargs)
-  File "C:\Apps\Anaconda3\lib\site-packages\click\core.py", line 717, in main
-    rv = self.invoke(ctx)
-  File "C:\Apps\Anaconda3\lib\site-packages\click\core.py", line 956, in invoke
-    return ctx.invoke(self.callback, **ctx.params)
-  File "C:\Apps\Anaconda3\lib\site-packages\click\core.py", line 555, in invoke
-    return callback(*args, **kwargs)
-  File "prep_hyperp_imp_v3.py", line 778, in prep_hyperparam
+  File "prep_hyperp_imp_v2.py", line 645, in <module>
+    prep_hyperparam(options.count, options.name, options.config)
+  File "prep_hyperp_imp_v2.py", line 611, in prep_hyperparam
     seed(config,name)
-  File "prep_hyperp_imp_v3.py", line 350, in seed
+  File "prep_hyperp_imp_v2.py", line 156, in seed
     title=title)
-  File "prep_hyperp_imp_v3.py", line 332, in load_config
-    model_pipeline(project)
-  File "prep_hyperp_imp_v3.py", line 736, in model_pipeline
+  File "prep_hyperp_imp_v2.py", line 146, in load_config
+    model_pipeline(cfg)
+  File "prep_hyperp_imp_v2.py", line 578, in model_pipeline
     logging.info("EV", ev.evaluate());
 Message: 'EV'
-Arguments: (21.705258650460554,)
+Arguments: (174.57059150427875,)
 --- Logging error ---
 Traceback (most recent call last):
   File "C:\Apps\Anaconda3\lib\logging\__init__.py", line 1034, in emit
@@ -3908,32 +3899,19 @@ Traceback (most recent call last):
     msg = msg % self.args
 TypeError: not all arguments converted during string formatting
 Call stack:
-  File "prep_hyperp_imp_v3.py", line 798, in <module>
-    prep_hyperparam()
-  File "C:\Apps\Anaconda3\lib\site-packages\click\core.py", line 764, in __call__
-    return self.main(*args, **kwargs)
-  File "C:\Apps\Anaconda3\lib\site-packages\click\core.py", line 717, in main
-    rv = self.invoke(ctx)
-  File "C:\Apps\Anaconda3\lib\site-packages\click\core.py", line 956, in invoke
-    return ctx.invoke(self.callback, **ctx.params)
-  File "C:\Apps\Anaconda3\lib\site-packages\click\core.py", line 555, in invoke
-    return callback(*args, **kwargs)
-  File "prep_hyperp_imp_v3.py", line 778, in prep_hyperparam
+  File "prep_hyperp_imp_v2.py", line 645, in <module>
+    prep_hyperparam(options.count, options.name, options.config)
+  File "prep_hyperp_imp_v2.py", line 611, in prep_hyperparam
     seed(config,name)
-  File "prep_hyperp_imp_v3.py", line 350, in seed
+  File "prep_hyperp_imp_v2.py", line 156, in seed
     title=title)
-  File "prep_hyperp_imp_v3.py", line 332, in load_config
-    model_pipeline(project)
-  File "prep_hyperp_imp_v3.py", line 737, in model_pipeline
+  File "prep_hyperp_imp_v2.py", line 146, in load_config
+    model_pipeline(cfg)
+  File "prep_hyperp_imp_v2.py", line 579, in model_pipeline
     logging.info("CR", cr.evaluate());
 Message: 'CR'
-Arguments: (2.271835322550209,)
+Arguments: (1.0993332642531133,)
 
-==========================================
-
---------------
-CrossLinkingMassSpectrometryRestraint: generating cross-link restraint between
-CrossLinkingMassSpectrometryRestraint: residue 634 of chain EZH2 and residue 713 of chain EZH2
 CrossLinkingMassSpectrometryRestraint: with sigma1 SIGMA sigma2 SIGMA psi PSI
 CrossLinkingMassSpectrometryRestraint: between particles Residue_634 and Residue_713
 ==========================================
@@ -3981,104 +3959,104 @@ ReplicaExchange0: it generates initial.*.rmf3, stat.*.out, rmfs/*.rmf3 for each 
 ------ simulated_annealing_minimum_temperature_nframes 200
 ------ stat_file_name_suffix          stat
 ------ write_initial_rmf              True
---- frame 0 score 3060308.9090536283 
+--- frame 0 score 3197272.855299532 
 --- writing coordinates
---- frame 1 score 2240568.5509168063 
+--- frame 1 score 2349473.438265049 
 --- writing coordinates
---- frame 2 score 1632853.2246170668 
+--- frame 2 score 1661323.7583273135 
 --- writing coordinates
---- frame 3 score 1179539.6263220445 
+--- frame 3 score 1174907.5688665935 
 --- writing coordinates
---- frame 4 score 792670.7450730824 
+--- frame 4 score 757502.5464155935 
 --- writing coordinates
---- frame 5 score 534253.5193930947 
+--- frame 5 score 494258.97129915055 
 --- writing coordinates
---- frame 6 score 373704.795722046 
+--- frame 6 score 281960.44194902433 
 --- writing coordinates
---- frame 7 score 264368.63182701 
+--- frame 7 score 168762.86529161263 
 --- writing coordinates
---- frame 8 score 187077.7499693296 
+--- frame 8 score 92298.32945804499 
 --- writing coordinates
---- frame 9 score 133801.03873517577 
+--- frame 9 score 58704.36576809404 
 --- writing coordinates
---- frame 10 score 99195.56775912494 
+--- frame 10 score 38402.33577978304 
 --- writing coordinates
---- frame 11 score 75013.04905187633 
+--- frame 11 score 27546.545728895933 
 --- writing coordinates
---- frame 12 score 53647.62308851168 
+--- frame 12 score 20715.166224589644 
 --- writing coordinates
---- frame 13 score 43225.28120497113 
+--- frame 13 score 15186.359542448074 
 --- writing coordinates
---- frame 14 score 29244.063969062 
+--- frame 14 score 10761.48445713398 
 --- writing coordinates
---- frame 15 score 23083.47169313753 
+--- frame 15 score 6970.312358512683 
 --- writing coordinates
---- frame 16 score 16757.388511015834 
+--- frame 16 score 4504.52377974461 
 --- writing coordinates
---- frame 17 score 11838.648230494171 
+--- frame 17 score 2528.051163097738 
 --- writing coordinates
---- frame 18 score 9447.384478193895 
+--- frame 18 score 1942.6571124913219 
 --- writing coordinates
---- frame 19 score 5848.510136792455 
+--- frame 19 score 1118.8861480701378 
 --- writing coordinates
---- frame 20 score 4639.479221870911 
+--- frame 20 score 1069.9923103979 
 --- writing coordinates
---- frame 21 score 3211.378947968507 
+--- frame 21 score 983.3604013848387 
 --- writing coordinates
---- frame 22 score 1786.3520116520758 
+--- frame 22 score 896.4061602052136 
 --- writing coordinates
---- frame 23 score 947.8514859378433 
+--- frame 23 score 869.763243146876 
 --- writing coordinates
---- frame 24 score 805.3955548286718 
+--- frame 24 score 834.9118135505792 
 --- writing coordinates
---- frame 25 score 668.2837887111392 
+--- frame 25 score 836.116091458797 
 --- writing coordinates
---- frame 26 score 612.4136887734845 
+--- frame 26 score 812.950418753399 
 --- writing coordinates
---- frame 27 score 608.1648851680648 
+--- frame 27 score 811.7649366408652 
 --- writing coordinates
---- frame 28 score 604.1866847509683 
+--- frame 28 score 818.8897901096489 
 --- writing coordinates
---- frame 29 score 603.7295135941936 
+--- frame 29 score 803.6199580051052 
 --- writing coordinates
---- frame 30 score 584.7331790997187 
+--- frame 30 score 786.3781751472443 
 --- writing coordinates
---- frame 31 score 576.5924327173153 
+--- frame 31 score 786.662859576903 
 --- writing coordinates
---- frame 32 score 559.8982709173921 
+--- frame 32 score 793.7604744611065 
 --- writing coordinates
---- frame 33 score 568.2023964803545 
+--- frame 33 score 768.1050715089137 
 --- writing coordinates
---- frame 34 score 559.7611307869854 
+--- frame 34 score 766.4090070179881 
 --- writing coordinates
---- frame 35 score 557.0495718551269 
+--- frame 35 score 769.2007719852157 
 --- writing coordinates
---- frame 36 score 543.768648304092 
+--- frame 36 score 715.4919489318704 
 --- writing coordinates
---- frame 37 score 519.6360464459428 
+--- frame 37 score 710.8645761910541 
 --- writing coordinates
---- frame 38 score 521.1688103888207 
+--- frame 38 score 704.170163116911 
 --- writing coordinates
---- frame 39 score 511.25384379731486 
+--- frame 39 score 694.329385914691 
 --- writing coordinates
---- frame 40 score 497.85616488846864 
+--- frame 40 score 695.0041410214656 
 --- writing coordinates
---- frame 41 score 478.0390029262383 
+--- frame 41 score 683.967591336298 
 --- writing coordinates
---- frame 42 score 485.729066322198 
+--- frame 42 score 673.5097781314307 
 --- writing coordinates
---- frame 43 score 488.09562889645275 
+--- frame 43 score 674.1902542349396 
 --- writing coordinates
---- frame 44 score 471.4627089087097 
+--- frame 44 score 662.0957902193423 
 --- writing coordinates
---- frame 45 score 472.5125867302247 
+--- frame 45 score 659.7761463638212 
 --- writing coordinates
---- frame 46 score 466.231793881131 
+--- frame 46 score 647.4050869058165 
 --- writing coordinates
---- frame 47 score 459.42843438442037 
+--- frame 47 score 653.6462964941912 
 --- writing coordinates
---- frame 48 score 449.5161993812857 
+--- frame 48 score 652.0430641928092 
 --- writing coordinates
---- frame 49 score 458.186420254076 
+--- frame 49 score 645.9025164658943 
 --- writing coordinates
 closing production rmf files
