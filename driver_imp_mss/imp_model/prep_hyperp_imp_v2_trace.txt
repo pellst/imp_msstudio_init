@@ -241,6 +241,8 @@ Adding sequence connectivity restraint between 264-273_bead  and  274-283_bead o
 Adding sequence connectivity restraint between 274-283_bead  and  284-293_bead of distance 3.6
 Adding sequence connectivity restraint between 284-293_bead  and  294-297_bead of distance 3.6
 shuffling 7 rigid bodies
+shuffle_configuration: rigid body placed close to other 19 particles, trying again...
+shuffle_configuration: rigid body name: P32303
 shuffling 122 flexible beads
 optimize_flexible_beads: optimizing 122 flexible beads
 gathering copies
@@ -3863,7 +3865,86 @@ CrossLinkingMassSpectrometryRestraint: between particles Residue_629 and Residue
 
 --------------
 CrossLinkingMassSpectrometryRestraint: generating cross-link restraint between
-CrossLinkingMassSpectrometryRestraint: residue 634 of chain EZH2 and residue 713 of chain EZH2--- Logging error ---
+CrossLinkingMassSpectrometryRestraint: residue 634 of chain EZH2 and residue 713 of chain EZH2begin RestraintSaveLink0::IMP::rmf::SaveLink::save:
+  begin RestraintSaveLink0::IMP::rmf::`anonymous-namespace'::RestraintSaveLink::do_save_one:
+    WARNING  Particle "P32299" is not in the RMF.
+    WARNING  Particle "P32303" is not in the RMF.
+    WARNING  Particle "P32301" is not in the RMF.
+    WARNING  Particle "P32297" is not in the RMF.
+    WARNING  Particle "P32309" is not in the RMF.
+    WARNING  Particle "P32307" is not in the RMF.
+    WARNING  Particle "P32305" is not in the RMF.
+    WARNING  Particle "P32315" is not in the RMF.
+    WARNING  Particle "P32322" is not in the RMF.
+    WARNING  Particle "P32327" is not in the RMF.
+    WARNING  Particle "P32330" is not in the RMF.
+    WARNING  Particle "P32324" is not in the RMF.
+    WARNING  Particle "P32319" is not in the RMF.
+    WARNING  Particle "P32314" is not in the RMF.
+    WARNING  Particle "P32323" is not in the RMF.
+    WARNING  Particle "P32316" is not in the RMF.
+    WARNING  Particle "P32332" is not in the RMF.
+    WARNING  Particle "P32334" is not in the RMF.
+    WARNING  Particle "P32335" is not in the RMF.
+    WARNING  Particle "P32325" is not in the RMF.
+    WARNING  Particle "P32333" is not in the RMF.
+    WARNING  Particle "P32338" is not in the RMF.
+    WARNING  Particle "P32320" is not in the RMF.
+    WARNING  Particle "P32339" is not in the RMF.
+    WARNING  Particle "P32328" is not in the RMF.
+    WARNING  Particle "P32321" is not in the RMF.
+    WARNING  Particle "P32341" is not in the RMF.
+    WARNING  Particle "P32337" is not in the RMF.
+    WARNING  Particle "P32331" is not in the RMF.
+    WARNING  Particle "P32326" is not in the RMF.
+    WARNING  Particle "P32336" is not in the RMF.
+    WARNING  Particle "P32340" is not in the RMF.
+    WARNING  Particle "P32318" is not in the RMF.
+    WARNING  Particle "P32329" is not in the RMF.
+    WARNING  Particle "P32317" is not in the RMF.
+    WARNING  Particle "P32354" is not in the RMF.
+    WARNING  Particle "P32353" is not in the RMF.
+    WARNING  Particle "P32360" is not in the RMF.
+    WARNING  Particle "P32352" is not in the RMF.
+    WARNING  Particle "P32357" is not in the RMF.
+    WARNING  Particle "P32348" is not in the RMF.
+    WARNING  Particle "P32362" is not in the RMF.
+    WARNING  Particle "P32364" is not in the RMF.
+    WARNING  Particle "P32361" is not in the RMF.
+    WARNING  Particle "P32345" is not in the RMF.
+    WARNING  Particle "P32349" is not in the RMF.
+    WARNING  Particle "P32363" is not in the RMF.
+    WARNING  Particle "P32343" is not in the RMF.
+    WARNING  Particle "P32350" is not in the RMF.
+    WARNING  Particle "P32359" is not in the RMF.
+    WARNING  Particle "P32356" is not in the RMF.
+    WARNING  Particle "P32346" is not in the RMF.
+    WARNING  Particle "P32342" is not in the RMF.
+    WARNING  Particle "P32355" is not in the RMF.
+    WARNING  Particle "P32351" is not in the RMF.
+    WARNING  Particle "P32358" is not in the RMF.
+    WARNING  Particle "P32347" is not in the RMF.
+    WARNING  Particle "P32344" is not in the RMF.
+  end RestraintSaveLink0::IMP::rmf::`anonymous-namespace'::RestraintSaveLink::do_save_one
+end RestraintSaveLink0::IMP::rmf::SaveLink::save
+begin RestraintSaveLink1::IMP::rmf::SaveLink::save:
+  begin RestraintSaveLink1::IMP::rmf::`anonymous-namespace'::RestraintSaveLink::do_save_one:
+    WARNING  Particle "P32299" is not in the RMF.
+    WARNING  Particle "P32303" is not in the RMF.
+    WARNING  Particle "P32301" is not in the RMF.
+    WARNING  Particle "P32297" is not in the RMF.
+    WARNING  Particle "P32309" is not in the RMF.
+    WARNING  Particle "P32307" is not in the RMF.
+    WARNING  Particle "P32305" is not in the RMF.
+    WARNING  Particle "P32315" is not in the RMF.
+    WARNING  Particle "P32322" is not in the RMF.
+    WARNING  Particle "P32327" is not in the RMF.
+    WARNING  Particle "P32330" is not in the RMF.
+    WARNING  Particle "P32324" is not in the RMF.
+    WARNING  Particle "P32319" is not in the RMF.
+    WARNING  Particle "P32314" is not in the RMF.
+    WARNING  Particle "P32323" is not in the RMF.
+    WARNING  Part--- Logging error ---
 Traceback (most recent call last):
   File "C:\Apps\Anaconda3\lib\logging\__init__.py", line 1034, in emit
     msg = self.format(record)
@@ -3875,18 +3956,18 @@ Traceback (most recent call last):
     msg = msg % self.args
 TypeError: not all arguments converted during string formatting
 Call stack:
-  File "prep_hyperp_imp_v2.py", line 645, in <module>
+  File "prep_hyperp_imp_v2.py", line 653, in <module>
     prep_hyperparam(options.count, options.name, options.config)
-  File "prep_hyperp_imp_v2.py", line 611, in prep_hyperparam
+  File "prep_hyperp_imp_v2.py", line 619, in prep_hyperparam
     seed(config,name)
-  File "prep_hyperp_imp_v2.py", line 156, in seed
+  File "prep_hyperp_imp_v2.py", line 157, in seed
     title=title)
-  File "prep_hyperp_imp_v2.py", line 146, in load_config
+  File "prep_hyperp_imp_v2.py", line 147, in load_config
     model_pipeline(cfg)
-  File "prep_hyperp_imp_v2.py", line 578, in model_pipeline
+  File "prep_hyperp_imp_v2.py", line 586, in model_pipeline
     logging.info("EV", ev.evaluate());
 Message: 'EV'
-Arguments: (174.57059150427875,)
+Arguments: (302.08041645335857,)
 --- Logging error ---
 Traceback (most recent call last):
   File "C:\Apps\Anaconda3\lib\logging\__init__.py", line 1034, in emit
@@ -3899,23 +3980,28 @@ Traceback (most recent call last):
     msg = msg % self.args
 TypeError: not all arguments converted during string formatting
 Call stack:
-  File "prep_hyperp_imp_v2.py", line 645, in <module>
+  File "prep_hyperp_imp_v2.py", line 653, in <module>
     prep_hyperparam(options.count, options.name, options.config)
-  File "prep_hyperp_imp_v2.py", line 611, in prep_hyperparam
+  File "prep_hyperp_imp_v2.py", line 619, in prep_hyperparam
     seed(config,name)
-  File "prep_hyperp_imp_v2.py", line 156, in seed
+  File "prep_hyperp_imp_v2.py", line 157, in seed
     title=title)
-  File "prep_hyperp_imp_v2.py", line 146, in load_config
+  File "prep_hyperp_imp_v2.py", line 147, in load_config
     model_pipeline(cfg)
-  File "prep_hyperp_imp_v2.py", line 579, in model_pipeline
+  File "prep_hyperp_imp_v2.py", line 587, in model_pipeline
     logging.info("CR", cr.evaluate());
 Message: 'CR'
-Arguments: (1.0993332642531133,)
+Arguments: (1039189.6854127303,)
 
 CrossLinkingMassSpectrometryRestraint: with sigma1 SIGMA sigma2 SIGMA psi PSI
 CrossLinkingMassSpectrometryRestraint: between particles Residue_634 and Residue_713
 ==========================================
 
+will set target mass to 286665.41099999694
+will scale target mass by 1.0
+target num particles 50 total weight 286665.41099999694
+model num particles 281 total weight 286665.41099999694
+done EM setup
 Setting up MonteCarlo
 Setting up ReplicaExchange
 ReplicaExchange: MPI was found. Using Parallel Replica Exchange
@@ -3959,104 +4045,149 @@ ReplicaExchange0: it generates initial.*.rmf3, stat.*.out, rmfs/*.rmf3 for each 
 ------ simulated_annealing_minimum_temperature_nframes 200
 ------ stat_file_name_suffix          stat
 ------ write_initial_rmf              True
---- frame 0 score 3197272.855299532 
+--- frame 0 score inf 
 --- writing coordinates
---- frame 1 score 2349473.438265049 
+--- frame 1 score inf 
 --- writing coordinates
---- frame 2 score 1661323.7583273135 
+--- frame 2 score inf 
 --- writing coordinates
---- frame 3 score 1174907.5688665935 
+--- frame 3 score inf 
 --- writing coordinates
---- frame 4 score 757502.5464155935 
+--- frame 4 score inf 
 --- writing coordinates
---- frame 5 score 494258.97129915055 
+--- frame 5 score inf 
 --- writing coordinates
---- frame 6 score 281960.44194902433 
+--- frame 6 score inf 
 --- writing coordinates
---- frame 7 score 168762.86529161263 
+--- frame 7 score inf 
 --- writing coordinates
---- frame 8 score 92298.32945804499 
+--- frame 8 score inf 
 --- writing coordinates
---- frame 9 score 58704.36576809404 
+--- frame 9 score inf 
 --- writing coordinates
---- frame 10 score 38402.33577978304 
+--- frame 10 score inf 
 --- writing coordinates
---- frame 11 score 27546.545728895933 
+--- frame 11 score inf 
 --- writing coordinates
---- frame 12 score 20715.166224589644 
+--- frame 12 score inf 
 --- writing coordinates
---- frame 13 score 15186.359542448074 
+--- frame 13 score inf 
 --- writing coordinates
---- frame 14 score 10761.48445713398 
+--- frame 14 score inf 
 --- writing coordinates
---- frame 15 score 6970.312358512683 
+--- frame 15 score inf 
 --- writing coordinates
---- frame 16 score 4504.52377974461 
+--- frame 16 score inf 
 --- writing coordinates
---- frame 17 score 2528.051163097738 
+--- frame 17 score inf 
 --- writing coordinates
---- frame 18 score 1942.6571124913219 
+--- frame 18 score inf 
 --- writing coordinates
---- frame 19 score 1118.8861480701378 
+--- frame 19 score inf 
 --- writing coordinates
---- frame 20 score 1069.9923103979 
+--- frame 20 score inf 
 --- writing coordinates
---- frame 21 score 983.3604013848387 
+--- frame 21 score inf 
 --- writing coordinates
---- frame 22 score 896.4061602052136 
+--- frame 22 score inf 
 --- writing coordinates
---- frame 23 score 869.763243146876 
+--- frame 23 score inf 
 --- writing coordinates
---- frame 24 score 834.9118135505792 
+--- frame 24 score inf 
 --- writing coordinates
---- frame 25 score 836.116091458797 
+--- frame 25 score inf 
 --- writing coordinates
---- frame 26 score 812.950418753399 
+--- frame 26 score inf 
 --- writing coordinates
---- frame 27 score 811.7649366408652 
+--- frame 27 score inf 
 --- writing coordinates
---- frame 28 score 818.8897901096489 
+--- frame 28 score inf 
 --- writing coordinates
---- frame 29 score 803.6199580051052 
+--- frame 29 score inf 
 --- writing coordinates
---- frame 30 score 786.3781751472443 
+--- frame 30 score inf 
 --- writing coordinates
---- frame 31 score 786.662859576903 
+--- frame 31 score inf 
 --- writing coordinates
---- frame 32 score 793.7604744611065 
+--- frame 32 score inf 
 --- writing coordinates
---- frame 33 score 768.1050715089137 
+--- frame 33 score inf 
 --- writing coordinates
---- frame 34 score 766.4090070179881 
+--- frame 34 score inf 
 --- writing coordinates
---- frame 35 score 769.2007719852157 
+--- frame 35 score inf 
 --- writing coordinates
---- frame 36 score 715.4919489318704 
+--- frame 36 score inf 
 --- writing coordinates
---- frame 37 score 710.8645761910541 
+--- frame 37 score inf 
 --- writing coordinates
---- frame 38 score 704.170163116911 
+--- frame 38 score inf 
 --- writing coordinates
---- frame 39 score 694.329385914691 
+--- frame 39 score inf 
 --- writing coordinates
---- frame 40 score 695.0041410214656 
+--- frame 40 score inf 
 --- writing coordinates
---- frame 41 score 683.967591336298 
+--- frame 41 score inf 
 --- writing coordinates
---- frame 42 score 673.5097781314307 
+--- frame 42 score inf 
 --- writing coordinates
---- frame 43 score 674.1902542349396 
+--- frame 43 score inf 
 --- writing coordinates
---- frame 44 score 662.0957902193423 
+--- frame 44 score inf 
 --- writing coordinates
---- frame 45 score 659.7761463638212 
+--- frame 45 score inf 
 --- writing coordinates
---- frame 46 score 647.4050869058165 
+--- frame 46 score inf 
 --- writing coordinates
---- frame 47 score 653.6462964941912 
+--- frame 47 score inf 
 --- writing coordinates
---- frame 48 score 652.0430641928092 
+--- frame 48 score inf 
 --- writing coordinates
---- frame 49 score 645.9025164658943 
+--- frame 49 score inf 
 --- writing coordinates
 closing production rmf files
+icle "P32316" is not in the RMF.
+    WARNING  Particle "P32332" is not in the RMF.
+    WARNING  Particle "P32334" is not in the RMF.
+    WARNING  Particle "P32335" is not in the RMF.
+    WARNING  Particle "P32325" is not in the RMF.
+    WARNING  Particle "P32333" is not in the RMF.
+    WARNING  Particle "P32338" is not in the RMF.
+    WARNING  Particle "P32320" is not in the RMF.
+    WARNING  Particle "P32339" is not in the RMF.
+    WARNING  Particle "P32328" is not in the RMF.
+    WARNING  Particle "P32321" is not in the RMF.
+    WARNING  Particle "P32341" is not in the RMF.
+    WARNING  Particle "P32337" is not in the RMF.
+    WARNING  Particle "P32331" is not in the RMF.
+    WARNING  Particle "P32326" is not in the RMF.
+    WARNING  Particle "P32336" is not in the RMF.
+    WARNING  Particle "P32340" is not in the RMF.
+    WARNING  Particle "P32318" is not in the RMF.
+    WARNING  Particle "P32329" is not in the RMF.
+    WARNING  Particle "P32317" is not in the RMF.
+    WARNING  Particle "P32354" is not in the RMF.
+    WARNING  Particle "P32353" is not in the RMF.
+    WARNING  Particle "P32360" is not in the RMF.
+    WARNING  Particle "P32352" is not in the RMF.
+    WARNING  Particle "P32357" is not in the RMF.
+    WARNING  Particle "P32348" is not in the RMF.
+    WARNING  Particle "P32362" is not in the RMF.
+    WARNING  Particle "P32364" is not in the RMF.
+    WARNING  Particle "P32361" is not in the RMF.
+    WARNING  Particle "P32345" is not in the RMF.
+    WARNING  Particle "P32349" is not in the RMF.
+    WARNING  Particle "P32363" is not in the RMF.
+    WARNING  Particle "P32343" is not in the RMF.
+    WARNING  Particle "P32350" is not in the RMF.
+    WARNING  Particle "P32359" is not in the RMF.
+    WARNING  Particle "P32356" is not in the RMF.
+    WARNING  Particle "P32346" is not in the RMF.
+    WARNING  Particle "P32342" is not in the RMF.
+    WARNING  Particle "P32355" is not in the RMF.
+    WARNING  Particle "P32351" is not in the RMF.
+    WARNING  Particle "P32358" is not in the RMF.
+    WARNING  Particle "P32347" is not in the RMF.
+    WARNING  Particle "P32344" is not in the RMF.
+  end RestraintSaveLink1::IMP::rmf::`anonymous-namespace'::RestraintSaveLink::do_save_one
+end RestraintSaveLink1::IMP::rmf::SaveLink::save

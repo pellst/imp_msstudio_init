@@ -6,6 +6,7 @@
 #
 #  DESCRIPTION: IMP (integrative modeling platform) driver script configured with ConfigImp.yaml
 #                Python Modeling Interface (PMI) ; https://integrativemodeling.org/
+#                source for IMP located in github https://github.com/salilab/imp/
 #
 #      OPTIONS: ---
 # REQUIREMENTS: ---
@@ -467,9 +468,15 @@ def model_pipeline(project):
 
     #print coords
     #TODO: add in the EM data file processing logic once we have the em data file
-    """
-    gemt = IMP.pmi.restraints.em.GaussianEMRestraint(densities,
-                                                     "../data/em/Ciferri_PRC2.50.gmm.txt",
+	# https://github.com/salilab/imp/
+	# github\imp\modules\isd\pyext\src\create_gmm.py
+	# python.exe create_gmm.py ../data/em/Ciferri_CEM_PRC2.map.mrc 50 Ciferri_CEM_PRC2_map.gmm50.txt -m Ciferri_CEM_PRC2_map.gmm50.mrc
+	# Ciferri_CEM_PRC2_map.gmm50.txt 
+	# "../data/em/Ciferri_CEM_PRC2_map.gmm50.txt",
+	# alias is gmm_file_ouput.txt
+    # TODO: skip this step if the gmm.txt is absent.
+    gemt = IMP.pmi.restraints.em.GaussianEMRestraint(densities,                                                     
+													 target_gmm_file,
                                                      scale_target_to_mass=True,
                                                      slope=0,
                                                      weight=200.0)
@@ -477,7 +484,7 @@ def model_pipeline(project):
     gemt.set_label("Ciferri_PRC2")
     gemt.add_to_model()
     outputobjects.append(gemt)
-    """
+    
 
 
     # Gaussian functions are widely used in statistics to describe the normal distributions, in signal processing to define Gaussian filters
@@ -492,8 +499,9 @@ def model_pipeline(project):
     #   Other options: scale_to_target_mass ensures the total mass of model and map are identical
     #                  slope: nudge model closer to map when far away
     #                  weight: experimental, needed becaues the EM restraint is quasi-Bayesian
+	#
     #em_components = IMP.pmi.tools.get_densities(root_hier)
-    # substitute em_components with densities
+    # substitute em_components with densities in the call given below
     """ 
 
     gemt = IMP.pmi.restraints.em.GaussianEMRestraint(densities,
