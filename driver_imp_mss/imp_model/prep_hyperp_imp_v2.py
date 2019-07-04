@@ -468,22 +468,26 @@ def model_pipeline(project):
 
     #print coords
     #TODO: add in the EM data file processing logic once we have the em data file
-	# https://github.com/salilab/imp/
-	# github\imp\modules\isd\pyext\src\create_gmm.py
-	# python.exe create_gmm.py ../data/em/Ciferri_CEM_PRC2.map.mrc 50 Ciferri_CEM_PRC2_map.gmm50.txt -m Ciferri_CEM_PRC2_map.gmm50.mrc
-	# Ciferri_CEM_PRC2_map.gmm50.txt 
-	# "../data/em/Ciferri_CEM_PRC2_map.gmm50.txt",
-	# alias is gmm_file_ouput.txt
+    # https://github.com/salilab/imp/
+    # github\imp\modules\isd\pyext\src\create_gmm.py
+    # python.exe create_gmm.py ../data/em/Ciferri_CEM_PRC2.map.mrc 50 Ciferri_CEM_PRC2_map.gmm50.txt -m Ciferri_CEM_PRC2_map.gmm50.mrc
+    # Ciferri_CEM_PRC2_map.gmm50.txt 
+    # "../data/em/Ciferri_CEM_PRC2_map.gmm50.txt",
+    # alias is gmm_file_ouput.txt
     # TODO: skip this step if the gmm.txt is absent.
-    gemt = IMP.pmi.restraints.em.GaussianEMRestraint(densities,                                                     
-													 target_gmm_file,
-                                                     scale_target_to_mass=True,
-                                                     slope=0,
-                                                     weight=200.0)
+    if os.path.isfile(target_gmm_file):
+        logging.info('EM file exists %s!' % target_gmm_file)
+        gemt = IMP.pmi.restraints.em.GaussianEMRestraint(densities,                                                     
+                                                         target_gmm_file,
+                                                         scale_target_to_mass=True,
+                                                         slope=0,
+                                                         weight=200.0)
 
-    gemt.set_label("Ciferri_PRC2")
-    gemt.add_to_model()
-    outputobjects.append(gemt)
+        gemt.set_label("GaussianEMRestraint")
+        gemt.add_to_model()
+        outputobjects.append(gemt)
+    else:
+        logging.info('skip gemt addition: EM file does NOT exist %s!' % target_gmm_file)
     
 
 
@@ -499,7 +503,7 @@ def model_pipeline(project):
     #   Other options: scale_to_target_mass ensures the total mass of model and map are identical
     #                  slope: nudge model closer to map when far away
     #                  weight: experimental, needed becaues the EM restraint is quasi-Bayesian
-	#
+    #
     #em_components = IMP.pmi.tools.get_densities(root_hier)
     # substitute em_components with densities in the call given below
     """ 
