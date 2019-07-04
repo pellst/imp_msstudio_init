@@ -478,7 +478,7 @@ def model_pipeline(project):
     if os.path.isfile(target_gmm_file):
         logging.info('EM file exists %s!' % target_gmm_file)
         gemt = IMP.pmi.restraints.em.GaussianEMRestraint(densities,                                                     
-                                                         target_gmm_file,
+                                                         project["target_gmm_file"],
                                                          scale_target_to_mass=True,
                                                          slope=0,
                                                          weight=200.0)
