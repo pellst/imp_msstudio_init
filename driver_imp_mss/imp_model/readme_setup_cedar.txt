@@ -31,7 +31,7 @@ cd imp
 # get the demo imp job to test a job run
 curl -LOk https://github.com/pellst/imp_msstudio_init/archive/master.zip
 unzip master.zip
-cd /home/userannie/scatch/imp/imp_msstudio_init-master/driver_imp_mss/imp_model
+cd /home/userannie/scratch/imp/imp_msstudio_init-master/driver_imp_mss/imp_model
 
 sbatch run_imp.slurm
 # see job run status - initially pending scheduling submission
