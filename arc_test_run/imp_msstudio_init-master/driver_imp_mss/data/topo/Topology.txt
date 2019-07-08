@@ -1,0 +1,12 @@
+|molecule_name|color|fasta_fn|fasta_id|pdb_fn|chain|residue_range|pdb_offset|bead_size|em_residues_per_gaussian|rigid_body|super_rigid_body|chain_of_super_rigid_bodies|
+|RBBP4   |red       |prc2_pentamer.fasta|RBBP4 |RBBP4-threaded2yb8_SUZ12-fragment.pdb|A|1,END    |0  |10|10|1|1|
+|EZH2    |green     |prc2_pentamer.fasta|EZH2  |5hyn_ABC.pdb                         |A|1,END    |0  |10|10|2|1|
+|EED     |blue      |prc2_pentamer.fasta|EED   |5hyn_ABC.pdb                         |B|1,END    |2  |10|10|2|1|
+|SUZ12   |orange    |prc2_pentamer.fasta|SUZ12 |RBBP4-threaded2yb8_SUZ12-fragment.pdb|B|1,560    |0  |10|10|1|1|
+|SUZ12   |orange    |prc2_pentamer.fasta|SUZ12 |5hyn_ABC.pdb                         |C|561,END  |1  |10|10|2|1|
+|AEBP2   |white     |prc2_pentamer.fasta|AEBP2 |AEBP2_HMM_A_69-79.pdb                |A|1,79     |0  |10|10|3|1,2|
+|AEBP2   |light gray|prc2_pentamer.fasta|AEBP2 |AEBP2_HMM_A_107-117.pdb              |A|80,117   |0  |10|10|4|1,2|
+|AEBP2   |gray      |prc2_pentamer.fasta|AEBP2 |AEBP2_HMM_A_136-146.pdb              |A|118,146  |0  |10|10|5|1,2|
+|AEBP2   |dark gray |prc2_pentamer.fasta|AEBP2 |AEBP2_HMM_A_166-175.pdb              |A|147,176  |0  |10|10|6|1,2|
+|AEBP2   |dim gray  |prc2_pentamer.fasta|AEBP2 |AEBP2_HMM_A_229-243.pdb              |A|177,END  |0  |10|10|7|1,2|
+
