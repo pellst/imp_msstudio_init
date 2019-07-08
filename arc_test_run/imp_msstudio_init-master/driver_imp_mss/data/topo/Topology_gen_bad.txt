@@ -1,6 +1,0 @@
-empty_field|molecule_name|color|fasta_fn|fasta_id|pdb_fn|chain|residue_range|pdb_offset|bead_size|em_residues|rigid_body|super_rigid_body|chain_of_super_rigid_bodies|flags
-|EZH2|Black|prc2_pentamer.fasta|EZH2||1|1,746|0|10|10|1|1||
-|EED|Black|prc2_pentamer.fasta|EED||2|1,443|0|10|10|2|2||
-|SUZ12|Black|prc2_pentamer.fasta|SUZ12||3|1,740|0|10|10|3|3||
-|RBBP4|Black|prc2_pentamer.fasta|RBBP4||4|1,426|0|10|10|4|4||
-|AEBP2|Black|prc2_pentamer.fasta|AEBP2||5|1,297|0|10|10|5|5||
