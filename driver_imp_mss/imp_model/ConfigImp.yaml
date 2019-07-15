@@ -1,11 +1,13 @@
 title: C:\dev\mss_debug\Integrative Modelling Platform Project9\Integrative Modelling Platform Experiment
 date: 2019-06-16T12:44:14.5504681-06:00
 states: 1
-sampling_frame: 100
+sampling_frame: 150
 output_dir: ./imp_output
 data_directory: ../
 topology_file: Topology.txt
 target_gmm_file: gmm_file_ouput.txt
+cores: 2 
+replicates: 3
 crosslinkdb:
 - refid: PRC2_BS3.csv
 - refid: PRC2_DSS.csv

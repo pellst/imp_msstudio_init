@@ -538,7 +538,8 @@ def model_pipeline(project):
     # Set MC Sampling Parameters
     #--------------------------
     #num_frames = 20000
-    num_frames = 50
+    #num_frames = 50
+    num_frames = project["sampling_frame"]
     #if '--test' in sys.argv: num_frames=100
     num_mc_steps = 10
 

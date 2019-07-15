@@ -2,15 +2,14 @@
 # example slurm job script setup to run on for example Cedar
 #SBATCH --job-name=SLURM_imp
 #SBATCH --nodes=1
-#SBATCH --ntasks=1
-#SBATCH --cpus-per-task=1
-#SBATCH --time=0-00:12:00
-#SBATCH --mem=10gb
-#SBATCH --account=tbd
+#SBATCH --ntasks=4  #number of MPI processes
+#SBATCH --mem-per-cpu=1024M
+#SBATCH --time=0-00:10:00
+#SBATCH --partition=lattice
 
 
 
 
-python prep_hyperp_imp_v2.py --count=1 --name=DemoImpModel --config=ConfigImp.yaml
+srun python prep_hyperp_imp_v2ux.py --count=1 --name=DemoImpModel --config=ConfigImp.yaml
 
 echo "Job Finished"
