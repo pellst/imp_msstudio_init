@@ -32,6 +32,11 @@ cd imp
 curl -LOk https://github.com/pellst/imp_msstudio_init/archive/master.zip
 unzip master.zip
 cd /home/userannie/scratch/imp/imp_msstudio_init-master/driver_imp_mss/imp_model
+#chmod 755 mjob_run.sh
+#./mjob_run.sh 7
+# alt. setup array_job with number of concurrent runs
+# sbatch array_job.sh
+
 
 sbatch run_imp.slurm
 # see job run status - initially pending scheduling submission
