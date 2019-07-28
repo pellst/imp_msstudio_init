@@ -6,8 +6,7 @@ output_dir: ./imp_model
 data_directory: ../
 topology_file: Topology.txt
 target_gmm_file: gmm_file_ouput.txt
-cores: 2 
-replicates: 3
+cores: 10 
 crosslinkdb:
 - refid: PRC2_DSS_unprotected.csv
 - refid: PRC2_DSS_standard.csv
