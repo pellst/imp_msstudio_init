@@ -49,5 +49,30 @@ pcluster ssh awsbatch-improvmpibat -i key-demo-my-awsbatch.pem
 
 
 
+
+#aws_mss_prep_step1.sh
+#!/bin/bash
+# from the /shared
+cd /shared
+mkdir imp
+cd imp
+# get the demo imp job to test a job run
+curl -LOk https://github.com/pellst/imp_msstudio_init/archive/master.zip
+unzip master.zip
+cd /scratch/imp/imp_msstudio_init-master/mss_out/imp_model
+
+# to setup anaconda run
+aws_mss_prep_step2.sh
+
+# to setup imp modeling run
+aws_mss_prep_step3.sh
+
+# to run the mpi imp modeling job on aws
+awsbsub -jn impjob3 -n 1 -cf submit_mpi.sh
+# monitor the job run
+watch awsbstat -d 
+# look at the job logs with awsbout -s jobNumber
+
+
 # shutdown when finished with AMI
 #pcluster delete -r us-west-2 -nw awsbatch-improvmpibat
