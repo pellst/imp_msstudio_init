@@ -1,0 +1,27 @@
+## AWS ParallelCluster awsbatch config
+[global]
+sanity_check = true
+
+[aws]
+aws_region_name = us-west-2
+
+## AWS ParallelCluster templates
+[cluster improvmpibat]
+base_os = alinux
+# Name of an existing EC2 KeyPair to enable SSH access to the instances.
+key_name = key-demo-my-awsbatch
+vpc_settings = mpipubbat
+scheduler = awsbatch
+compute_instance_type = optimal
+min_vcpus = 2
+desired_vcpus = 2
+max_vcpus = 24
+
+[vpc mpipubbat]
+# Replace with the id of the vpc you intend to use.
+vpc_id = vpc-yourname-fillable
+# Replace with id of the subnet for the Master node.
+master_subnet_id = subnet-yourname-fillable
+# Replace with id of the subnet for the Compute nodes.
+# A NAT Gateway is required for MNP.
+compute_subnet_id = subnet-yourname-fillable
