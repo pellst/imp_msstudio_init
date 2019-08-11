@@ -1,12 +1,11 @@
+#aws_mss_prep_step1.sh
 #!/bin/bash
+# from the /shared
 cd /shared
-#From the scatch folder on Ceder:
-# get latest anaconda and then run install step
-curl -O https://repo.anaconda.com/archive/Anaconda3-2019.03-Linux-x86_64.sh
-bash Anaconda3-2019.03-Linux-x86_64.sh -b -p /shared/anaconda 
-sudo rm -rf /shared/Anaconda3-2019.03-Linux-x86_64.sh
-export PYTHONPATH="/shared/anaconda"
-export PATH="/shared/anaconda/bin:$PATH"
-conda init bash
-conda activate
-conda --version
+mkdir imp
+cd imp
+# get the demo imp job to test a job run
+curl -LOk https://github.com/pellst/imp_msstudio_init/archive/master.zip
+unzip master.zip
+#cd /scratch/imp/imp_msstudio_init-master/driver_imp_mss/imp_model
+cd /scratch/imp/imp_msstudio_init-master/mss_out/imp_model
