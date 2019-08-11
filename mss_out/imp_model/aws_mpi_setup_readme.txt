@@ -61,6 +61,7 @@ curl -LOk https://github.com/pellst/imp_msstudio_init/archive/master.zip
 unzip master.zip
 cd /shared/imp/imp_msstudio_init-master/mss_out/imp_model
 
+# setup permissions to run the aws_mss_prep_step*.sh scripts
 # to setup anaconda run
 aws_mss_prep_step2.sh
 
