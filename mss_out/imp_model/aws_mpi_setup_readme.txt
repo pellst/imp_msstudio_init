@@ -96,7 +96,7 @@ cd /shared/imp/imp_msstudio_init-master/mss_out/imp_model
 #aws_mss_prep_step3.sh
 
 # to run the mpi imp modeling job on aws
-awsbsub -jn impjob3 -n 1 -cf submit_mpi.sh
+awsbsub -jn impjob3 -n 1 -cf aws_submit_mpi.sh
 # monitor the job run
 watch awsbstat -d 
 # look at the job logs with awsbout -s jobNumber
