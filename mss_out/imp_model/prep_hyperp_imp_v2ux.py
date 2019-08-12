@@ -268,7 +268,7 @@ def model_pipeline(project):
 
     # Topology file should be in the same directory as this script
     #topology_file = this_path +"../topology/topology.txt"
-
+    logging.info('Initialize model')
    # Initialize model
     mdl = IMP.Model()
 
@@ -294,6 +294,7 @@ def model_pipeline(project):
 
     # Read in the topology file. We must handle multiple topology files: meaning we need to handle either consolidate as one OR handle multiple sets of XL csv files
     # Specify the directory where the PDB files, fasta files and GMM files are
+	logging.info('Specify the directory where the PDB files, fasta files and GMM files are')
     toporeader = IMP.pmi.topology.TopologyReader(topology_file,
                                       pdb_dir=pdb_dir,
                                       fasta_dir=fasta_dir,
@@ -305,7 +306,7 @@ def model_pipeline(project):
     
 
     # Each state can be specified by a topology file.
-    
+    logging.info('add_state(toporeader)')
     bldsys.add_state(toporeader)
     
 
@@ -324,15 +325,15 @@ def model_pipeline(project):
                                       max_srb_trans=project.degree_of_freedom.max_srb_trans,
                                       max_srb_rot=project.degree_of_freedom.max_srb_rot)
     """
-
+    logging.info('bldsys.execute_macro')
     root_hier, dof = bldsys.execute_macro()
     """
     fb = dof.create_flexible_beads(mol.get_non_atomic_residues(),
                            max_trans=bead_max_trans)
     """
-    print(dof.get_rigid_bodies() )
+    #print(dof.get_rigid_bodies() )
 
-    print(toporeader.get_rigid_bodies() )
+    #print(toporeader.get_rigid_bodies() )
 
 
     outputobjects=[]
@@ -353,7 +354,7 @@ def model_pipeline(project):
         cr.add_to_model()
         crs.append(cr)
         outputobjects.append(cr)
-
+    logging.info('IMP.pmi.tools.shuffle_configuration')
     IMP.pmi.tools.shuffle_configuration(root_hier, 
                                         max_translation=100, # raise for larger systems if shuffling fails at niterations, want it ~1.5x size of system in angstrom
                                         verbose=True, 
@@ -382,7 +383,7 @@ def model_pipeline(project):
     i = 0
     
     xlList=[]
-
+    logging.info('Iterating using while loop')
     # Iterating using while loop 
     while i < length: 
         logging.info(project["xl_groupA"][i])
@@ -456,7 +457,7 @@ def model_pipeline(project):
     
     xl_rests = xlList + crs    
     
-
+    logging.info('EM Restraint')
     #EM Restraint
     densities = IMP.atom.Selection(root_hier,representation_type=IMP.atom.DENSITIES).get_selected_particles()
     '''
@@ -479,11 +480,12 @@ def model_pipeline(project):
     # "../data/em/Ciferri_CEM_PRC2_map.gmm50.txt",
     # alias is gmm_file_ouput.txt
     # TODO: skip this step if the gmm.txt is absent.
-    print('EM filename check for %s!' % project["target_gmm_file"])
+	logging.info('EM filename check for %s!' % project["target_gmm_file"])
+    #print('EM filename check for %s!' % project["target_gmm_file"])
     if os.path.isfile(target_gmm_file):
         logging.info('EM file exists %s!' % target_gmm_file)
-        print('EM file exists %s!' % target_gmm_file)
-        print('EM file exists %s!' % project["target_gmm_file"])
+        #print('EM file exists %s!' % target_gmm_file)
+        #print('EM file exists %s!' % project["target_gmm_file"])
         gemt = IMP.pmi.restraints.em.GaussianEMRestraint(densities,                                                     
                                                          #project["target_gmm_file"],
                                                          target_gmm_file,
@@ -527,8 +529,8 @@ def model_pipeline(project):
     outputobjects.append(gemt)  
     
     """
-    print("Monte-Carlo Sampling:")
-
+    #print("Monte-Carlo Sampling:")
+    logging.info("Monte-Carlo Sampling:")
 
     #--------------------------
     # Monte-Carlo Sampling
