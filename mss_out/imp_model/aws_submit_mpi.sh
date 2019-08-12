@@ -17,6 +17,7 @@ if [[ "${AWS_BATCH_JOB_NODE_INDEX}" -eq  "${AWS_BATCH_JOB_MAIN_NODE_INDEX}" ]]; 
     #/usr/lib64/openmpi/bin/mpicc -o "${_job_dir}/mpi_hello_world" "${_shared_dir}/mpi_hello_world.c"
 	#/shared/imp/imp_msstudio_init-master/mss_out/imp_model
 	cp -r ${_shared_dir}/imp/imp_msstudio_init-master/mss_out ${_job_dir}
+	chmod 755 ${_shared_dir}/imp/imp_msstudio_init-master/mss_out/*
 
     echo "Running..."
     #/usr/lib64/openmpi/bin/mpirun --mca btl_tcp_if_include eth0 --allow-run-as-root --machinefile "${HOME}/hostfile" "${_job_dir}/mpi_hello_world"
