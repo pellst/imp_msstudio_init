@@ -47,6 +47,31 @@ pcluster create -c aws_config_mpi_awsbatch.txt -t improvmpibat awsbatch-improvmp
 #login to cluster:
 pcluster ssh awsbatch-improvmpibat -i key-demo-my-awsbatch.pem
 
+cd  /shared
+touch aws_mss_prep_step1.sh
+vi aws_mss_prep_step1.sh
+# fill in the step1 code given below
+
+chmod 755 aws_mss_prep_step1.sh
+./aws_mss_prep_step1.sh
+
+# now that we have the folder and driver scripts available we can proceed
+cd /shared/imp/imp_msstudio_init-master/mss_out/imp_model
+# setup permissions to run the aws_mss_prep_step*.sh scripts
+chmod 755 aws_mss_prep_step*
+# prepare anaconda install
+./aws_mss_prep_step2.sh
+
+logout of instance and log back in
+pcluster ssh awsbatch-improvmpibat -i key-demo-my-awsbatch.pem
+cd /shared/imp/imp_msstudio_init-master/mss_out/imp_model
+# imp module install and dependencies
+./aws_mss_prep_step3.sh
+# when prompted by python module installer answer yes to install modules
+
+# to run the mpi imp modeling job on aws
+awsbsub -jn impjob3 -n 1 -cf submit_mpi.sh
+
 
 
 
@@ -61,12 +86,14 @@ curl -LOk https://github.com/pellst/imp_msstudio_init/archive/master.zip
 unzip master.zip
 cd /shared/imp/imp_msstudio_init-master/mss_out/imp_model
 
+
+# the following steps have already been actioned above
 # setup permissions to run the aws_mss_prep_step*.sh scripts
 # to setup anaconda run
-aws_mss_prep_step2.sh
+#aws_mss_prep_step2.sh
 
 # to setup imp modeling run
-aws_mss_prep_step3.sh
+#aws_mss_prep_step3.sh
 
 # to run the mpi imp modeling job on aws
 awsbsub -jn impjob3 -n 1 -cf submit_mpi.sh
