@@ -269,7 +269,7 @@ def model_pipeline(project):
     # Topology file should be in the same directory as this script
     #topology_file = this_path +"../topology/topology.txt"
     logging.info('Initialize model')
-   # Initialize model
+    # Initialize model
     mdl = IMP.Model()
 
 
@@ -294,7 +294,7 @@ def model_pipeline(project):
 
     # Read in the topology file. We must handle multiple topology files: meaning we need to handle either consolidate as one OR handle multiple sets of XL csv files
     # Specify the directory where the PDB files, fasta files and GMM files are
-	logging.info('Specify the directory where the PDB files, fasta files and GMM files are')
+    logging.info('Specify the directory where the PDB files, fasta files and GMM files are')
     toporeader = IMP.pmi.topology.TopologyReader(topology_file,
                                       pdb_dir=pdb_dir,
                                       fasta_dir=fasta_dir,
@@ -480,7 +480,7 @@ def model_pipeline(project):
     # "../data/em/Ciferri_CEM_PRC2_map.gmm50.txt",
     # alias is gmm_file_ouput.txt
     # TODO: skip this step if the gmm.txt is absent.
-	logging.info('EM filename check for %s!' % project["target_gmm_file"])
+    logging.info('EM filename check for %s!' % project["target_gmm_file"])
     #print('EM filename check for %s!' % project["target_gmm_file"])
     if os.path.isfile(target_gmm_file):
         logging.info('EM file exists %s!' % target_gmm_file)
