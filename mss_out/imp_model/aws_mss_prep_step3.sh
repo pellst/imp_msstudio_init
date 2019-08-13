@@ -8,5 +8,5 @@ conda activate
 conda --version
 # then we can get imp setup
 conda config --add channels salilab
-conda install imp scikit-learn matplotlib
-conda install numpy scipy scikit-learn matplotlib
+conda install -y imp scikit-learn matplotlib
+conda install -y numpy scipy scikit-learn matplotlib
