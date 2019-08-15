@@ -13,9 +13,10 @@ key_name = key-demo-my-awsbatch
 vpc_settings = mpipubbat
 scheduler = awsbatch
 compute_instance_type = optimal
-min_vcpus = 2
-desired_vcpus = 2
-max_vcpus = 24
+min_vcpus = 12
+desired_vcpus = 24
+max_vcpus = 48
+post_install = https://gist.githubusercontent.com/pellst/9f7ad519133dae87f8f813b506b45aac/raw/aws_mss_prep_step1.sh
 
 [vpc mpipubbat]
 # Replace with the id of the vpc you intend to use.
