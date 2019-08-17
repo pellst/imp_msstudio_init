@@ -1,6 +1,7 @@
 #aws_mss_prep_step1.sh
 #!/bin/bash
 # from the /shared
+sudo su -
 cd /tmp
 mkdir imp
 cd imp
