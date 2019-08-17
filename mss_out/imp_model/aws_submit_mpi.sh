@@ -23,7 +23,7 @@ if [[ "${AWS_BATCH_JOB_NODE_INDEX}" -eq  "${AWS_BATCH_JOB_MAIN_NODE_INDEX}" ]]; 
     #/usr/lib64/openmpi/bin/mpirun --mca btl_tcp_if_include eth0 --allow-run-as-root --machinefile "${HOME}/hostfile" "${_job_dir}/mpi_hello_world"
 	#/usr/lib64/openmpi/bin/mpirun --mca btl_tcp_if_include eth0 --allow-run-as-root --machinefile "${HOME}/hostfile" "/shared/anaconda/bin/python ${_job_dir}/mss_out/prep_hyperp_imp_v2ux.py --count=1 --name=DemoImpModel --config=ConfigImp.yaml"
 	cd ${_job_dir}/mss_out/imp_model
-	/shared/anaconda/bin/python prep_hyperp_imp_v2ux.py --count=1 --name=DemoImpModel --config=ConfigImp.yaml
+	${_shared_dir}/anaconda/bin/python prep_hyperp_imp_v2ux.py --count=1 --name=DemoImpModel --config=ConfigImp.yaml
     #    /usr/lib64/openmpi/bin/mpirun --allow-run-as-root "/shared/anaconda/bin/python ${_job_dir}/mss_out/imp_model/prep_hyperp_imp_v2ux.py --count=1 --name=DemoImpModel --config=${_job_dir}/mss_out/imp_model/ConfigImp.yaml"
 		
     # Write exit status code
