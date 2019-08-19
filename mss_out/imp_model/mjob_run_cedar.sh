@@ -24,7 +24,7 @@ cat << EOF > param_prep.slurm
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=$cores
 #SBATCH --cpus-per-task=1
-#SBATCH --mem=5gb
+#SBATCH --mem=5G
 #SBATCH --time=0-00:05:00
 #SBATCH --account=def-pvize
 
@@ -43,6 +43,6 @@ cd ../
 cp -R imp_model $repl_name
 cd $repl_name
 #sbatch run_imp.slurm
-#squeue -u troy.pells
+#squeue -u tpells
 
 
