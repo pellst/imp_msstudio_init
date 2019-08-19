@@ -1,9 +1,8 @@
 #!/bin/bash
-#sudo su -
-cd /shared
+cd /home/tpells/scatch
 
-export PYTHONPATH="/shared/anaconda"
-export PATH="/shared/anaconda/bin:$PATH"
+export PYTHONPATH="/home/tpells/scatch/anaconda"
+export PATH="/home/tpells/scatch/anaconda/bin:$PATH"
 conda init bash
 conda activate
 conda --version
