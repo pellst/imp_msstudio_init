@@ -21,15 +21,16 @@ cat << EOF > param_prep.slurm
 #!/bin/bash
 # example slurm job script setup to run on for example Cedar
 #SBATCH --job-name=SLURM_imp
-#SBATCH --nodes=1
-#SBATCH --ntasks-per-node=$cores
-#SBATCH --cpus-per-task=1
-#SBATCH --mem=5G
-#SBATCH --time=0-00:05:00
-#SBATCH --account=def-pvize
+#SBATCH --nodes=2
+#SBATCH --ntasks-per-node=8
+#SBATCH --cpus-per-task=4
+#SBATCH --mem=32G
+#SBATCH --time=0-10:00:00
+#SBATCH --account=sponsor
 
 
-mpiexec python prep_hyperp_imp_v2ux.py --count=1 --name=DemoImpModel --config=ConfigImp.yaml
+#mpiexec -n $cores python prep_hyperp_imp_v2ux.py --count=1 --name=DemoImpModel --config=ConfigImp.yaml
+srun python prep_hyperp_imp_v2ux.py --count=1 --name=DemoImpModel --config=ConfigImp.yaml
 
 echo "Job Finished"
 EOF
@@ -42,7 +43,7 @@ rm -rf param.sh
 cd ../
 cp -R imp_model $repl_name
 cd $repl_name
-#sbatch run_imp.slurm
-#squeue -u tpells
+sbatch run_imp.slurm
+squeue -u tpells
 
 
