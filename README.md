@@ -102,7 +102,7 @@ sampling_frame: 1000
 #SBATCH --ntasks-per-node=16
 #SBATCH --cpus-per-task=1
 #SBATCH --mem=32G
-#SBATCH --time=0-1:00:00
+#SBATCH --time=0-01:00:00
 #SBATCH --account=sponsername 
 ~~~
 
