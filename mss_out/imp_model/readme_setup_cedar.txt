@@ -1,10 +1,10 @@
 # on CEDAR
 
-# get the setup script and amend it to set the correct username: ( could be passed as first param )
+# get the setup script and call it with the correct username as the first arg: 
 curl -LOk https://gist.githubusercontent.com/pellst/4853822ea5ca74785af61d0ad39cf84d/raw/uoc_mss_prep_step1.sh
 chmod 755 uoc_mss_prep_step1.sh
 # run the script uoc_mss_prep_step1.sh in order to get the sample folders setup
-uoc_mss_prep_step1.sh
+uoc_mss_prep_step1.sh tpells
 
 
 # in the folder scratch/imp/imp_msstudio_init-master/mss_out/imp_model, the following shell scripts are now available
@@ -28,6 +28,8 @@ mjob_run_cedar.sh
 
 # amend the sampling_frame in ConfigImp.yaml
 sampling_frame: 1000
+# the cores is used for the ntasks-per-node=x where x=16 is a good starting point
+# performance expectations are that with a single node and 1 cpu per task and 16 tasks per node we can run 20000 sampling_frame in 9 hours
 
 # amend the slurm script settings in mjob_run_cedar.sh
 #Runbook info.
@@ -35,11 +37,11 @@ sampling_frame: 1000
 #!/bin/bash
 # example slurm job script setup to run on for example Cedar
 #SBATCH --job-name=SLURM_imp
-#SBATCH --nodes=2
-#SBATCH --ntasks-per-node=8
-#SBATCH --cpus-per-task=4
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=16
+#SBATCH --cpus-per-task=1
 #SBATCH --mem=32G
-#SBATCH --time=0-3:00:00
+#SBATCH --time=0-1:00:00
 #SBATCH --account=sponsername 
 
 

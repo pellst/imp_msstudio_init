@@ -21,9 +21,9 @@ cat << EOF > param_prep.slurm
 #!/bin/bash
 # example slurm job script setup to run on for example Cedar
 #SBATCH --job-name=SLURM_imp
-#SBATCH --nodes=2
-#SBATCH --ntasks-per-node=8
-#SBATCH --cpus-per-task=4
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=$cores
+#SBATCH --cpus-per-task=1
 #SBATCH --mem=32G
 #SBATCH --time=0-10:00:00
 #SBATCH --account=sponsor
