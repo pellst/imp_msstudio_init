@@ -1,8 +1,8 @@
 #!/bin/bash
-cd /home/tpells/scratch
+cd /home/$USER/scratch
 
-export PYTHONPATH="/home/tpells/scratch/anaconda"
-export PATH="/home/tpells/scratch/anaconda/bin:$PATH"
+export PYTHONPATH="/home/$USER/scratch/anaconda"
+export PATH="/home/$USER/scratch/anaconda/bin:$PATH"
 conda init bash
 conda activate
 conda --version
