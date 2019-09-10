@@ -6,7 +6,7 @@ num_repl=$1
 repl_name=imp_model_$1
 echo "replicates number:"$repl_name
 #set defaults for cores and replicates
-export cores="1"
+export cores="16"
 #cd ../
 #cp -R imp_model imp_model_2
 #cp -R imp_model imp_model_3
@@ -19,19 +19,20 @@ echo "cores:"$cores
 # construct slurm file
 cat << EOF > param_prep.slurm
 #!/bin/bash
-# example slurm job script setup to run on for example Cedar
+# example slurm job script setup to run on for example UoC ARC
 #SBATCH --job-name=SLURM_imp
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=$cores
 #SBATCH --cpus-per-task=1
-#SBATCH --mem=600m
+#SBATCH --mem=32G
 #SBATCH --time=00:30:00
 #SBATCH --partition=cpu2019
 
 
 
 
-mpiexec python prep_hyperp_imp_v2ux.py --count=1 --name=DemoImpModel --config=ConfigImp.yaml
+# mpiexec python prep_hyperp_imp_v2ux.py --count=1 --name=DemoImpModel --config=ConfigImp.yaml
+srun python prep_hyperp_imp_v2ux.py --count=1 --name=DemoImpModel --config=ConfigImp.yaml
 
 echo "Job Finished"
 EOF
@@ -45,6 +46,6 @@ cd ../
 cp -R imp_model $repl_name
 cd $repl_name
 #sbatch run_imp.slurm
-#squeue -u troy.pells
+#squeue -u john.smith
 
 
