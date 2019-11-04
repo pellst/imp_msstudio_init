@@ -3,7 +3,7 @@
 This tutorial presents the step by step instructions to gather the data files 
 and driver scripts needed to perform a MPI based IMP modeling job run. We demonstrate
 these steps using the [PRC2 example project](https://integrativemodeling.org/) and explain how this was prepared 
-using [MassSpecStudio](http://www.massspecstudio.com). The instructions cover running the job on two platforms:
+using [MassSpecStudio](https://www.msstudio.ca/mss-improv/). The instructions cover running the job on two platforms:
 
 * AWS: EC2 spot instance
 * Compute Canada: Cedar cluster
@@ -269,7 +269,7 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
-* [MassSpecStudio Development Team](http://www.massspecstudio.com)
+* [MassSpecStudio Development Team](https://www.msstudio.ca/mss-improv/)
 * [IMP dataset source](https://integrativemodeling.org/tutorials/rnapolii_stalk/)
 * Inspiration
 * etc
