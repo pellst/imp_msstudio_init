@@ -34,14 +34,54 @@ The **imp_model** folder contains the driver python script and example yaml conf
 ## Fast Track:
 * login to Cedar on Compute Canada and run these scripts in your user account
   * steps ...
+  * see **Installing** section
 
 * alternatively, login to your AWS account and from the Management Console perform these steps to launch an EC2 spot instance using the AMI for IMProv MPI jobs
   * steps ...
-  * 
+  * steps to launch existing AMI
+  * steps to setup your own AMI
+
+todo: add github gist for cli-input-json. Configuration changes needed for security group and based on golden image ami
+
+```
+# launch spot instance via aws CLI:
+aws ec2 run-instances --cli-input-json file://C:/dev/aws/aws_parallelcluster/mpi_launch_instance_config_v3b.json
+
+# lookup the public IP address of the launched instance for the EC2 Dashboard
+# use putty or MobaXterm to connect via ssh [private key setup required ]
+
+sudo su -
+cd /shared/imp/imp_msstudio_init-master/mss_out/imp_model
+
+# pull the driver script from github gist; we also have this in s3
+curl -LOk https://gist.githubusercontent.com/pellst/d12ad92371757ec8c873aa11a7d8f1a2/raw/aws_run_onenode.sh
+
+# alt. get the driver script from s3
+aws s3 cp s3://pcluster-resource/aws_run_onenode.sh .
+
+
+# setup to run 200 frames
+(base) [root@ip-172-31-25-238 imp_model]# vi ConfigImp.yaml
+
+# add execute permissions to driver script
+(base) [root@ip-172-31-25-238 imp_model]# chmod 755 aws_run_onenode.sh
+
+# setup run as run num22
+(base) [root@ip-172-31-25-238 imp_model]# ./aws_run_onenode.sh 22
+
+# change to the imp_model22 folder and monitor the trace.log. For 200 frames this should complete in under 10minutes.
+
+# in order to perform a custom modeling run we need only change from the sample location here:
+/shared/imp/imp_msstudio_init-master/mss_out/imp_model
+# to the folder which contains another modeling run bundle. 
+# We can setup the ConfigImp.yaml to run 200 frames and test again with aws_run_onenode.sh
+
+```
+
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running for testing purposes. 
+These instructions will get you a copy of the example project up and running for testing purposes. 
 * how to setup new instance with python (3.x) and imp packages, together with sample project for PRC2.
   * initial run for modeling 100 frames ( approx. run duration is 15min ).
   * how to deploy the project on a live system for a short run. 
@@ -50,7 +90,7 @@ These instructions will get you a copy of the project up and running for testing
 * clear distinction between platforms used ( Cedar vs AWS ) and steps to follow in each case.
   * for Cedar provide info on job scheduling with slurm and submitting multiple jobs ( clones ) for comparison.
   * for AWS the running of multiple jobs in parallel, requires launching separate instances.
-* See **Deployment section** and considerations/details for running at scale.
+* See **Deployment section** and additional considerations/details for running at scale.
   * in the deployment section provide guidance on running at scale, using the prepared AMI, incl. launching AMI with cloudformation or aws cli or via aws management console.
   * full job run for modeling 20,000 frames ( approx. run duration 10hrs )
   * for AWS, mention parallel-cluster and aws cli launch. Proof of Concept for use of the NFS folder /shared and symbolic link to python and imp
@@ -58,20 +98,20 @@ These instructions will get you a copy of the project up and running for testing
 
 **Cedar job run**
 
-* link to Cedar preparation docs, account setup, login and run setup scripts 
+* links to Cedar preparation docs, account setup, login and run setup scripts 
 * [Cedar HPC intro, on Compute Canada](https://www.westgrid.ca//support/quickstart/new_users)
 * [Cedar login steps](https://docs.computecanada.ca/wiki/Connecting_with_MobaXTerm#Using_a_Key_Pair)
 	* On Windows, various options:
 	  * [MobaXTerm](https://docs.computecanada.ca/wiki/Connecting_with_MobaXTerm)
 	  * [PuTTY](https://docs.computecanada.ca/wiki/Connecting_with_PuTTY)
-
+* see **Installing** section
 
 
 
 **AWS job run**
 
 * this requires running EC2 instances that are not eligible for the AWS Free Tier. While pricing varies, the typical cost for a 32cpu machine is under USD1.00 per hour.
-* link to AWS account setup, default VPC launch of EC2 instance using either on-demand or spot instance.
+* links to AWS account setup, default VPC launch of EC2 instance using either on-demand or spot instance.
 * cloudcraft diagram of VPC, subnet, EC2 instance ( 16, 32 cpu options) , pricing ( on-demand, spot )
 * cloudformation script
 * prep AMI based on parallel-cluster image ( give version num ) - snapshot for golden image
@@ -94,7 +134,7 @@ AWS has a [research cloud program](https://pages.awscloud.com/rs/112-TZM-766/ima
 We make use of a number of shortcuts via scripted steps to facilitate the initial setup and accelerate the deployment processs.
 At a later point we expand our explanation and provide further information or links to help fill in the knowledge gaps.
 
-Initial setup assistance provided by the prep_step* shell scripts:
+Initial setup assistance provided by the prep_step* shell scripts ( aws ):
 ```
 # make use of this gist to get the prep_step* shell scripts located here
 # /shared/imp/imp_msstudio_init-master/mss_out/imp_model
@@ -119,7 +159,7 @@ The IMP job driver script runs with python 3.x and depends on the Python Modelin
 The initial software installation of python with Anaconda and python packages for imp 
 are included in the setup script. The individual steps are highlighted once again, hereafter.
 ```
-#initial setup for PMI
+#initial setup for PMI using anaconda
 Anaconda3\Library\bin\conda config --add channels salilab
 Anaconda3\Library\bin\conda install imp scikit-learn matplotlib
 
@@ -131,20 +171,18 @@ Anaconda3\Library\bin\conda install numpy scipy
 #you can see envs available with: conda info --envs
 #for example: this shows us that base is c:\apps\Anaconda3
 
-
-
-
 ```
 
-```
-Give examples
-```
+Performance Expectations:
+On a 16cpu instance we have observed up to 50 frames per minute throughput, although 30 frames per minute is typical.
+We expect 20000 frames to complete in 10 hours.
+
+
+
 
 ### Installing
 
-A step by step series of examples that tell you how to get a development env running
-
-The readme_setup_cedar.txt is a good place to start. This explains how to setup the example on Compute Canada's Cedar cluster.
+The readme_setup_cedar.txt is a good place to start. This explains how to setup the example project on Compute Canada's Cedar cluster.
 
 
 ```
@@ -159,10 +197,10 @@ chmod 755 uoc_mss_prep_step1.sh
 
 #### run the script uoc_mss_prep_step1.sh in order to get the sample folders setup
 ~~~
-uoc_mss_prep_step1.sh tpells
+uoc_mss_prep_step1.sh your_user_name
 ~~~
 
-#### in the folder scratch/imp/imp_msstudio_init-master/mss_out/imp_model, the following shell scripts are now available
+#### in the folder /scratch/imp/imp_msstudio_init-master/mss_out/imp_model, the following shell scripts are now available
 ~~~
             uoc_mss_prep_step1.sh
             uoc_mss_prep_step2.sh
@@ -218,44 +256,51 @@ be customised further in order to fit the specific modeling scenario.
 finished
 ```
 
-End with an example of getting some data out of the system or using it for a little demo
+todo: End with an example of getting some data out of the system or using it for analysis
 
-## Running the tests
-
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain the purpose of these tests and why they are performed.
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
 
 ## Deployment
 
-Add additional notes about how to deploy this on a live system
+Additional notes about how to deploy this on a live system.
+We can deploy on any of the following:
+* Cedar ( Compute Canada cluster ) 
+* AWS
+* 
+
+* **Cedar** ( Compute Canada cluster )
+
+
+
+* **AWS**
+ 
+
+The base ami was setup using a aws parallel-cluster image ( linux )
+```
+alinux:
+us-west-2: ami-09b457d5cba24514a
+```
+
+The EC2 instance used to prepare the base ami does not need to be xlarge. We can accomplish the software
+installation on t2.micro, although selecting a t3a.large instance that has higher network speeds does help. 
+
+The EC2 instance used to perform a job run needs to be xlarge. For example:
+```
+c4.4xlarge
+```
+
+The EBS storage sizing considerations
+
+```
+30Gb
+```
+
+
 
 ## Built With
 
 * [Python](https://github.com/pellst/imp_msstudio_init) - The language used
 * [IMP](https://integrativemodeling.org/tutorials/rnapolii_stalk/) - The integrated modeling platform 
 
-## Contributing
-
-Please read [CONTRIBUTING.md] for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
 
 ## Authors
 
