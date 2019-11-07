@@ -31,25 +31,45 @@ Folders and files included in this project:
 The **data** folder contains various artifacts used to inform the integrative modeling.
 The **imp_model** folder contains the driver python script and example yaml configuration for running the IMP modeling job.
 
+todo: add github image reference
+
+AWS environment 3D: 
+![alt text](https://github.com/pellst/imp_msstudio_init/raw/master/IMProv_MPI_IAAS_Arch_v1.png "Logo Title Text 1")
+
+AWS environment 2D: 
+![alt text](https://github.com/pellst/imp_msstudio_init/raw/master/IMProv_MPI_IaaS_Archit2d_v1.png "Logo Title Text 1")
+
+IMProv Job Run: 
+![alt text](https://github.com/pellst/imp_msstudio_init/raw/master/improv_uml_diag.png "Logo Title Text 1")
+
+MassSpecStudio: 
+![alt text][logo]
+
+[logo]: https://github.com/pellst/imp_msstudio_init/raw/master/uml_diag_improv_msstudio.png "msstudio IMProv prep"
+
+
 ## Fast Track:
-* login to Cedar on Compute Canada and run these scripts in your user account
+* login to **Cedar** on Compute Canada and run these scripts in your user account
   * steps ...
   * see **Installing** section
 
-* alternatively, login to your AWS account and from the Management Console perform these steps to launch an EC2 spot instance using the AMI for IMProv MPI jobs
+* alternatively, login to your **AWS** account and from the Management Console perform these steps to launch an EC2 spot instance using the AMI for IMProv MPI jobs
   * steps ...
-  * steps to launch existing AMI
-  * steps to setup your own AMI
+  * steps to setup your own AMI, see **Deployment** section
+  * steps to launch existing AMI, follow ...
 
+todo: add flow diagram to illustrate deployment options and environment setup
+todo: aws cloudformation yaml and steps to launch
 todo: add github gist for cli-input-json. Configuration changes needed for security group and based on golden image ami
 
 ```
-# launch spot instance via aws CLI:
+# launch spot instance and pre-configured AMI via aws CLI:
 aws ec2 run-instances --cli-input-json file://C:/dev/aws/aws_parallelcluster/mpi_launch_instance_config_v3b.json
 
 # lookup the public IP address of the launched instance for the EC2 Dashboard
 # use putty or MobaXterm to connect via ssh [private key setup required ]
 
+#pre-configured AMI already has the sample project folders
 sudo su -
 cd /shared/imp/imp_msstudio_init-master/mss_out/imp_model
 
@@ -78,12 +98,29 @@ aws s3 cp s3://pcluster-resource/aws_run_onenode.sh .
 
 ```
 
+**Content of aws_run_onenode.sh**
+```
+#/usr/bin/bash -x
+runnum=$1
+# pip install awscli --upgrade --user
+
+sudo mkdir /shared/imp/imp_msstudio_init-master/mss_out/imp_model$runnum
+cd      /shared/imp/imp_msstudio_init-master/mss_out/imp_model$runnum
+sudo cp /shared/imp/imp_msstudio_init-master/mss_out/imp_model/*.* /shared/imp/imp_msstudio_init-master/mss_out/imp_model$runnum
+nohup /shared/anaconda/bin/python prep_hyperp_imp_v2ux.py --count=1 --name=DemoImpModel --config=ConfigImp.yaml >/shared/imp/imp_msstudio_init-master/mss_out/imp_model$runnum/trace.log 2>&1 &
+
+# archive
+# tar -cvzf imp_model18.tgz /shared/imp/imp_msstudio_init-master/mss_out/imp_model18
+# aws s3 cp imp_model18.tgz s3://pcluster-resource
+```
+
+
 
 ## Getting Started
 
 These instructions will get you a copy of the example project up and running for testing purposes. 
 * how to setup new instance with python (3.x) and imp packages, together with sample project for PRC2.
-  * initial run for modeling 100 frames ( approx. run duration is 15min ).
+  * initial run for modeling 200 frames ( approx. run duration is 10min ).
   * how to deploy the project on a live system for a short run. 
     * **runbook** for steps to setup software and data/driver scripts.
     * **playbook** for troubleshooting issues.
@@ -154,6 +191,7 @@ chmod 755 aws_mss_prep_step1.sh
 
 ### Prerequisites
 
+The PRC2 sample project was prepared using the MassSpecStudio application.
 The IMP job driver script runs with python 3.x and depends on the Python Modeling Interface (PMI)
 
 The initial software installation of python with Anaconda and python packages for imp 
@@ -184,11 +222,9 @@ We expect 20000 frames to complete in 10 hours.
 
 The readme_setup_cedar.txt is a good place to start. This explains how to setup the example project on Compute Canada's Cedar cluster.
 
+**Taken from the readme_setup_cedar.txt:**
 
 ```
-Taken from the readme_setup_cedar.txt:
-
-
 #### get the setup script and call it with the correct username as the first arg: 
 ~~~
 curl -LOk https://gist.githubusercontent.com/pellst/4853822ea5ca74785af61d0ad39cf84d/raw/uoc_mss_prep_step1.sh
@@ -227,7 +263,6 @@ sampling_frame: 100
 * performance expectations are that with a single node and 1 cpu per task and 16 tasks per node we can run 20000 sampling_frame in 9 hours
 
 #### amend the slurm script settings in mjob_run_cedar.sh
-#Runbook info.
 
 ~~~
 #!/bin/bash
@@ -267,14 +302,47 @@ We can deploy on any of the following:
 * AWS
 * 
 
-* **Cedar** ( Compute Canada cluster )
 
+
+* **Cedar** ( Compute Canada cluster )
+The **installing** section, above, provides the steps to follow in order to prepare your user account on Cedar
+with the required software together with the PRC2 sample project.
+We have selected Cedar for our example. There are other clusters on Compute Canada that are available, such as **Graham**.
 
 
 * **AWS**
- 
+How to prepare a golden image with the required software together with the PRC2 sample project.
 
-The base ami was setup using a aws parallel-cluster image ( linux )
+
+todo: add aws EC2 launch configuration steps, incl.  ami name, size t2.micro, subnet, route table, ebs size, security, iam user and .pem key-pair
+todo: Cloudformation script and aws CLI script options
+
+Once we have the aws EC2 instance up and running. We can login via ssh to the new instance and perform the software setup steps:
+```
+# in a single vm we can create /shared folder
+# sudo mkdir /shared 
+# sudo chmod 777 /shared
+
+# make use of this gist to get the prep_step* shell scripts located here
+# /shared/imp/imp_msstudio_init-master/mss_out/imp_model
+curl -LOk https://gist.githubusercontent.com/pellst/9f7ad519133dae87f8f813b506b45aac/raw/aws_mss_prep_step1.sh 
+chmod 755 aws_mss_prep_step1.sh 
+./aws_mss_prep_step1.sh
+
+# prepare anaconda install
+#/shared/imp/imp_msstudio_init-master/mss_out/imp_model/aws_mss_prep_step2.sh
+#/shared/imp/imp_msstudio_init-master/mss_out/imp_model/aws_mss_prep_step3.sh
+``` 
+Upon completion of the software install. We take a snapshot of the aws AMI so that we can use
+this configured ami to launch new EC2 instances with suitable CPU and memory capacity for the 
+MPI job run for the IMProv PRC2 sample project or your own IMP project.
+
+From here you can follow the **FastTrack** section and use the newly minted ami to run the
+PRC2 sample project as an IMP MPI job on aws.
+
+
+
+The base ami was setup using an aws parallel-cluster image ( linux ), namely:
 ```
 alinux:
 us-west-2: ami-09b457d5cba24514a
@@ -294,6 +362,13 @@ The EBS storage sizing considerations
 30Gb
 ```
 
+### Prepare a new IMProv modeling project with **MassSpecStudio**
+
+In order to pull together the various data files and prepare the artifacts of a IMProv modeling bundle.
+The **MassSpecStudio** application provides a wizard that guides the user through the selection
+of the data files and setup of the various configuration settings required by the IMP modeling run.
+We need to have installed, on a windows o/s, the **MassSpecStudio** application.  
+todo: link to the msstudio IMProv Guide so that users can prepare their own IMProv project 
 
 
 ## Built With
