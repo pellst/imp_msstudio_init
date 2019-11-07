@@ -1,0 +1,86 @@
+https://www.planttext.com/
+
+
+
+
+@startuml
+
+title Integrative Modeling using IMP - Activity Diagram 
+
+
+start
+
+:<b>Stage 1</b> - Gathering of data;
+note right
+ https://integrativemodeling.org/tutorials/rnapolii_stalk/
+end note
+
+while (Artifacts collation for IM complete ?)  is (No)
+ :IMP module in MassSpecStudio - Wizard;
+ fork
+  :Chemical crosslinking datasets ( .csv format);
+ fork again
+  :With Sequence information (FASTA files for each subunit) ;
+ fork again
+  :Electron density maps (.mrc, .txt files);
+ fork again
+  :High resolution structure from x-ray crystallography (PDB file);
+ end fork 
+ 
+endwhile (Yes)
+
+:<b>Stage 2</b> - Representation of subunits and translation of the data into spatial restraints;
+ fork
+  :Prepare YAML config for modeling python script;
+ fork again 
+  :Build the Model Representation Using a Topology File;
+  note right
+    ""define the system components and their representation parameters""
+    ====
+    The calculation of the GMM of a subunit can be done automatically in the topology file
+  end note
+  :Building the System Representation and Degrees of Freedom ;
+  note right
+    ""After defining the representation of the model""
+    ====
+    we build the restraints by which the individual structural models will be scored based on the input data;
+  end note
+  :convert the data into spatial restraints (with modeling python script);
+ end fork 
+ 
+:<b>Stage 3</b> - Sampling;
+ fork
+  :First, sampling parameters are set;
+  note right
+   ""With the system representation built and data restraints entered""
+   ====
+   the system is now ready to sample configurations
+  end note
+  :Next, a replica exchange run can be set up;
+ end fork
+
+:<b>Stage 4</b> - Analysis;
+
+ fork
+  :Part 1;
+  note right
+    ""In the analysis stage we cluster (group by similarity) the sampled models""
+    ====
+    to determine high-probability configurations. Comparing clusters may indicate 
+    that there are multiple acceptable configurations given the data
+  end note
+  :Part 2;
+  note right
+    ""In this stage we perform post-clustering analysis""
+  end note
+ end fork
+
+
+
+
+:IM fin;
+
+stop
+
+@enduml
+
