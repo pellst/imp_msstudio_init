@@ -233,10 +233,10 @@ chmod 755 uoc_mss_prep_step1.sh
 
 #### run the script uoc_mss_prep_step1.sh in order to get the sample folders setup
 ~~~
-uoc_mss_prep_step1.sh your_user_name
+./uoc_mss_prep_step1.sh your_user_name
 ~~~
 
-#### in the folder /scratch/imp/imp_msstudio_init-master/mss_out/imp_model, the following shell scripts are now available
+#### in the folder /scratch/username/imp/imp_msstudio_init-master/mss_out/imp_model, the following shell scripts are now available
 ~~~
             uoc_mss_prep_step1.sh
             uoc_mss_prep_step2.sh
@@ -244,14 +244,15 @@ uoc_mss_prep_step1.sh your_user_name
 ~~~
 			
 #### we can continue on to step2 to setup anaconda			
-uoc_mss_prep_step2.sh
-
+./uoc_mss_prep_step2.sh
+conda --version
+python --version
 
 #### once anaconda has been setup we can bring in the imp module and others needed for the job run
-uoc_mss_prep_step3.sh
+./uoc_mss_prep_step3.sh
 
 #### the next step is to review the following:
-#### located in scratch/imp/imp_msstudio_init-master/mss_out/imp_model
+#### located in /scratch/username/imp/imp_msstudio_init-master/mss_out/imp_model
 ConfigImp.yaml
 mjob_run_cedar.sh
 
@@ -279,8 +280,22 @@ sampling_frame: 100
 
 #in order to run the job we call this and give a unit number to be used for naming the folder that is setup eg: 12 here
 ~~~
+chmod 755 mjob_run_cedar.sh
 ./mjob_run_cedar.sh 12
+#monitor the job run
+squeue -u username
 ~~~
+
+#once the job has finished, look in the imp_model_12 folder and inspect the logs
+~~~
+tail -100 prep_hyperp_imp_v2ux.log
+#do the same for the slurm-nnnnn.out
+~~~
+
+#a successful run will include the output folders from the job. Copy the entire imp_model_12 to local machine ( optionally tar the folder in order to archive) 
+
+#in order to run multiple jobs in parallel. From the imp_model folder amend the configuration as needed and call mjob_run_cedar.sh nn once again.
+
 
 The wrapper script mjob_run_cedar.sh essentially performs a slurm job scheduler call to launch: srun python prep_hyperp_imp_v2ux.py and this in turn runs the 
 prep_hyperp_imp_v2ux.py driver script. The configuration of the driver script is accomplished with the ConfigImp.yaml
@@ -290,6 +305,9 @@ be customised further in order to fit the specific modeling scenario.
 ```
 finished
 ```
+
+#compute canada will purge files older than 60days in the /scratch area. 
+#purge and re-deploy as required
 
 todo: End with an example of getting some data out of the system or using it for analysis
 
