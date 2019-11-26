@@ -62,7 +62,51 @@ todo: add flow diagram to illustrate deployment options and environment setup
 todo: aws cloudformation yaml and steps to launch
 todo: add github gist for cli-input-json. Configuration changes needed for security group and based on golden image ami
 
+The json file needed to configure the **cli-input-json** typically has the following elements:
+(NetworkInterfaces section is optional and may be required when not launching into default VPC )
 ```
+{
+    "ImageId": "ami-nnnn your custom ami with anaconda and IMP already installed",
+    "InstanceType": "m5.2xlarge",
+    "KeyName": "your_security_key",
+    "SecurityGroupIds": [
+        "sg-nnnn your security group"
+    ],
+    "SubnetId": "subnet-nnnn your default subnet in US-West2a for example",
+    "DisableApiTermination": false,
+    "DryRun": false,
+    "EbsOptimized": true,
+    "IamInstanceProfile": {
+        "Name": "s3_imp_rw_only your IAM role with RW access to s3 bucket"
+     },
+	"NetworkInterfaces": [
+        {
+            "AssociatePublicIpAddress": true,
+            "DeleteOnTermination": true,
+            "DeviceIndex": 0			
+        }
+    ],	
+    "InstanceMarketOptions": {
+        "MarketType": "spot",
+        "SpotOptions": {
+            "MaxPrice": "0.70",
+            "SpotInstanceType": "one-time",
+            "BlockDurationMinutes": 120,
+            "InstanceInterruptionBehavior": "terminate"
+        }
+    }
+}
+
+
+
+```
+
+
+
+
+
+```
+# aws cli command with the aws cli already configured using aws configure
 # launch spot instance and pre-configured AMI via aws CLI:
 aws ec2 run-instances --cli-input-json file://C:/dev/aws/aws_parallelcluster/mpi_launch_instance_config_v3b.json
 
@@ -334,6 +378,7 @@ How to prepare a golden image with the required software together with the PRC2 
 
 todo: add aws EC2 launch configuration steps, incl.  ami name, size t2.micro, subnet, route table, ebs size, security, iam user and .pem key-pair
 todo: Cloudformation script and aws CLI script options
+todo: Verify /opt/condaroot/anaconda as install location
 
 Once we have the aws EC2 instance up and running. We can login via ssh to the new instance and perform the software setup steps:
 ```
@@ -349,7 +394,11 @@ chmod 755 aws_mss_prep_step1.sh
 
 # prepare anaconda install
 #/shared/imp/imp_msstudio_init-master/mss_out/imp_model/aws_mss_prep_step2.sh
+
+# prepare python package install
 #/shared/imp/imp_msstudio_init-master/mss_out/imp_model/aws_mss_prep_step3.sh
+
+
 ``` 
 Upon completion of the software install. We take a snapshot of the aws AMI so that we can use
 this configured ami to launch new EC2 instances with suitable CPU and memory capacity for the 
@@ -357,6 +406,9 @@ MPI job run for the IMProv PRC2 sample project or your own IMP project.
 
 From here you can follow the **FastTrack** section and use the newly minted ami to run the
 PRC2 sample project as an IMP MPI job on aws.
+
+todo: The current version of IMP 2.11.1 has changes in how it processes the decorate_gmm_from_text. 
+todo: The PRC2 sample project configuration needs to be amended to work with the later version.
 
 
 
