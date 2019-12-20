@@ -126,8 +126,8 @@ code block
 
 
 ## Prerequisites
-Installation of MassSpecStudio
-Obtain the various data files required by the modeling job.
+* Installation of MassSpecStudio
+* Obtain the various data files required by the modeling job.
 
 
 
