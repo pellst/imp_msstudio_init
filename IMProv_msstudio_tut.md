@@ -96,19 +96,17 @@ Project - Deployment to HPC platform running IMP package :
 ## Fast Track:
 * login to **Cedar** on Compute Canada and run these scripts in your user account
   * steps ...
-  * see **Installing** section
+  * see **Installing** [section](https://github.com/pellst/imp_msstudio_init/blob/master/IMProv_on_Cedar_tut.md)
+
 
 * alternatively, login to your **AWS** account and from the Management Console perform these steps to launch an EC2 spot instance using the AMI for IMProv MPI jobs
   * steps ...
-  * steps to setup your own AMI, see **Deployment** section
+  * steps to setup your own AMI, see **Deployment** [section](https://github.com/pellst/imp_msstudio_init/blob/master/IMProv_on_Cedar_tut.md)
+
   * steps to launch existing AMI, follow ...
 
-todo: add flow diagram to illustrate deployment options and environment setup
-todo: aws cloudformation yaml and steps to launch
-todo: add github gist for cli-input-json. Configuration changes needed for security group and based on golden image ami
 
-The json file needed to configure the **cli-input-json** typically has the following elements:
-(NetworkInterfaces section is optional and may be required when not launching into default VPC )
+
 ```
 code block 
 
