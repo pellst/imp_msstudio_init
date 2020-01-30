@@ -1,9 +1,9 @@
-# IMProv ( integrative modeling platform ) - Workflow (0.1)
+# IMPort ( integrative modeling platform ) - Workflow (0.1)
 
 This tutorial presents the step by step instructions to gather the data files 
 and driver scripts needed to perform a MPI based IMP modeling job run. We demonstrate
 these steps using the [PRC2 example project](https://integrativemodeling.org/) and explain how this was prepared 
-using [MassSpecStudio](https://www.msstudio.ca/mss-improv/). The instructions cover running the job on two platforms:
+using [MassSpecStudio](https://www.msstudio.ca/mss-IMPort/). The instructions cover running the job on two platforms:
 
 * AWS: EC2 spot instance
 * Compute Canada: Cedar cluster
@@ -34,18 +34,18 @@ The **imp_model** folder contains the driver python script and example yaml conf
 
 
 AWS environment 3D: 
-![alt text](https://github.com/pellst/imp_msstudio_init/raw/master/IMProv_MPI_IAAS_Arch_v1.png "Logo Title Text 1")
+![alt text](https://github.com/pellst/imp_msstudio_init/raw/master/IMPort_MPI_IAAS_Arch_v1.png "Logo Title Text 1")
 
 AWS environment 2D: 
-![alt text](https://github.com/pellst/imp_msstudio_init/raw/master/IMProv_MPI_IaaS_Archit2d_v1.png "Logo Title Text 1")
+![alt text](https://github.com/pellst/imp_msstudio_init/raw/master/IMPort_MPI_IaaS_Archit2d_v1.png "Logo Title Text 1")
 
-IMProv Job Run: 
-![alt text](https://github.com/pellst/imp_msstudio_init/raw/master/improv_uml_diag.png "Logo Title Text 1")
+IMPort Job Run: 
+![alt text](https://github.com/pellst/imp_msstudio_init/raw/master/IMPort_uml_diag.png "Logo Title Text 1")
 
 MassSpecStudio: 
 ![alt text][logo]
 
-[logo]: https://github.com/pellst/imp_msstudio_init/raw/master/uml_diag_improv_msstudio.png "msstudio IMProv prep"
+[logo]: https://github.com/pellst/imp_msstudio_init/raw/master/uml_diag_IMPort_msstudio.png "msstudio IMPort prep"
 
 
 ## Fast Track:
@@ -53,7 +53,7 @@ MassSpecStudio:
   * steps ...
   * see **Installing** section
 
-* alternatively, login to your **AWS** account and from the Management Console perform these steps to launch an EC2 spot instance using the AMI for IMProv MPI jobs
+* alternatively, login to your **AWS** account and from the Management Console perform these steps to launch an EC2 spot instance using the AMI for IMPort MPI jobs
   * steps ...
   * steps to setup your own AMI, see **Deployment** section
   * steps to launch existing AMI, follow ...
@@ -414,13 +414,20 @@ chmod 755 aws_mss_prep_step1.sh
 ``` 
 Upon completion of the software install. We take a snapshot of the aws AMI so that we can use
 this configured ami to launch new EC2 instances with suitable CPU and memory capacity for the 
-MPI job run for the IMProv PRC2 sample project or your own IMP project.
+MPI job run for the IMPort PRC2 sample project or your own IMP project.
 
 From here you can follow the **FastTrack** section and use the newly minted ami to run the
 PRC2 sample project as an IMP MPI job on aws.
 
+
+```
+Notes:
 todo: The current version of IMP 2.11.1 has changes in how it processes the decorate_gmm_from_text. 
+
 todo: The PRC2 sample project configuration needs to be amended to work with the later version.
+
+```
+
 
 
 
@@ -444,13 +451,13 @@ The EBS storage sizing considerations
 30Gb
 ```
 
-### Prepare a new IMProv modeling project with **MassSpecStudio**
+### Prepare a new IMPort modeling project with **MassSpecStudio**
 
-In order to pull together the various data files and prepare the artifacts of a IMProv modeling bundle.
+In order to pull together the various data files and prepare the artifacts of a IMPort modeling bundle.
 The **MassSpecStudio** application provides a wizard that guides the user through the selection
 of the data files and setup of the various configuration settings required by the IMP modeling run.
 We need to have installed, on a windows o/s, the **MassSpecStudio** application.  
-todo: link to the msstudio IMProv Guide so that users can prepare their own IMProv project 
+todo: link to the msstudio IMPort Guide so that users can prepare their own IMPort project 
 
 
 ## Built With
@@ -471,7 +478,7 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
-* [MassSpecStudio Development Team](https://www.msstudio.ca/mss-improv/)
+* [MassSpecStudio Development Team](https://www.msstudio.ca/mss-IMPort/)
 * [IMP dataset source](https://integrativemodeling.org/tutorials/rnapolii_stalk/)
 * Inspiration
 * etc

@@ -1,8 +1,8 @@
-# IMProv ( integrative modeling platform ) - MassSpecStudio Wizard Workflow (0.1)
+# IMPort ( integrative modeling platform ) - MassSpecStudio Wizard Workflow (0.1)
 
 This tutorial presents the msstudio wizard to gather the data files 
 and driver scripts needed to perform a MPI based IMP modeling job run. We cover how this can be prepared 
-using the IMProv wizard in [MassSpecStudio](https://www.msstudio.ca/mss-improv/). 
+using the IMPort wizard in [MassSpecStudio](https://www.msstudio.ca/mss-IMPort/). 
 
 
 
@@ -28,7 +28,7 @@ Folders and files included in this project:
 The **data** folder contains various artifacts used to inform the integrative modeling.
 The **imp_model** folder contains the driver python script and example yaml configuration for running the IMP modeling job.
 
-We are able to prepare the data files and driver scripts given above using MassSpecStudio's IMProv wizard.
+We are able to prepare the data files and driver scripts given above using MassSpecStudio's IMPort wizard.
 The activity diagram that follows illustrates the various steps involved in running the modeling pipeline. 
 This is provided here in order to set the context for the pre-requisite steps that we need to perform prior to deployment for this modeling job run. 
 
@@ -36,18 +36,18 @@ This is provided here in order to set the context for the pre-requisite steps th
 MassSpecStudio is used to configure the artifacts that are subsequently involved in the following activity diagram: 
 ![alt text][logo]
 
-[logo]: https://github.com/pellst/imp_msstudio_init/raw/master/uml_diag_improv_msstudio.png "msstudio IMProv prep"
+[logo]: https://github.com/pellst/imp_msstudio_init/raw/master/uml_diag_IMPort_msstudio.png "msstudio IMPort prep"
 
-### Prepare a new IMProv modeling project with **MassSpecStudio**
+### Prepare a new IMPort modeling project with **MassSpecStudio**
 
-In order to pull together the various data files and prepare the artifacts of a IMProv modeling bundle.
+In order to pull together the various data files and prepare the artifacts of a IMPort modeling bundle.
 The **MassSpecStudio** application provides a wizard that guides the user through the selection
 of the data files and setup of the various configuration settings required by the IMP modeling run.
 We need to have installed, on a windows o/s, the **MassSpecStudio** application.  
-todo: link to the msstudio IMProv Guide so that users can prepare their own IMProv project 
+todo: link to the msstudio IMPort Guide so that users can prepare their own IMPort project 
 
 
-IMProv configuration Wizard: 
+IMPort configuration Wizard: 
 
 Project - Init: 
 
@@ -96,12 +96,12 @@ Project - Deployment to HPC platform running IMP package :
 ## Fast Track:
 * login to **Cedar** on Compute Canada and run these scripts in your user account
   * steps ...
-  * see **Installing** [section](https://github.com/pellst/imp_msstudio_init/blob/master/IMProv_on_Cedar_tut.md)
+  * see **Installing** [section](https://github.com/pellst/imp_msstudio_init/blob/master/IMPort_on_Cedar_tut.md)
 
 
-* alternatively, login to your **AWS** account and from the Management Console perform these steps to launch an EC2 spot instance using the AMI for IMProv MPI jobs
+* alternatively, login to your **AWS** account and from the Management Console perform these steps to launch an EC2 spot instance using the AMI for IMPort MPI jobs
   * steps ...
-  * steps to setup your own AMI, see **Deployment** [section](https://github.com/pellst/imp_msstudio_init/blob/master/IMProv_on_Cedar_tut.md)
+  * steps to setup your own AMI, see **Deployment** [section](https://github.com/pellst/imp_msstudio_init/blob/master/IMPort_on_Cedar_tut.md)
 
   * steps to launch existing AMI, follow ...
 
@@ -161,7 +161,7 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
-* [MassSpecStudio Development Team](https://www.msstudio.ca/mss-improv/)
+* [MassSpecStudio Development Team](https://www.msstudio.ca/mss-IMPort/)
 * [IMP dataset source](https://integrativemodeling.org/tutorials/rnapolii_stalk/)
 * Inspiration
 * etc
