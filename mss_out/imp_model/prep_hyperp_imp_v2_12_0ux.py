@@ -19,6 +19,12 @@
 #      CREATED: 06/16/2019 12:00:00
 #     REVISION: 01/14/2020 12:00:00 --- imp2.12.0 ; https://integrativemodeling.org/2.12.0/doc/manual/changelog.html
 #
+# 		The old IMP::pmi::representation::Representation class has been removed from IMP.pmi. 
+# 		New applications should use IMP::pmi::topology::System instead.
+#
+# 		The IMP::pmi::restraints::crosslinking::ISDCrossLinkMS class for handling crosslinking has been removed. Use 
+# 		IMP::pmi::restraints::crosslinking::CrossLinkingMassSpectrometryRestraint instead.
+#
 #
 #
 #===============================================================================
@@ -38,11 +44,11 @@ import IMP.pmi.restraints.crosslinking
 import IMP.pmi.restraints.stereochemistry
 import IMP.pmi.restraints.em
 import IMP.pmi.restraints.basic
-import IMP.pmi.representation
 import IMP.pmi.tools
 import IMP.pmi.samplers
 import IMP.pmi.output
 import IMP.pmi.macros
+#import IMP.pmi.representation
 import IMP.pmi.topology
 
 import os
