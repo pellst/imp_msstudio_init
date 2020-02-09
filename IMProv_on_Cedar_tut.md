@@ -209,7 +209,7 @@ These instructions will get you a copy of the example project up and running for
 
 
 In order to work with MPI ( message passing interface ) jobs such as this IMP example on AWS, we need to lay the groundwork. 
-Use your existing AWS account or [signed up for AWS](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/get-set-up-for-amazon-ec2.html). 
+Use your existing AWS account or [sign up for AWS](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/get-set-up-for-amazon-ec2.html). 
 Read the [EC2 Getting Started Guide](http://docs.amazonwebservices.com/AWSEC2/latest/UserGuide/EC2_GetStarted.html?r=1874). 
 Familiarize yourself with how to start, access, and terminate different machine instances. 
 We make use of on-demand instances for convenience in the preparation of the initial machine image 
@@ -386,7 +386,19 @@ todo: add aws EC2 launch configuration steps, incl.  ami name, size t2.micro, su
 
 todo: Cloudformation script and aws CLI script options
 
-todo: Verify /opt/condaroot/anaconda as install location
+todo:  /shared/anaconda as install location
+
+The base ami was setup using a aws parallel-cluster image ( linux )
+alinux:
+us-west-2: ami-09b457d5cba24514a
+
+t2.micro is in the Free Tier. Slower deployment.
+t3a.xlarge is a 4cpu 16Gb machine with good network bandwidth for faster deployment.
+
+storage size 30Gb
+security group : SSH TCP port 22 for myip 
+
+
 
 ```
 
@@ -406,9 +418,15 @@ chmod 755 aws_mss_prep_step1.sh
 
 # prepare anaconda install
 #/shared/imp/imp_msstudio_init-master/mss_out/imp_model/aws_mss_prep_step2.sh
+cd /shared/imp/imp_msstudio_init-master/mss_out/imp_model
+./aws_mss_prep_step2.sh
+
+
 
 # prepare python package install
 #/shared/imp/imp_msstudio_init-master/mss_out/imp_model/aws_mss_prep_step3.sh
+cd /shared/imp/imp_msstudio_init-master/mss_out/imp_model
+./aws_mss_prep_step3.sh
 
 
 ``` 
@@ -425,6 +443,9 @@ Notes:
 todo: The current version of IMP 2.11.1 has changes in how it processes the decorate_gmm_from_text. 
 
 todo: The PRC2 sample project configuration needs to be amended to work with the later version.
+imp2.12.0 ; amend the call to prep_hyperp_imp_v2ux.py to prep_hyperp_imp_v2_12_0ux.py 
+as this has the problem import commented : #import IMP.pmi.representation
+
 
 ```
 
