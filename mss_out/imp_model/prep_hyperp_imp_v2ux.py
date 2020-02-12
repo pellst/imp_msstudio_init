@@ -2,7 +2,9 @@
 #
 #         FILE: prep_hyperp_imp_v2.py
 #
-#        USAGE: C:\apps\Anaconda3\python.exe prep_hyperp_imp_v2.py --count=1 --name=DemoImpModel --config="ConfigImp.yaml"   > prep_hyperp_imp_v2_trace.txt 2>&1  
+#        USAGE: 
+#			LINUX: nohup /shared/anaconda/bin/python prep_hyperp_imp_v2ux.py --count=1 --name=DemoImpModel --config=ConfigImp.yaml >/shared/imp/imp_msstudio_init-master/mss_out/imp_model$runnum/trace.log 2>&1 &
+# 
 #
 #  DESCRIPTION: IMP (integrative modeling platform) driver script configured with ConfigImp.yaml
 #                Python Modeling Interface (PMI) ; https://integrativemodeling.org/
@@ -34,7 +36,7 @@ import IMP.pmi.restraints.crosslinking
 import IMP.pmi.restraints.stereochemistry
 import IMP.pmi.restraints.em
 import IMP.pmi.restraints.basic
-import IMP.pmi.representation
+#import IMP.pmi.representation
 import IMP.pmi.tools
 import IMP.pmi.samplers
 import IMP.pmi.output
