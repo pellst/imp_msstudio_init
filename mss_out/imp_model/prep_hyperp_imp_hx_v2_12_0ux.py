@@ -3,7 +3,7 @@
 #         FILE: prep_hyperp_imp_v2.py
 #
 #        USAGE: 
-#			LINUX: nohup /shared/anaconda/bin/python prep_hyperp_imp_v2ux.py --count=1 --name=DemoImpModel --config=ConfigImp.yaml >/shared/imp/imp_msstudio_init-master/mss_out/imp_model$runnum/trace.log 2>&1 &
+#           LINUX: nohup /shared/anaconda/bin/python prep_hyperp_imp_v2ux.py --count=1 --name=DemoImpModel --config=ConfigImp.yaml >/shared/imp/imp_msstudio_init-master/mss_out/imp_model$runnum/trace.log 2>&1 &
 # 
 #  DESCRIPTION: IMP (integrative modeling platform) driver script configured with ConfigImp.yaml
 #                Python Modeling Interface (PMI) ; https://integrativemodeling.org/
@@ -21,11 +21,11 @@
 #     REVISION: 01/14/2020 12:00:00 --- imp2.12.0 ; https://integrativemodeling.org/2.12.0/doc/manual/changelog.html
 #     REVISION: 03/10/2020 12:00:00 --- hx tight/loose classification; sigma in place of Distance value.
 #
-# 		The old IMP::pmi::representation::Representation class has been removed from IMP.pmi. 
-# 		New applications should use IMP::pmi::topology::System instead.
+#       The old IMP::pmi::representation::Representation class has been removed from IMP.pmi. 
+#       New applications should use IMP::pmi::topology::System instead.
 #
-# 		The IMP::pmi::restraints::crosslinking::ISDCrossLinkMS class for handling crosslinking has been removed. Use 
-# 		IMP::pmi::restraints::crosslinking::CrossLinkingMassSpectrometryRestraint instead.
+#       The IMP::pmi::restraints::crosslinking::ISDCrossLinkMS class for handling crosslinking has been removed. Use 
+#       IMP::pmi::restraints::crosslinking::CrossLinkingMassSpectrometryRestraint instead.
 #
 #
 #
@@ -121,7 +121,7 @@ def load_config(config_file,
     for section in cfg:
         logging.info(section + ' %s!' % cfg[section])
 
-        if section == "xl_groupA":
+        if section == "xl_groupB":
             #
             for i in cfg[section]:
                 logging.info(i)
@@ -374,100 +374,102 @@ def model_pipeline(project):
                                         niterations=100)
 
     logging.info(ev.evaluate());
-    dof.optimize_flexible_beads(100) #if beads are not connecting at initial rmf, increase; number of steps to optimize connectivity 
+    dof.optimize_flexible_beads(500) #if beads are not connecting at initial rmf, increase; number of steps to optimize connectivity 
     logging.info(ev.evaluate());
     
-    
-    
-    #TODO: obtain XL filenames from yaml
-    # Convert crosslink file into IMP database
-    #xl_file1 = xl_dir + "/PRC2_BS3.csv"
-    #xl_file2 = xl_dir + "/PRC2_DSS.csv"
+ 
 
-    #xldb1 = MSStudioCrosslinks(xl_file1).get_database()
-    #xldb2 = MSStudioCrosslinks(xl_file2).get_database()
 
-    #for i in range(len(project.xl_dbA) ): 
-    #    logging.info(project.xl_dbA[i])
 
     # Getting length of list 
-    length = len(project["xl_groupA"]) 
+    length = len(project["xl_groupB"]) 
     i = 0
     
     xlList=[]
     logging.info('Iterating using while loop')
     # Iterating using while loop 
     while i < length: 
-        logging.info(project["xl_groupA"][i])
+        logging.info(project["xl_groupB"][i])
         #"refid","length","slope","resolution","label","weight","crosslink_distance"
 
-        logging.info(project["xl_groupA"][i]["refid"])
-        logging.info(project["xl_groupA"][i]["length"])
-        logging.info(project["xl_groupA"][i]["slope"])
-        logging.info(project["xl_groupA"][i]["resolution"])
-        logging.info(project["xl_groupA"][i]["label"])
-        logging.info(project["xl_groupA"][i]["weight"])
-        logging.info(project["xl_groupA"][i]["crosslink_distance"])
+        logging.info(project["xl_groupB"][i]["refid"])
+        logging.info(project["xl_groupB"][i]["length"])
+        logging.info(project["xl_groupB"][i]["slope"])
+        logging.info(project["xl_groupB"][i]["resolution"])
+        logging.info(project["xl_groupB"][i]["sigma_kappa"])
+        logging.info(project["xl_groupB"][i]["sigma_theta"])
+        logging.info(project["xl_groupB"][i]["sigma_init"])
+        logging.info(project["xl_groupB"][i]["label"])
+        logging.info(project["xl_groupB"][i]["weight"])
+        logging.info(project["xl_groupB"][i]["crosslink_distance"])
 
         
         # Set up crosslinking restraint
-        xlA = XLRestraint(root_hier=root_hier, 
-                 CrossLinkDataBase=MSStudioCrosslinks(xl_dir + "/" + project["xl_groupA"][i]["refid"]).get_database(),
-                 length=project["xl_groupA"][i]["length"], #midpoint? Double check with Daniel and excel function thing
-                 resolution=project["xl_groupA"][i]["resolution"], #keep 1, lower limit
-                 slope=project["xl_groupA"][i]["slope"], # 0.01 for longer XL and 0.03 for shorter, range - check by making sure midpoint is less than 0.5 e.g 30 * 0.01
-                 label=project["xl_groupA"][i]["label"],
-                 filelabel=project["xl_groupA"][i]["label"],
-                 weight=project["xl_groupA"][i]["weight"]) #ignore weight, calculated via IMP
-        logging.info(xlA)
-        xlList.append(xlA)
-        xlA.add_to_model()
-        outputobjects.append(xlA)
-        dof.get_nuisances_from_restraint(xlA)
+        xlB = XLRestraint(root_hier=root_hier, 
+                 CrossLinkDataBase=MSStudioCrosslinks(xl_dir + "/" + project["xl_groupB"][i]["refid"]).get_database(),
+                 length=project["xl_groupB"][i]["length"], #midpoint? Double check with Daniel and excel function thing
+                 resolution=project["xl_groupB"][i]["resolution"], #keep 1, lower limit
+                 slope=project["xl_groupB"][i]["slope"], # 0.01 for longer XL and 0.03 for shorter, range - check by making sure midpoint is less than 0.5 e.g 30 * 0.01
+                 label=project["xl_groupB"][i]["label"],
+                 sigma_form="Gamma",
+                 sigma_kappa=project["xl_groupB"][i]["sigma_kappa"],
+                 sigma_theta=project["xl_groupB"][i]["sigma_theta"],
+                 sigma_init=xproject["xl_groupB"][i]["sigma_init"],              
+                 filelabel=project["xl_groupB"][i]["label"],
+                 weight=project["xl_groupB"][i]["weight"]) #ignore weight, calculated via IMP
+        logging.info(xlB)
+		# using slope of -1 to indicate exception ; this was previously 's', but that conflicts with the number field
+        if project["xl_groupB"][i]["slope"]!="-1":
+            xlB.set_psi_is_sampled(False)
+        xlB.set_sigma_is_sampled(True)
+        xlList.append(xlB)
+        xlB.add_to_model()
+        outputobjects.append(xlB)
+        #dof.get_nuisances_from_restraint(xlB)
+        dof.movers + xlB.get_movers()   
         i += 1     
  
     for i in range(len(xlList) ): 
-        logging.info(xlList[i])       
+        logging.info(xlList[i])   
         
         
-  
-
-
-
-        """
-
     
-    # Set up crosslinking restraint
-    xl1 = XLRestraint(root_hier=root_hier, 
-                     CrossLinkDataBase=xldb1,
-                     length=30.0, #midpoint? Double check with Daniel and excel function thing
-                     resolution=1, #keep 1, lower limit
-                     slope=0.01, # 0.01 for longer XL and 0.03 for shorter, range - check by making sure midpoint is less than 0.5 e.g 30 * 0.01
-                     label="DSS",
-                     filelabel="DSS_missing",
-                     weight=1.) #ignore weight, calculated via IMP
+    # xl_files = [(xl_dir + 'PRC2_DSS_BS3_2020_vLoose.csv', 30, 0.01, 1.6, 12), 
+    # (xl_dir + 'PRC2_DSS_BS3_2020_loose.csv', 30, 0.01, 1.45, 9), 
+    # (xl_dir + 'PRC2_DSS_BS3_2020_mod.csv', 30, 0.01, 1.3, 6), 
+    # (xl_dir + 'PRC2_DSS_BS3_2020_tight.csv', 30, 0.01, 1.15, 3), 
+    # (xl_dir + 'PRC2_DSS_BS3_2020_vTight.csv', 30, "s", 1.0, 1)]
 
-    xl1.add_to_model()
-    outputobjects.append(xl1)
-    dof.get_nuisances_from_restraint(xl1)
+    # xl_restraints = []
 
-    xl2 = XLRestraint(root_hier=root_hier, 
-                     CrossLinkDataBase=xldb2,
-                     length=30.0,
-                     resolution=1,
-                     slope=0.01,
-                     label="BS3",
-                     filelabel="BS3_missing",
-                     weight=1.)
-
-    xl2.add_to_model()
-    outputobjects.append(xl2)
-    dof.get_nuisances_from_restraint(xl2)
-    """ 
+    # for xlf in xl_files:
+        # xldb = MSStudioCrosslinks(xlf[0]).get_database()
+        # print xlf, xldb.unique_id_key
+            # label = xlf[0].split('/')[-1][0:-4]
+        # xlr = XLRestraint(root_hier=root_hier,
+                     # CrossLinkDataBase=xldb,
+                     # length=xlf[1], #midpoint? Double check with Daniel and excel function thing
+                     # resolution=1, #keep 1, lower limit
+                     # slope=0.01, # 0.01 for longer XL and 0.03 for shorter, range - check by making sure midpoint is less than 0.5 e.g 30 * 0.01
+                     # label=label,
+                     # sigma_form="Gamma",
+                     # sigma_kappa=xlf[3],
+                     # sigma_theta=2.0,
+                     # sigma_init=xlf[4],
+                     # filelabel=label+"_missing",
+                     # weight=1.) #ignore weight, calculated via IMP
+        # if xlf[2]!="s":
+            # xlr.set_psi_is_sampled(False)
+        # xlr.set_sigma_is_sampled(True)
+        # xl_restraints.append(xlr)
+        # xlr.add_to_model()
+        # outputobjects.append(xlr)
+        # dof.movers + xlr.get_movers()   
     
-    #xl_rests = [xl1, xl2] + crs
     
-    xl_rests = xlList + crs    
+    
+    xl_rests = xlList + crs     
+    
     
     logging.info('EM Restraint')
     #EM Restraint
