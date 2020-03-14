@@ -3,7 +3,7 @@
 This tutorial presents the step by step instructions to gather the data files 
 and driver scripts needed to perform a MPI based IMP modeling job run. We demonstrate
 these steps using the [PRC2 example project](https://integrativemodeling.org/) and explain how this was prepared 
-using [MassSpecStudio](https://www.msstudio.ca/mss-IMPort/). The instructions cover running the job on two platforms:
+using [MassSpecStudio](https://www.msstudio.ca/mss-improv/). The instructions cover running the job on two platforms:
 
 * AWS: EC2 spot instance
 * Compute Canada: Cedar cluster

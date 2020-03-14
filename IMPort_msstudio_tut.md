@@ -2,7 +2,7 @@
 
 This tutorial presents the msstudio wizard to gather the data files 
 and driver scripts needed to perform a MPI based IMP modeling job run. We cover how this can be prepared 
-using the IMPort wizard in [MassSpecStudio](https://www.msstudio.ca/mss-IMPort/). 
+using the IMPort wizard in [MassSpecStudio](https://www.msstudio.ca/mss-improv/). 
 
 
 
