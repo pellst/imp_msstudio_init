@@ -29,8 +29,8 @@ cat << EOF > param_prep.slurm
 #SBATCH --account=sponsor
 
 
-#mpiexec -n $cores python prep_hyperp_imp_v2ux.py --count=1 --name=DemoImpModel --config=ConfigImp.yaml
-srun python prep_hyperp_imp_v2ux.py --count=1 --name=DemoImpModel --config=ConfigImp.yaml
+mpiexec -n $cores python prep_hyperp_imp_v2ux.py --count=1 --name=DemoImpModel --config=ConfigImp.yaml
+#srun python prep_hyperp_imp_v2ux.py --count=1 --name=DemoImpModel --config=ConfigImp.yaml
 
 echo "Job Finished"
 EOF
