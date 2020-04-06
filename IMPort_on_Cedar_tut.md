@@ -156,7 +156,10 @@ runnum=$1
 sudo mkdir /shared/imp/imp_msstudio_init-master/mss_out/imp_model$runnum
 cd      /shared/imp/imp_msstudio_init-master/mss_out/imp_model$runnum
 sudo cp /shared/imp/imp_msstudio_init-master/mss_out/imp_model/*.* /shared/imp/imp_msstudio_init-master/mss_out/imp_model$runnum
-nohup /shared/anaconda/bin/python prep_hyperp_imp_v2ux.py --count=1 --name=DemoImpModel --config=ConfigImp.yaml >/shared/imp/imp_msstudio_init-master/mss_out/imp_model$runnum/trace.log 2>&1 &
+#nohup /shared/anaconda/bin/python prep_hyperp_imp_v2ux.py --count=1 --name=DemoImpModel --config=ConfigImp.yaml >/shared/imp/imp_msstudio_init-master/mss_out/imp_model$runnum/trace.log 2>&1 &
+#the mpiexec -N 16 indicates that we have 16 cpu available for mpi processing
+#when the job is running we can use the cmd top and press 1 ( number one ) to observe the cpu usage
+nohup /shared/anaconda/bin/mpiexec -N 16 /shared/anaconda/bin/python prep_hyperp_imp_v2ux.py --count=1 --name=DemoImpModel --config=ConfigImp.yaml >/shared/imp/imp_msstudio_init-master/mss_out/imp_model$runnum/trace.log 2>&1 &
 
 # archive
 # tar -cvzf imp_model18.tgz /shared/imp/imp_msstudio_init-master/mss_out/imp_model18
@@ -343,6 +346,12 @@ tail -100 prep_hyperp_imp_v2ux.log
 
 #a successful run will include the output folders from the job. Copy the entire imp_model_12 to local machine ( optionally tar the folder in order to archive) 
 
+#tar -czvf prc2_imp_model_12.tgz  ./imp_model_12/
+
+##later we can extract the tar gz file
+
+#tar -xzvf prc2_imp_model41.tgz
+
 #in order to run multiple jobs in parallel. From the imp_model folder amend the configuration as needed and call mjob_run_cedar.sh nn once again.
 
 
@@ -356,7 +365,18 @@ finished
 ```
 
 #compute canada will purge files older than 60days in the /scratch area. 
+
 #purge and re-deploy as required
+#rm -rf anaconda
+
+#it is helpful once you have a good install on CEDAR to take a snapshot and download it for later usage
+
+#tar -czvf anaconda_imp2_12_0_baselineA.tar.gz  ./anaconda/
+
+##at a later point when you want that image refreshed you can restore from the snapshot
+
+#tar -xzvf cedar_anaconda_imp2_12_0_baselineA.tar.gz
+
 
 todo: End with an example of getting some data out of the system or using it for analysis
 
