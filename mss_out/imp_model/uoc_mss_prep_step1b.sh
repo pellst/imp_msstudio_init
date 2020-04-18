@@ -1,7 +1,7 @@
 #!/bin/bash
 #uoc_mss_prep_step1b.sh
 # from the /home/username/scratch
-nameuser=$1
+nameuser=$USER
 echo $nameuser
 
 # todo: add check that $nameuser exists
@@ -30,7 +30,8 @@ echo $nameuser
 
 # on Cedar and Graham we go into /scratch/$USER and therein we add this anaconda snapshot that includes the IMP2.12.0 package.
 # anaconda snapshot from Cedar ( works on Graham as well)
-#cd /home/$nameuser/scratch
+##cd /home/$nameuser/scratch
+#cd /scratch/$nameuser
 
 
 # http only works when this file is made public
