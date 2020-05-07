@@ -60,9 +60,10 @@ do
     echo $repl_name$repljob
 
     cp -R ../imp_model ../$repl_name$repljob
-    #cd $repl_name$repljob
-    ../$repl_name$repljob sbatch run_imp.slurm
-    #squeue -u $USER
+    cd ../$repl_name$repljob
+    sbatch run_imp.slurm
+    cd ../imp_model
+	#squeue -u $USER
 done
 
 squeue -u $USER
