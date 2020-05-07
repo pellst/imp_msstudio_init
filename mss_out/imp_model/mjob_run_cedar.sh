@@ -59,12 +59,11 @@ do
     #sleep 1
     echo $repl_name$repljob
 
-    #cd ../
     cp -R ../imp_model ../$repl_name$repljob
     #cd $repl_name$repljob
-    #sbatch run_imp.slurm
-    #squeue -u tpells
-    #cd ../
+    ../$repl_name$repljob sbatch run_imp.slurm
+    #squeue -u $USER
 done
 
+squeue -u $USER
 
