@@ -43,7 +43,9 @@ do
 	
 
 	# number of cores on instance determines param for -N 16
-	nohup /shared/anaconda/bin/mpiexec -N $cores /shared/anaconda/bin/python prep_hyperp_imp_v2ux.py --count=1 --name=DemoImpModel --config=ConfigImp.yaml >/shared/imp/danhells/imp_model$runnum/trace.log 2>&1 &
+	#nohup /shared/anaconda/bin/mpiexec -N $cores /shared/anaconda/bin/python prep_hyperp_imp_v2ux.py --count=1 --name=DemoImpModel --config=ConfigImp.yaml >/shared/imp/danhells/imp_model$runnum/trace.log 2>&1 &
+	# we can only run this in series and not in parallel on aws. Additional instances need to be launched to run replicate job runs in parallel
+	/shared/anaconda/bin/mpiexec -N $cores /shared/anaconda/bin/python prep_hyperp_imp_v2ux.py --count=1 --name=DemoImpModel --config=ConfigImp.yaml >/shared/imp/danhells/imp_model$runnum/trace.log 2>&1 &
 
     sudo cd ../imp_model
 
