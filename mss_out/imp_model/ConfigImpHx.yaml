@@ -1,6 +1,9 @@
 title: PRC2 with HX and EM
 date: 2019-07-10T12:10:31.1913934-06:00
-j
+cores: 48
+replicates: 3
+states: 1
+sampling_frame: 200
 output_dir: ./imp_model
 data_directory: ../
 topology_file: Topology.txt
