@@ -39,7 +39,7 @@ IMPort Job Run:
 MassSpecStudio: 
 ![alt text][logo]
 
-[logo]: https://github.com/pellst/imp_msstudio_init/raw/master/uml_diag_IMProv_msstudio.png "msstudio IMPort prep"
+[logo]: https://github.com/pellst/imp_msstudio_init/raw/master/uml_diag_IMProv_msstudio.png "msstudio IMProv prep"
 
 
 ## Fast Track:
