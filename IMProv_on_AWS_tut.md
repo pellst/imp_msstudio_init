@@ -35,12 +35,12 @@ The **imp_model** folder contains the driver python script and example yaml conf
 
 
 IMPort Job Run: 
-![alt text](https://github.com/pellst/imp_msstudio_init/raw/master/IMPort_uml_diag.png "Logo Title Text 1")
+![alt text](https://github.com/pellst/imp_msstudio_init/raw/master/IMProv_uml_diag.png "Logo Title Text 1")
 
 MassSpecStudio: 
 ![alt text][logo]
 
-[logo]: https://github.com/pellst/imp_msstudio_init/raw/master/uml_diag_IMPort_msstudio.png "msstudio IMPort prep"
+[logo]: https://github.com/pellst/imp_msstudio_init/raw/master/uml_diag_IMProv_msstudio.png "msstudio IMPort prep"
 
 
 ## Fast Track:
@@ -51,7 +51,7 @@ MassSpecStudio:
 
 
 AWS environment 2D: 
-![alt text](https://github.com/pellst/imp_msstudio_init/raw/master/IMPort_MPI_IaaS_Archit2d_v1.png "Logo Title Text 1")
+![alt text](https://github.com/pellst/imp_msstudio_init/raw/master/IMProv_MPI_IaaS_Archit2d_v1.png "Logo Title Text 1")
 
 
 
