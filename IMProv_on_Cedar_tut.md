@@ -33,7 +33,7 @@ The **imp_model** folder contains the driver python script and example yaml conf
 
 
 
-IMPort Job Run: 
+IMProv Job Run: 
 ![alt text](https://github.com/pellst/imp_msstudio_init/raw/master/IMProv_uml_diag.png "Logo Title Text 1")
 
 MassSpecStudio: 
