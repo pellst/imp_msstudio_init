@@ -1,4 +1,5 @@
 #/usr/bin/bash -x
+cd "$(dirname ${BASH_SOURCE[0]})"
 runnum=$1
 # pip install awscli --upgrade --user
 
