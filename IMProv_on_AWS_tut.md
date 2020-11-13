@@ -393,8 +393,7 @@ In order to pull together the various data files and prepare the artifacts of a 
 The **MassSpecStudio** application provides a wizard that guides the user through the selection
 of the data files and setup of the various configuration settings required by the IMP modeling run.
 We need to have installed, on a windows o/s, the **MassSpecStudio** application.  
-todo: link to the msstudio IMProv Guide so that users can prepare their own IMProv project 
-
+[link to the msstudio IMProv Guide so that users can prepare their own IMProv project ](https://github.com/pellst/imp_msstudio_init/blob/master/IMProv_msstudio_tut.md "msstudio IMProv Guide")
 
 ## Built With
 
