@@ -1,4 +1,4 @@
-# IMPort ( integrative modeling platform ) - Workflow (0.1)
+# IMProv ( integrative modeling platform ) - Workflow (0.1)
 
 This tutorial presents the step by step instructions to gather the data files 
 and driver scripts needed to perform a [MPI based IMP modeling](https://integrativemodeling.org/) job run. We demonstrate
@@ -44,7 +44,7 @@ MassSpecStudio:
 
 
 ## Fast Track:
-* login to your **AWS** account and from the Management Console perform these steps to launch an EC2 spot instance using the AMI for IMPort MPI jobs
+* login to your **AWS** account and from the Management Console perform these steps to launch an EC2 spot instance using the AMI for IMProv MPI jobs
   * steps to setup your own AMI, see **Deployment** section
   * steps to launch existing AMI, follow along here.
 
@@ -373,7 +373,7 @@ chmod 755 aws_mss_prep_step1.sh
 ``` 
 Upon completion of the software install. We take a snapshot of the aws AMI so that we can use
 this configured ami to launch new EC2 instances with suitable CPU and memory capacity for the 
-MPI job run for the IMPort PRC2 sample project or your own IMP project.
+MPI job run for the IMProv PRC2 sample project or your own IMP project.
 
 From here you can follow the **FastTrack** section and use the newly minted ami to run the
 PRC2 sample project as an IMP MPI job on aws.
@@ -384,16 +384,16 @@ PRC2 sample project as an IMP MPI job on aws.
 
 
 AWS environment 3D: 
-![alt text](https://github.com/pellst/imp_msstudio_init/raw/master/IMPort_MPI_IAAS_Arch_v1.png "Logo Title Text 1")
+![alt text](https://github.com/pellst/imp_msstudio_init/raw/master/IMProv_MPI_IAAS_Arch_v1.png "Logo Title Text 1")
 
 
-### Prepare a new IMPort modeling project with **MassSpecStudio**
+### Prepare a new IMProv modeling project with **MassSpecStudio**
 
-In order to pull together the various data files and prepare the artifacts of a IMPort modeling bundle.
+In order to pull together the various data files and prepare the artifacts of a IMProv modeling bundle.
 The **MassSpecStudio** application provides a wizard that guides the user through the selection
 of the data files and setup of the various configuration settings required by the IMP modeling run.
 We need to have installed, on a windows o/s, the **MassSpecStudio** application.  
-todo: link to the msstudio IMPort Guide so that users can prepare their own IMPort project 
+todo: link to the msstudio IMProv Guide so that users can prepare their own IMProv project 
 
 
 ## Built With

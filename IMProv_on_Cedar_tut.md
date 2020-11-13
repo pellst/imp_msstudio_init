@@ -1,4 +1,4 @@
-# IMPort ( integrative modeling platform ) - Workflow (0.1)
+# IMProv ( integrative modeling platform ) - Workflow (0.1)
 
 This tutorial presents the step by step instructions to gather the data files 
 and driver scripts needed to perform a [MPI based IMP modeling](https://integrativemodeling.org/) job run. We demonstrate
@@ -203,14 +203,14 @@ We have selected Cedar for our example. There are other clusters on Compute Cana
 
 
 
-### Prepare a new IMPort modeling project with **MassSpecStudio**
+### Prepare a new IMProv modeling project with **MassSpecStudio**
 
-In order to pull together the various data files and prepare the artifacts of a IMPort modeling bundle.
+In order to pull together the various data files and prepare the artifacts of a IMProv modeling bundle.
 The **MassSpecStudio** application provides a wizard that guides the user through the selection
 of the data files and setup of the various configuration settings required by the IMP modeling run.
 We need to have installed, on a windows o/s, the **MassSpecStudio** application. 
  
-todo: link to the msstudio IMPort Guide so that users can prepare their own IMPort project 
+todo: link to the msstudio IMProv Guide so that users can prepare their own IMProv project 
 
 
 ## Built With
