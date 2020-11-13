@@ -6,7 +6,7 @@ these steps using the [PRC2 example project](https://github.com/pellst/imp_msstu
 using [MassSpecStudio](https://www.msstudio.ca/mss-import/). The instructions cover running the job on two platforms:
 
 * Compute Canada: Cedar cluster
-* AWS: EC2 spot instance (pending: link to AWS setup tutorial steps)
+* AWS: EC2 spot instance ![alt text](https://github.com/pellst/imp_msstudio_init/raw/master/IMProv_on_AWS_tut.md "link to AWS setup tutorial steps")
 
 
 #### PRC2 example project:  
