@@ -95,30 +95,11 @@ Project - Deployment to HPC platform running IMP package :
 
 ## Fast Track:
 * login to **Cedar** on Compute Canada and run these scripts in your user account
-  * steps ...
   * see **Installing** [section](https://github.com/pellst/imp_msstudio_init/blob/master/IMProv_on_Cedar_tut.md)
 
 
 * alternatively, login to your **AWS** account and from the Management Console perform these steps to launch an EC2 spot instance using the AMI for IMProv MPI jobs
-  * steps ...
-  * steps to setup your own AMI, see **Deployment** [section](https://github.com/pellst/imp_msstudio_init/blob/master/IMProv_on_Cedar_tut.md)
-
-  * steps to launch existing AMI, follow ...
-
-
-
-```
-code block 
-
-
-
-```
-
-
-
-
-
-
+  * steps to setup your own AMI, see **Deployment** [section](https://github.com/pellst/imp_msstudio_init/blob/master/IMProv_on_AWS_tut.md)
 
 
 
