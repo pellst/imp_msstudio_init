@@ -39,8 +39,8 @@ RemoveNotes:False
 OutlineNotes:True
 ShowMargins:False
 ShowLineNumbers:False
-Cursor/Line:123
-Cursor/Column:8
+Cursor/Line:138
+Cursor/Column:15
 String/MoreDialogue:(MORE)
 String/ContinuedPageEnd:(CONTINUED)
 String/ContinuedPageStart:CONTINUED:
@@ -203,6 +203,8 @@ Words:0
 >:run, the number of frames as well
 >:as names and characteristics of the
 .:structures being included.
+&.https://raw.githubusercontent.com/pellst/imp_msstudio_init/m
+..aster/uml_activity_diag_improv.svg
 .:
 >:The Activity Diagram for
 >:Integrative Modeling using IMP
@@ -309,6 +311,8 @@ Words:0
 >:the online tutorial and includes
 >:links to their getting started
 .:guides. 
+&.https://github.com/pellst/imp_msstudio_init/blob/master/IMPr
+..ov_uml_diag.png
 .\Deployment on CEDAR
 &.https://github.com/pellst/imp_msstudio_init/blob/master/IMPr
 ..ov_on_Cedar_tut.md
