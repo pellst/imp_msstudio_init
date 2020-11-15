@@ -39,8 +39,8 @@ RemoveNotes:False
 OutlineNotes:True
 ShowMargins:False
 ShowLineNumbers:False
-Cursor/Line:80
-Cursor/Column:0
+Cursor/Line:123
+Cursor/Column:8
 String/MoreDialogue:(MORE)
 String/ContinuedPageEnd:(CONTINUED)
 String/ContinuedPageStart:CONTINUED:
@@ -168,94 +168,154 @@ Locations:0
 #Begin-Spell-Checker-Dict 
 Words:0
 #End-Spell-Checker-Dict 
-#Title-String 0.000000,105.000000,24,cb,Helvetica,,UNTITLED SCREENPLAY
-#Title-String 0.000000,120.460000,12,c,Courier,,by\n\nMy Name Here
-#Title-String 15.000000,248.460000,12,,Courier,,123/456-7890\nno.such@thing.com
+#Title-String 0.000000,105.000000,24,cb,Helvetica,,IMProv Video Tutorial
+#Title-String 0.000000,120.460000,12,c,Courier,,by\n\nhttps://www.msstudio.ca/
+#Title-String 15.000000,248.460000,12,,Courier,,dschriem@ucalgary.ca\nhttps://www.msstudio.ca/mss-improv/
 #Header-String 1,0,r,,${PAGE}.
 #Header-Empty-Lines 1
 #Start-Script 
+.%FADE IN - msstudio IMProv project
 .\Getting started
+._NARRATOR
 >:In order to prepare the IMProv
 >:deployment bundle and execute a
 >:modelling run. We are going to look
 >:at a sample project available from
 .:github to get things started. 
 .\Prepare imp topology and config files
-..Pull up the MassSpecStudio IMProv project online tutorial
+._NARRATOR
+>:Pull up the MassSpecStudio IMProv
+.:project online tutorial
 &.https://github.com/pellst/imp_msstudio_init/blob/master/IMPr
 ..ov_msstudio_tut.md
->.This presents us with the steps that need to be taken in
->.order to pull together the various data files ( fasta, pdb,
->.em, xl etc. ). The wizard enables us to define the Topology
->.file representation of, for example, the protein structures
->.involved. We also need a configuration file to define the
->.various parameters, such as the number of cpu's for the MPI
->.job run, the number of frames as well as names and
-..characteristics of the structures being included.
->.The Activity Diagram for Integrative Modeling using IMP
->.presents an diagramatic overview of the Integrative Modeling
-..lifecycle and the Stages involved. 
->.Stage 1 is what we are covering here. This involves defining
->.the various data files that need to be included. This
-..includes preparing the YAML config file and Topology file. 
->.Stage 2 and 3 cover the inner workings of a IMP modeling run
->.and the generation of the rmf files for viewing with
-..Chimera. 
-..Stage 4 is the Analysis phase. 
+._NARRATOR
+>:This presents us with the steps
+>:that need to be taken in order to
+>:pull together the various data
+>:files ( fasta, pdb, em, xl etc. ).
+>:The wizard enables us to define the
+>:Topology file representation of,
+>:for example, the protein structures
+>:involved. We also need a
+>:configuration file to define the
+>:various parameters, such as the
+>:number of cpu's for the MPI job
+>:run, the number of frames as well
+>:as names and characteristics of the
+.:structures being included.
+.:
+>:The Activity Diagram for
+>:Integrative Modeling using IMP
+>:presents a diagramatic overview of
+>:the Integrative Modeling lifecycle
+.:and the Stages involved. 
+._NARRATOR
+>:Stage 1 is what we are covering
+>:here. This involves defining the
+>:various data files that need to be
+>:included. This includes preparing
+>:the YAML config file and Topology
+.:file. 
+>:Stage 2 and 3 cover the inner
+>:workings of a IMP modeling run and
+>:the generation of the rmf files for
+.:viewing with Chimera. 
+.:Stage 4 is the Analysis phase. 
 .\New integrative modelling platform project
->.Start MassSpecStudio. Open a new project and select the
->.Integrative Modelling Platform Project template. Give your
->.project a name ( eg: IMP_PRC2 ) and optionally choose an
-..alternative location.
+._NARRATOR
+>:Start MassSpecStudio. Open a new
+>:project and select the Integrative
+>:Modelling Platform Project
+>:template. Give your project a name
+>:( eg: IMP_PRC2 ) and optionally
+.:choose an alternative location.
 .\Add proteins
->.Using the Add Proteins wizard screen. Select the FASTA or
->.PDB files to add reference sequences. This will then show
->.the Name and give the the opportunity to customize the
->.Topology by clicking the Manage button under the Topology
-..column for the row with a protein name.
+._NARRATOR
+>:Using the Add Proteins wizard
+>:screen. Select the FASTA or PDB
+>:files to add reference sequences.
+>:This will then show the Name and
+>:give the opportunity to customize
+>:the Topology by clicking the Manage
+>:button under the Topology column
+.:for the row with a protein name.
 .\Add protein topology
->.The Topology record can be edited to set the start and end
->.of the sequence together with the PDB Offset etc. Once you
->.click Ok you will be returned to the Add Proteins wizard
->.screen so that you can do the same for each of the Proteins
->.involved. Once you have completed all the Proteins that you
->.wish to amend. You can click the Next button which will take
-..you to the Add Link Data wizard screen
+._NARRATOR
+>:The Topology record can be edited
+>:to set the start and end of the
+>:sequence together with the PDB
+>:Offset etc. Once you click Ok you
+>:will be returned to the Add
+>:Proteins wizard screen so that you
+>:can do the same for each of the
+>:Proteins involved. Once you have
+>:completed all the Proteins that you
+>:wish to amend. You can click the
+>:Next button (at the bottom right
+>:hand corner of the screen) which
+>:will take you to the Add Link Data
+.:wizard screen
 .\Add link Data
->.Add Link Data wizard screen is where you can add additional
->.data files including Cross-Linking, Hydrogen Exchange,
->.Covalent Labeling and Electron Microscopy. These files will
->.be included in their respective folders for the final output
->.that is generated. Once you have completed your file
->.selections you can click the Next button at the bottom right
->.hand corner of the screen. This will take you to the
-..Configure IMP wizard screen.
+._NARRATOR
+>:Add Link Data wizard screen is
+>:where you can add additional data
+>:files including Cross-Linking,
+>:Hydrogen Exchange, Covalent
+>:Labeling and Electron Microscopy.
+>:These files will be included in
+>:their respective folders for the
+>:final output that is generated.
+>:Once you have completed your file
+>:selections you can click the Next
+>:button (at the bottom right hand
+>:corner of the screen). This will
+>:take you to the Configure IMP
+.:wizard screen.
 .\Configure imp
->.The Configure IMP wizard screen is where we define the
->.Directory path to export the data files and modeling scripts
->.to. We also set the Sampling Frames and States here. The
->.Ridgid Body and Super Ridgid Body assignments are available
->.through the pick lists provided. The final step is to click
->.the Export button at the bottom right hand corner of the
->.screen. This will produce the folder structure containing
->.the Topology and YAML Config file together with the raw data
->.files that you selected in the wizard steps ( data folder ).
->.It also adds a folder with the modeling scripts needed
->.(imp_model) to perform the job run using the python driver
-..script provided.
-..
+._NARRATOR
+>:The Configure IMP wizard screen is
+>:where we define the Directory path
+>:to export the data files and
+>:modeling scripts to. We also set
+>:the Sampling Frames and States
+>:here. The Ridgid Body and Super
+>:Ridgid Body assignments are
+>:available through the pick lists
+>:provided. The final step is to
+>:click the Export button (at the
+>:bottom right hand corner of the
+>:screen). This will produce the
+>:folder structure containing the
+>:Topology and YAML Config file
+>:together with the raw data files
+>:that you selected in the wizard
+>:steps ( data folder ). It also adds
+>:a folder with the modeling scripts
+>:needed (imp_model) to perform the
+>:job run using the python driver
+.:script provided.
+.%FADE OUT - msstudio IMProv project
+.%FADE IN - IMProv deployment
 .\Deployment steps
->.Pull up the IMProv script deployment, online tutorial. We
->.will start with deploying to Cedar on the Compute Canada
->.cluster. AWS deployment will be covered later. In both cases
->.the pre-requisite steps to setup an account and login to
->.those services is mentioned in the online tutorial and
-..includes links to their getting started guides. 
+._NARRATOR
+>:Pull up the IMProv script
+>:deployment, online tutorial. We
+>:will start with deploying to Cedar
+>:on the Compute Canada cluster. AWS
+>:deployment will be covered later.
+>:In both cases the pre-requisite
+>:steps to setup an account and login
+>:to those services is mentioned in
+>:the online tutorial and includes
+>:links to their getting started
+.:guides. 
+.\Deployment on CEDAR
 &.https://github.com/pellst/imp_msstudio_init/blob/master/IMPr
 ..ov_on_Cedar_tut.md
+._NARRATOR
 ..
-..
+.\Deployment on AWS
 &.https://github.com/pellst/imp_msstudio_init/blob/master/IMPr
 ..ov_on_AWS_tut.md
-..
-.. 
+._NARRATOR
+.%FADE OUT - IMProv deployment 
