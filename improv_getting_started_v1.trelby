@@ -39,8 +39,8 @@ RemoveNotes:False
 OutlineNotes:True
 ShowMargins:False
 ShowLineNumbers:False
-Cursor/Line:138
-Cursor/Column:15
+Cursor/Line:149
+Cursor/Column:27
 String/MoreDialogue:(MORE)
 String/ContinuedPageEnd:(CONTINUED)
 String/ContinuedPageStart:CONTINUED:
@@ -317,6 +317,17 @@ Words:0
 &.https://github.com/pellst/imp_msstudio_init/blob/master/IMPr
 ..ov_on_Cedar_tut.md
 ._NARRATOR
+>:We make use of a setup script from
+>:github gist in order to provide the
+>:commands needed to get the sample
+>:project from github. This brings
+>:with it the example files and
+>:scripts that we will be using to
+.:complete this demonstrating.
+&.https://gist.githubusercontent.com/pellst/4853822ea5ca74785a
+..f61d0ad39cf84d/raw/uoc_mss_prep_step1.sh
+&.https://github.com/pellst/imp_msstudio_init/blob/master/mss_
+..out/imp_model/uoc_mss_prep_step1.sh
 ..
 .\Deployment on AWS
 &.https://github.com/pellst/imp_msstudio_init/blob/master/IMPr
