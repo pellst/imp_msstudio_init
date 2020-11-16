@@ -39,8 +39,8 @@ RemoveNotes:False
 OutlineNotes:True
 ShowMargins:False
 ShowLineNumbers:False
-Cursor/Line:149
-Cursor/Column:27
+Cursor/Line:155
+Cursor/Column:13
 String/MoreDialogue:(MORE)
 String/ContinuedPageEnd:(CONTINUED)
 String/ContinuedPageStart:CONTINUED:
@@ -250,13 +250,17 @@ Words:0
 >:will be returned to the Add
 >:Proteins wizard screen so that you
 >:can do the same for each of the
->:Proteins involved. Once you have
->:completed all the Proteins that you
->:wish to amend. You can click the
->:Next button (at the bottom right
->:hand corner of the screen) which
->:will take you to the Add Link Data
-.:wizard screen
+>:Proteins involved. The
+>:representation can be adjusted e.g.
+>:two structures can be assigned to a
+>:single sequence and bead size can
+.:be adjusted.
+>:Once you have completed all the
+>:Proteins that you wish to amend.
+>:You can click the Next button (at
+>:the bottom right hand corner of the
+>:screen) which will take you to the
+.:Add Link Data wizard screen
 .\Add link Data
 ._NARRATOR
 >:Add Link Data wizard screen is
@@ -273,6 +277,16 @@ Words:0
 >:corner of the screen). This will
 >:take you to the Configure IMP
 .:wizard screen.
+.\HX-XL classification
+._NARRATOR
+>:Using the histogram view we are
+>:able to adjust the range suitable
+>:for setting the distance restraints
+>:aided by the HX information. This
+>:is where we set the bin sizes to
+>:capture the five categories
+>:covering: Very Loose, Loose,
+.:Medium, Tight, Very Tight.
 .\Configure imp
 ._NARRATOR
 >:The Configure IMP wizard screen is
@@ -296,6 +310,26 @@ Words:0
 >:needed (imp_model) to perform the
 >:job run using the python driver
 .:script provided.
+.\Amendments
+._NARRATOR
+>:An existing project can be reopened
+>:so that we can make adjustments to
+>:the parameters and settings. This
+>:enables us to tweek the Topology
+>:and YAML configuration files using
+>:the wizard steps again. For
+>:advanced users the Topology and
+>:YAML configuration files can be
+>:opened in a text editor and
+>:manually changed. These manual
+>:adjustments would not be reflected
+>:back in the original project and
+>:may be overwritten in the event
+>:that amendments are later made
+>:through the IMProv project wizard.
+>:Take care to keep a separate folder
+>:with your manual changes to prevent
+.:loss thereof.
 .%FADE OUT - msstudio IMProv project
 .%FADE IN - IMProv deployment
 .\Deployment steps
@@ -334,3 +368,43 @@ Words:0
 ..ov_on_AWS_tut.md
 ._NARRATOR
 .%FADE OUT - IMProv deployment 
+.\GLOSSARY
+..
+..ABBREVIATIONS
+>.Cryo-EM| cryoelectron microscopy |
+&.https://www.sciencedirect.com/science/article/pii/S030441651
+..7302374
+>.FDR|False Discovery Rate |
+..https://www.bioinfor.com/fdr-tutorial/
+>.HPC| High Performance Computing |
+..https://docs.computecanada.ca/wiki/Getting_started
+>.HX-MS| Hydrogen eXchange Mass Spectrometry |
+&.https://neu.hxms.com/research/tutorial_theory.htm#:~:text=Hy
+&.drogen%20exchange%20(HX)%20combined%20with,of%20proteins%20a
+..nd%20protein%20structure.
+>.IMP| Integrative Modeling Platform |
+>.https://integrativemodeling.org/||PMI| Python Modeling
+..Interface | https://integrativemodeling.org/
+>.PRC2| Polycomb Repressive Complex 2 |
+..https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5008062/
+>.SLURM|Simple Linux Utility for Resource Management |
+..https://en.wikipedia.org/wiki/Slurm_Workload_Manager
+>.XL-MS| Crosslinking Mass Spectrometry |
+&.https://www.technologynetworks.com/proteomics/articles/cross
+&.-linking-mass-spectrometry-a-key-player-in-the-structural-bi
+..ologists-toolbox-322446
+>.FASTA|The FASTA format is sometimes also referred to as the
+>."Pearson" format (after the author of the FASTA program and
+>.ditto format). |
+>.https://www.bioinformatics.nl/tools/crab_fasta.html |
+..https://en.wikipedia.org/wiki/FASTA_format
+>.PDB|The Protein Data Bank (pdb) file format is a textual
+>.file format describing the three-dimensional structures of
+>.molecules held in the Protein Data Bank |
+&.https://pdb101.rcsb.org/learn/guide-to-understanding-pdb-dat
+..a/introduction | https://www.rcsb.org/
+>.AWS|Amazon Web Services |
+>.https://aws.amazon.com/console/||Cedar|Compute Canada HPC
+..Cluster | https://status.computecanada.ca/
+>.Linux|Operating System, RedHat Enterprise Linux (or
+..variants, such as CentOS or Scientific Linux) 
