@@ -39,8 +39,8 @@ RemoveNotes:False
 OutlineNotes:True
 ShowMargins:False
 ShowLineNumbers:False
-Cursor/Line:155
-Cursor/Column:13
+Cursor/Line:204
+Cursor/Column:12
 String/MoreDialogue:(MORE)
 String/ContinuedPageEnd:(CONTINUED)
 String/ContinuedPageStart:CONTINUED:
@@ -383,8 +383,9 @@ Words:0
 &.drogen%20exchange%20(HX)%20combined%20with,of%20proteins%20a
 ..nd%20protein%20structure.
 >.IMP| Integrative Modeling Platform |
->.https://integrativemodeling.org/||PMI| Python Modeling
-..Interface | https://integrativemodeling.org/
+..https://integrativemodeling.org/
+>.PMI| Python Modeling Interface |
+..https://integrativemodeling.org/
 >.PRC2| Polycomb Repressive Complex 2 |
 ..https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5008062/
 >.SLURM|Simple Linux Utility for Resource Management |
