@@ -39,8 +39,8 @@ RemoveNotes:False
 OutlineNotes:True
 ShowMargins:False
 ShowLineNumbers:False
-Cursor/Line:204
-Cursor/Column:12
+Cursor/Line:246
+Cursor/Column:0
 String/MoreDialogue:(MORE)
 String/ContinuedPageEnd:(CONTINUED)
 String/ContinuedPageStart:CONTINUED:
@@ -409,3 +409,20 @@ Words:0
 ..Cluster | https://status.computecanada.ca/
 >.Linux|Operating System, RedHat Enterprise Linux (or
 ..variants, such as CentOS or Scientific Linux) 
+..
+..REFERENCES
+>.IMProv_msstudio_tut.md: 
+&.https://github.com/pellst/imp_msstudio_init/blob/master/IMPr
+..ov_msstudio_tut.md
+>.uml_activity_diag_improv.svg:
+&.https://raw.githubusercontent.com/pellst/imp_msstudio_init/m
+..aster/uml_activity_diag_improv.svg
+>.IMProv_uml_diag.png:
+&.https://github.com/pellst/imp_msstudio_init/blob/master/IMPr
+..ov_uml_diag.png
+>.IMProv_on_Cedar_tut.md:
+&.https://github.com/pellst/imp_msstudio_init/blob/master/IMPr
+..ov_on_Cedar_tut.md
+>.IMProv_on_AWS_tut.md:
+&.https://github.com/pellst/imp_msstudio_init/blob/master/IMPr
+..ov_on_AWS_tut.md
