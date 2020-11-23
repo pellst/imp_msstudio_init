@@ -39,8 +39,8 @@ RemoveNotes:False
 OutlineNotes:True
 ShowMargins:False
 ShowLineNumbers:False
-Cursor/Line:246
-Cursor/Column:0
+Cursor/Line:195
+Cursor/Column:31
 String/MoreDialogue:(MORE)
 String/ContinuedPageEnd:(CONTINUED)
 String/ContinuedPageStart:CONTINUED:
@@ -363,10 +363,43 @@ Words:0
 &.https://github.com/pellst/imp_msstudio_init/blob/master/mss_
 ..out/imp_model/uoc_mss_prep_step1.sh
 ..
+>:#### get the setup script from
+>:github gist and review before
+>:running: ||~~~||curl -LOk
+&:https://gist.githubusercontent.com/
+&:pellst/4853822ea5ca74785af61d0ad39c
+.:f84d/raw/uoc_mss_prep_step1.sh
+.:chmod 755 uoc_mss_prep_step1.sh
+>:#### run the script
+>:uoc_mss_prep_step1.sh in order to
+>:get the sample folders and scripts
+.:setup ./uoc_mss_prep_step1.sh
+>:#### in the folder
+&:/scratch/$USER/imp/imp_msstudio_ini
+>:t-master/mss_out/imp_model, the
+>:following shell scripts are now
+.:available
+.:uoc_mss_prep_step1.sh
+.:uoc_mss_prep_step2.sh
+.:uoc_mss_prep_step3.sh
 .\Deployment on AWS
 &.https://github.com/pellst/imp_msstudio_init/blob/master/IMPr
 ..ov_on_AWS_tut.md
 ._NARRATOR
+>.A new folder is created with the run number ( imp_model_nn )
+..as a copy of the imp_model folder content.
+>.The data folder is referenced and is not duplicated when
+>.performing multiple run's in parallel on a HPC platform (
+>.replicate run's ). Avoid confusion with MPI which will be
+>.performed within a single run and hence each instance
+>.thereof in a parallel run of for example 3 modeling jobs at
+>.the same time ( ie: 3 replicates each performing independent
+..MC sampling ). 
+>.A subfolder of imp_model_nn is the  output folder which has
+..sub-folders. pdbs and rmfs
+>.When run on 16 cpu. There will be one .rmf3 file per cpu ( 0
+>.through 15 ). We also see stat.*.out and stat_replica.*.out
+..files
 .%FADE OUT - IMProv deployment 
 .\GLOSSARY
 ..
@@ -408,7 +441,8 @@ Words:0
 >.https://aws.amazon.com/console/||Cedar|Compute Canada HPC
 ..Cluster | https://status.computecanada.ca/
 >.Linux|Operating System, RedHat Enterprise Linux (or
-..variants, such as CentOS or Scientific Linux) 
+..variants, such as CentOS or Scientific Linux)
+..MC: Monte Carlo Sampling 
 ..
 ..REFERENCES
 >.IMProv_msstudio_tut.md: 
