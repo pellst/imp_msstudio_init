@@ -116,7 +116,7 @@ Project - Deployment to HPC platform running IMP package :
 We make use of a setup script from github gist in order to provide the commands needed to get the sample project from github. 
 This brings with it the example files and scripts that we will be using to complete this demonstrating.
 
-'''
+```
 #### get the setup script from github gist and review before running: 
 curl -LOk https://gist.githubusercontent.com/pellst/4853822ea5ca74785af61d0ad39cf84d/raw/uoc_mss_prep_step1.sh
 chmod 755 uoc_mss_prep_step1.sh
@@ -126,7 +126,7 @@ uoc_mss_prep_step1.sh
 uoc_mss_prep_step2.sh
 uoc_mss_prep_step3.sh
 
-'''
+```
 
 ## Fast Track:
 * login to **Cedar** on Compute Canada and run these scripts in your user account
