@@ -58,20 +58,43 @@ Project - Add Proteins:
  
 ![alt text](https://github.com/pellst/imp_msstudio_init/raw/master/xl_imp_images/msst_imp_proj_wizard_step1b_topo.png "Logo Title Text 1")
 
+Using the Add Proteins wizard screen. Select the FASTA or PDB files to add reference sequences. 
+This will then show the Name and give the opportunity to customize the Topology by clicking the 
+Manage button under the Topology column for the row with a protein name.
+
 
 Project - Add Proteins Topology: 
 
 ![alt text](https://github.com/pellst/imp_msstudio_init/raw/master/xl_imp_images/msst_imp_proj_wizard_step1c_topo.png "Logo Title Text 1")
+
+The Topology record can be edited to set the start and end of the sequence together with the PDB Offset etc. 
+Once you click Ok you will be returned to the Add Proteins wizard screen so that you can do the same for each of the Proteins involved. 
+The representation can be adjusted e.g. two structures can be assigned to a single sequence and bead size can be adjusted.
+Once you have completed all the Proteins that you wish to amend. 
+You can click the Next button (at the bottom right hand corner of the screen) which will take you to the Add Link Data wizard screen
 
 
 Project - Add Link Data [XL, EM ...]:
  
 ![alt text](https://github.com/pellst/imp_msstudio_init/raw/master/xl_imp_images/msst_imp_proj_wizard_step1d_datafiles.png "Logo Title Text 1")
 
+Add Link Data wizard screen is where you can add additional data files including Cross-Linking, Hydrogen Exchange, Covalent Labeling and Electron Microscopy. 
+These files will be included in their respective folders for the final output that is generated. 
+Once you have completed your file selections you can click the Next button (at the bottom right hand corner of the screen). 
+This will take you to the Configure IMP wizard screen.
+
+
 
 Project - Configure IMP sampling frames... : 
 
 ![alt text](https://github.com/pellst/imp_msstudio_init/raw/master/xl_imp_images/msst_imp_proj_wizard_step1e_config.png "Logo Title Text 1")
+
+The Configure IMP wizard screen is where we define the Directory path to export the data files and modeling scripts to. 
+We also set the Sampling Frames and States here. 
+The Ridgid Body and Super Ridgid Body assignments are available through the pick lists provided. 
+The final step is to click the Export button (at the bottom right hand corner of the screen). 
+This will produce the folder structure containing the Topology and YAML Config file together with the raw data files that you selected in the wizard steps ( data folder ). 
+It also adds a folder with the modeling scripts needed (imp_model) to perform the job run using the python driver script provided.
 
 
 Project - Exported directory - data files : 
@@ -90,8 +113,22 @@ Project - Deployment to HPC platform running IMP package :
 ![alt text](https://github.com/pellst/imp_msstudio_init/raw/master/xl_imp_images/msst_imp_proj_wizard_step2a_pmi.png "Logo Title Text 1")
 
 
+We make use of a setup script from github gist in order to provide the commands needed to get the sample project from github. 
+This brings with it the example files and scripts that we will be using to complete this demonstrating.
+
+'''
+#### get the setup script from github gist and review before running: 
+curl -LOk https://gist.githubusercontent.com/pellst/4853822ea5ca74785af61d0ad39cf84d/raw/uoc_mss_prep_step1.sh
+chmod 755 uoc_mss_prep_step1.sh
+#### run the script uoc_mss_prep_step1.sh in order to get the sample folders and scripts setup ./uoc_mss_prep_step1.sh
+#### in the folder /scratch/$USER/imp/imp_msstudio_init-master/mss_out/imp_model, the following shell scripts are now available
+uoc_mss_prep_step1.sh
+uoc_mss_prep_step2.sh
+uoc_mss_prep_step3.sh
 
 
+
+'''
 
 ## Fast Track:
 * login to **Cedar** on Compute Canada and run these scripts in your user account
