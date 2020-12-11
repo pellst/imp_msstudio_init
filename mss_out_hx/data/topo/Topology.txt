@@ -1,0 +1,2 @@
+empty_field|molecule_name|color|fasta_fn|fasta_id|pdb_fn|chain|residue_range|pdb_offset|bead_size|em_residues|rigid_body|super_rigid_body|chain_of_super_rigid_bodies|flags
+|P52732|black|eg5_hx_orig.fasta|P52732|eg5_hx_orig.fasta||1,END|0|10|10|1|1||

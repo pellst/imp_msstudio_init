@@ -1,0 +1,47 @@
+title: Custom name of IMP project
+date: 2020-12-11T16:29:45.5714327-07:00
+cores: 32
+replicates: 1
+states: 1
+sampling_frame: 100
+output_dir: ./imp_model
+hx_xl_mode: HX_XL
+data_directory: ../
+topology_file: Topology.txt
+target_gmm_file: gmm_file_ouput.txt
+crosslinkdb:
+- refid: BSA_xlinks_4.csv
+- refid: BSA_xlinks_4_6.csv
+xl_groupA:
+- refid: BSA_xlinks_4.csv
+  length: 21.0
+  slope: 0.01
+  resolution: 1.0
+  label: BSA_xlinks_4_tight
+  weight: 1.0
+  crosslink_distance: 30
+- refid: BSA_xlinks_4_6.csv
+  length: 21.0
+  slope: 0.01
+  resolution: 1.0
+  label: BSA_xlinks_4_6
+  weight: 1.0
+  crosslink_distance: 20
+xl_dbA:
+- refid: BSA_xlinks_4.csv
+  set_protein1_key: Protein 1
+  set_protein2_key: Protein 2
+  set_site_pairs_key: Selected Sites
+  set_unique_id_key: Peptide ID
+- refid: BSA_xlinks_4_6.csv
+  set_protein1_key: Protein 1
+  set_protein2_key: Protein 2
+  set_site_pairs_key: Selected Sites
+  set_unique_id_key: Peptide ID
+degree_of_freedom:
+  max_rb_trans: 4.0
+  max_rb_rot: 0.3
+  max_bead_trans: 4.0
+  max_srb_trans: 4.0
+  max_srb_rot: 0.3
+
