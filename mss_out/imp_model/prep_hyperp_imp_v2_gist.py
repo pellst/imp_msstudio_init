@@ -163,6 +163,14 @@ def load_config(config_file,
     logging.info('given topology_file %s!' % cfg['topology_file'])
     logging.info('given title %s!' % cfg['title'])
     
+    key="emdb"
+    if key in cfg:
+      print( key + " exists" )
+      logging.info('key exists: %s!' % key)
+    else:
+      print( key + " does not exist" )
+      logging.info('key does not exist: %s!' % key)
+    
 
 
     # perform pipeline setup
@@ -260,9 +268,16 @@ def model_pipeline(project):
     
     
     # Getting length of list 
-    length_ebmdb = len(project["emdb"]) 
+    #length_ebmdb = len(project["emdb"]) 
     em_i = 0
-    
+    key="emdb"
+    if key in project:
+      length_ebmdb = len(project["emdb"]) 
+      logging.info('key exists: %s!' % key)
+    else:
+      length_ebmdb = 0 
+      logging.info('key does not exist: %s!' % key)
+          
     logging.info('Iterating emdb section using while loop')
     # Iterating using while loop 
     while em_i < length_ebmdb: 
@@ -280,31 +295,31 @@ def model_pipeline(project):
         #target_gmm_file = gmm_dir+'/'+project["emdb"][em_i]["target_gmm_file"]
         #source_map_mrc_file = gmm_dir+'/'+project["emdb"][em_i]["source_map_mrc_file"]
         # gmm_data_dir
-        target_gmm_file = gmm_data_dir+'/'+project["emdb"][em_i]["target_gmm_file"]
-        source_map_mrc_file = gmm_data_dir+'/'+project["emdb"][em_i]["source_map_mrc_file"]
+        target_gmm_filename = gmm_data_dir+'/'+project["emdb"][em_i]["target_gmm_file"]
+        source_map_mrc_filename = gmm_data_dir+'/'+project["emdb"][em_i]["source_map_mrc_file"]
 
         gmm_map_approx = str( project["emdb"][em_i]["gmm_map_approx"] )
         #create_gmm_script = "/shared/imp/imp_msstudio_init-master/mss_out/imp_model/create_gmm.py"
         create_gmm_script = cwd+'/'+"create_gmm.py"
-        create_gmm_script_param = ["/shared/anaconda/bin/python", create_gmm_script, source_map_mrc_file, gmm_map_approx, target_gmm_file]
+        create_gmm_script_param = ["/shared/anaconda/bin/python", create_gmm_script, source_map_mrc_filename, gmm_map_approx, target_gmm_filename]
         logging.info('gmm params %s!' % create_gmm_script_param)
         # cwd current work directory
         logging.info('current work directory %s!' % cwd)
         
         # skip the .gz source file entry
-        if (os.path.splitext(source_map_mrc_file)[1] eq ".gz" ):
-            logging.info('EM source file .gz exists %s!' % source_map_mrc_file)
+        if (os.path.splitext(source_map_mrc_filename)[1] == ".gz" ):
+            logging.info('EM source file .gz ignored %s!' % source_map_mrc_filename)
         else:
-            logging.info('EM source file %s!' % source_map_mrc_file)
+            logging.info('EM source file %s!' % source_map_mrc_filename)
             logging.info('EM filename check for %s!' % project["emdb"][em_i]["target_gmm_file"])
             print('EM filename check for %s!' % project["emdb"][em_i]["target_gmm_file"])
-            if os.path.isfile(target_gmm_file):
-                logging.info('EM file exists %s!' % target_gmm_file)
+            if os.path.isfile(target_gmm_filename):
+                logging.info('EM file exists %s!' % target_gmm_filename)
             else:
-                logging.info('prep gemt addition: GMM txt file does NOT exist %s!' % target_gmm_file)
-                print('prep gemt addition: GMM txt file does NOT exist %s!' % target_gmm_file)
-                if os.path.isfile(source_map_mrc_file):
-                    logging.info('EMDB source file exists %s!' % source_map_mrc_file)
+                logging.info('prep gemt addition: GMM txt file does NOT exist %s!' % target_gmm_filename)
+                print('prep gemt addition: GMM txt file does NOT exist %s!' % target_gmm_filename)
+                if os.path.isfile(source_map_mrc_filename):
+                    logging.info('EMDB source file exists %s!' % source_map_mrc_filename)
                     # TODO: handle tar.gz version of EMDB map.mrc file, which requires extraction prior to processing with create_gmm.py 
                     
                     # The GMM approximation of the EM map is created with an IMP command line utility: create_gmm.py found in IMP_INSTALLATION_DIRECTORY/modules/isd/pyext/src/
@@ -313,10 +328,10 @@ def model_pipeline(project):
                     #cmd_info = /shared/imp/imp_msstudio_init-master/mss_out/data/data/em/my_map.mrc 50 my_map.gmm50.txt -m my_map.gmm50.mrc
                     #p = subprocess.check_output(["/shared/anaconda/bin/python", "/shared/imp/imp_msstudio_init-master/mss_out/imp_model/create_gmm.py", "/shared/imp/imp_msstudio_init-master/mss_out/data/data/em/my_map.mrc", "50", "my_map.gmm50.txt", "-m", "my_map.gmm50.mrc"])
                     #p = subprocess.check_output(["/shared/anaconda/bin/python", "/shared/imp/imp_msstudio_init-master/mss_out/imp_model/create_gmm.py", "/shared/imp/imp_msstudio_init-master/mss_out/data/data/em/my_map.mrc", "50", "my_map.gmm50.txt"])
-                    p = subprocess.check_output(["/shared/anaconda/bin/python", create_gmm_script, source_map_mrc_file, gmm_map_approx, target_gmm_file])
+                    p = subprocess.check_output(["/shared/anaconda/bin/python", create_gmm_script, source_map_mrc_filename, gmm_map_approx, target_gmm_filename])
                 else:
-                    logging.info('create_gmm NOT available as EMDB source file does NOT exist %s!' % source_map_mrc_file)
-                    print('create_gmm NOT available as EMDB source file does NOT exist %s!' % source_map_mrc_file)           
+                    logging.info('create_gmm NOT available as EMDB source file does NOT exist %s!' % source_map_mrc_filename)
+                    print('create_gmm NOT available as EMDB source file does NOT exist %s!' % source_map_mrc_filename)           
                 
         em_i += 1
         
@@ -390,7 +405,7 @@ def model_pipeline(project):
     toporeader = IMP.pmi.topology.TopologyReader(topology_file,
                                       pdb_dir=pdb_dir,
                                       fasta_dir=fasta_dir,
-                                      gmm_dir=gmm_dir)
+                                      gmm_dir=this_path)
 
     # Use the BuildSystem macro to build states from the topology file
     
@@ -576,8 +591,15 @@ def model_pipeline(project):
     
     
     # Getting length of list 
-    length_ebmdb = len(project["emdb"]) 
+    #length_ebmdb = len(project["emdb"]) 
     em_i = 0
+    key="emdb"
+    if key in project:
+      length_ebmdb = len(project["emdb"]) 
+      logging.info('key exists: %s!' % key)
+    else:
+      length_ebmdb = 0 
+      logging.info('key does not exist: %s!' % key)
     
     logging.info('Iterating emdb section using while loop')
     # Iterating using while loop 
@@ -591,17 +613,19 @@ def model_pipeline(project):
         #logging.info(project["emdb"][em_i]["target_gmm_file"])
         #logging.info(project["emdb"][em_i]["gmm_approx_mrc_file"])
         
-        target_gmm_file = gmm_dir+'/'+project["emdb"][em_i]["target_gmm_file"]
+        target_gmm_pathtofile = gmm_dir+'/'+project["emdb"][em_i]["target_gmm_file"]
+        #target_gmm_pathtofile = gmm_data_dir+'/'+project["emdb"][em_i]["target_gmm_file"]
 
         logging.info('EM filename check for %s!' % project["emdb"][em_i]["target_gmm_file"])
         #print('EM filename check for %s!' % project["emdb"][em_i]["target_gmm_file"])
-        if os.path.isfile(target_gmm_file):
-            logging.info('EM file exists %s!' % target_gmm_file)
+        if os.path.isfile(target_gmm_pathtofile):
+            logging.info('EM file exists %s!' % target_gmm_pathtofile)
             #print('EM file exists %s!' % target_gmm_file)
             #print('EM file exists %s!' % project["target_gmm_file"])
+            #project["emdb"][em_i]["target_gmm_file"],
+            
             gemt = IMP.pmi.restraints.em.GaussianEMRestraint(densities,                                                     
-                                                             #project["emdb"][em_i]["target_gmm_file"],
-                                                             target_gmm_file,
+                                                             target_gmm_pathtofile,
                                                              scale_target_to_mass=True,
                                                              slope=0,
                                                              weight=200.0)
@@ -610,8 +634,8 @@ def model_pipeline(project):
             gemt.add_to_model()
             outputobjects.append(gemt)
         else:
-            logging.info('skip gemt addition: EM file does NOT exist %s!' % target_gmm_file)
-            print('skip gemt addition: EM file does NOT exist %s!' % target_gmm_file)
+            logging.info('skip gemt addition: EM file does NOT exist %s!' % target_gmm_pathtofile)
+            print('skip gemt addition: EM file does NOT exist %s!' % target_gmm_pathtofile)
     
         em_i += 1
 
