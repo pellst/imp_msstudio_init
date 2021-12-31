@@ -372,13 +372,13 @@ pip install --upgrade awscli
 **Content of anaimp_docker_launch_instance_config_v3c.json**
 ```
 {
-    "ImageId": "ami-0191299d04ce0bef0",
+    "ImageId": "ami-0191299d04ce0bef1",
     "InstanceType": "t3a.2xlarge",
     "KeyName": "msstudio_org_kp",
     "SecurityGroupIds": [
-        "sg-08139f017b4a5805e"
+        "sg-08139f017b4a5805f"
     ],
-    "SubnetId": "subnet-1eb92835",
+    "SubnetId": "subnet-1eb92834",
     "DisableApiTermination": false,
     "DryRun": false,
     "EbsOptimized": true,
