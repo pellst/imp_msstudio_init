@@ -1,6 +1,6 @@
 title: PRC2 with HX and EM
 date: 2019-07-10T12:10:31.1913934-06:00
-cores: 2
+cores: 4 
 replicates: 1
 states: 1
 sampling_frame: 20
@@ -8,6 +8,17 @@ output_dir: ./imp_model
 data_directory: ../
 topology_file: Topology.txt
 target_gmm_file: gmm_file_ouput.txt
+emdb:
+- em_map_mrc_id: Ciferri_CEM_PRC2.map.mrc
+  gmm_map_approx: 50
+  source_map_mrc_file: Ciferri_CEM_PRC2.map.mrc
+  target_gmm_file: gmm_file_ouput.txt
+  gmm_approx_mrc_file: Ciferri_CEM_PRC2.gmm50.mrc
+- em_map_mrc_id: my_map.mrc
+  gmm_map_approx: 50
+  source_map_mrc_file: my_map.mrc
+  target_gmm_file: my_map.gmm50.txt
+  gmm_approx_mrc_file: my_map.gmm50.mrc
 crosslinkdb:
 - refid: PRC2_DSS_unprotected.csv
 - refid: PRC2_DSS_standard.csv
